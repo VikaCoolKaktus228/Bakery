@@ -23,6 +23,8 @@ namespace Bakery
         public MainWindow()
         {
             InitializeComponent();
+            AppConnect.bakerymodel = new Entitie();
+            AppFrame.mainFrame = bakeryframe;
         }
     }
 }
