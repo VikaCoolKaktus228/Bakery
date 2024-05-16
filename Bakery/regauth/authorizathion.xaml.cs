@@ -23,6 +23,44 @@ namespace Bakery.regauth
         public authorizathion()
         {
             InitializeComponent();
+
+            private void logbut_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var user = AppConect.bakerymod.Users.FirstOrDefault(x => x.Login == loginauth.Text && x.Password == passwordauth.Password);
+                if (user == null)
+                {
+                    MessageBox.Show("Такого пользователя не существует",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                }
+                else
+                {
+                    switch (user.Role)
+                    {
+                        case 1:
+                            MessageBox.Show("здраствйте админ",
+                    "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            break;
+                        case 2:
+                            MessageBox.Show("здраствйте пользователь",
+                    "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            break;
+                        default:
+                            MessageBox.Show("данные не обнаружены!",
+                    "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            break;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка" + ex.Message.ToString(),
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
         }
     }
 }
