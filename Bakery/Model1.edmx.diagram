@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="BackeryModel.Allergens" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BackeryModel.Cart" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BackeryModel.Category" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BackeryModel.GoodsBakery" Width="1.5" PointX="4" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.GoodsBakery" Width="1.5" PointX="3.125" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BackeryModel.Order" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="BackeryModel.Provider" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="BackeryModel.Role" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />

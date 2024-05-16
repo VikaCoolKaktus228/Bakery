@@ -9,6 +9,66 @@
       Title="registration">
 
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/image/Frutiger_Aero_(3).jpg"/>
+        </Grid.Background>
+        <Label Content="Регистрация" HorizontalAlignment="Left" Margin="251,-3,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Cascadia Code ExtraLight" FontSize="48" Foreground="#FF1255DA"/>
+        <Label Content="введите имя" FontSize="22" Background="Transparent" Width="269" Height="37" Margin="13,219,518,194">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222E7D"/>
+                    <GradientStop Color="#FFBEC4E6" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="loginreg" TextWrapping="Wrap" Width="316" Height="33" Margin="474,99,10,318"/>
+        <TextBox x:Name="emailreg" TextWrapping="Wrap" Width="316" Height="34" Margin="13,99,471,317"/>
+        <TextBox x:Name="phonereg" TextWrapping="Wrap" Width="316" Height="37" Margin="13,182,471,231"/>
+        <Label Content="введите пароль" FontSize="22" Background="Transparent" Height="39" Width="311" Margin="478,138,11,273">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF3D499E" Offset="0.007"/>
+                    <GradientStop Color="#FFBFC5EA" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <PasswordBox x:Name="repeatpasswordreg" Width="312" Height="35" Margin="477,269,11,146" PasswordChanged="repeatpasswordreg_PasswordChanged"/>
+        <Button x:Name="regbutton" Content="регистрация" Height="35" Width="211" Foreground="#FF2A35E4" FontSize="18" Background="#FFCBDBF9" Margin="305,341,284,74" IsEnabled="False" Click="regbutton_Click"/>
+        <Button x:Name="regbut" Content="войти" Height="34" Width="211" FontSize="20" Foreground="#FF171AD6" Background="#FFD3E2FF" Margin="305,381,284,35"/>
+        <Label Content="повторите пароль" FontSize="22" Background="Transparent" Height="39" Width="311" Margin="479,225,10,186">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF3D499E" Offset="0.007"/>
+                    <GradientStop Color="#FFBFC5EA" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="namereg" TextWrapping="Wrap" Width="316" Height="33" Margin="13,266,471,151"/>
+        <Label Content="введите логин&#xD;&#xA;" FontSize="22" Background="Transparent" Width="269" Height="37" Margin="474,57,57,356">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222E7D"/>
+                    <GradientStop Color="#FFBEC4E6" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="tbpasswordreg" TextWrapping="Wrap" Width="316" Height="33" Margin="475,187,9,230"/>
+        <Label Content="введите телефон" FontSize="22" Background="Transparent" Width="269" Height="37" Margin="13,138,518,275">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222E7D"/>
+                    <GradientStop Color="#FFBEC4E6" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <Label Content="введите почту&#xD;&#xA;" FontSize="22" Background="Transparent" Width="269" Height="37" Margin="13,57,518,356">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222E7D"/>
+                    <GradientStop Color="#FFBEC4E6" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+
     </Grid>
 </Page>

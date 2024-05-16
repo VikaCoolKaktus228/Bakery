@@ -55,30 +55,30 @@ namespace Bakery
                 product = product.Where(x => x.NameGoods.ToLower().Contains(TextSearche.Text.ToLower())).ToList();
             }
 
-            if (ComboFilter.SelectedIndex > 0)
+            if (ComboFilter.SelectedIndex >= 0)
             {
                 switch (ComboFilter.SelectedIndex)
                 {
-                    case 1:
-                        product = product.Where(x => x.Weight > 0 && x.Weight < 100).ToList();
+                    case 0:
+                        product = product.Where(x => x.Weight >= 0 && x.Weight <= 100).ToList();
                         break;
-                    case 2:
+                    case 1:
                         product = product.Where(x => x.Weight >= 100 && x.Weight < 500).ToList();
                         break;
-                    case 3:
+                    case 2:
                         product = product.Where(x => x.Weight > 500).ToList();
                         break;
                 }
             }
-            if (ComboSort.SelectedIndex > 0)
+            if (ComboSort.SelectedIndex >= 0)
             {
                 switch (ComboSort.SelectedIndex)
                 {
+                    case 0:
+                        product = product.OrderByDescending(x => x.Price).ToList<GoodsBakery>();
+                        break;
                     case 1:
                         product = product.OrderBy(x => x.Price).ToList();
-                        break;
-                    case 2:
-                        product = product.OrderByDescending(x => x.Price).ToList<GoodsBakery>();
                         break;
                 }
             }

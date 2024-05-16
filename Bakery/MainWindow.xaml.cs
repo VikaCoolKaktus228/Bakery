@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bakery.regauth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,14 +24,10 @@ namespace Bakery
         public MainWindow()
         {
             InitializeComponent();
-            AppConnect.bakerymodel = new Entitie();
-            AppFrame.mainFrame = bakeryframe;
             AppConect.bakerymod = new Entities();
             AppFrame.BakeryFrame = BakFrame;
 
-            BakFrame.Navigate(new goodslist());
-
-
+            BakFrame.Navigate(new authorizathion());
         }
     }
 }

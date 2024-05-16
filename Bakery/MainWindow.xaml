@@ -5,11 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakery"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="0,0,0,378" Background="#FFFFC9E9">
-        <Grid/>
-        <Label x:Name="Bakery" Content="Cute bakery!!!" HorizontalAlignment="Left" Margin="293,3,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Pristina" Foreground="#FFDA547F" FontSize="33"/>
-        <Frame x:Name="BakFrame" Content="Frame" Margin="0,56,0,-377"/>
+        Title="MainWindow" Height="612" Width="902">
+    <Grid Margin="0,0,0,-6">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFF3F3FD"/>
+                <GradientStop Color="#FF6998E6" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Margin="0,0,0,522">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5AA8E2" Offset="0.053"/>
+                    <GradientStop Color="#FFBBE3FD" Offset="1"/>
+                    <GradientStop Color="#FFEDF5F9" Offset="0.537"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+        <Label x:Name="Bakery" Content="Cute bakery" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Gill Sans Ultra Bold" FontSize="33" Foreground="#FF3E63AD" Background="#00000000"/>
+        <Frame x:Name="BakFrame" Content="Frame" Margin="0,56,0,0"/>
 
     </Grid>
 </Window>

@@ -1,4 +1,4 @@
-﻿<Page x:Class="Bakery.regauth.authorizathion"
+﻿<Page x:Name="loginbutton" x:Class="Bakery.regauth.authorizathion"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,9 +6,35 @@
       xmlns:local="clr-namespace:Bakery.regauth"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="authorizathion">
+      Title="authorizathion" Background="Black">
 
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/image/Frutiger_Aero_(3).jpg"/>
+        </Grid.Background>
+        <Label Content="Авторизация" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Cascadia Code ExtraLight" FontSize="48" Foreground="#FF1255DA"/>
+        <StackPanel Margin="212,115,212,46">
+            <Label Content="введите логин" FontSize="22" Background="Transparent" Width="312">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF222E7D"/>
+                        <GradientStop Color="#FFBEC4E6" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <TextBox x:Name="loginauth" TextWrapping="Wrap" Width="316" Height="41" Margin="0,0,0,5"/>
+            <Label Content="введите пароль" FontSize="22" Background="Transparent" Height="39" Width="311">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF3D499E" Offset="0.007"/>
+                        <GradientStop Color="#FFBFC5EA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <PasswordBox x:Name="passwordauth" Width="312" Height="43" Margin="0,0,0,10"/>
+            <Button x:Name="logbut" Content="войти" Height="37" Width="220" FontSize="20" Foreground="#FF171AD6" Background="#FFD3E2FF" Click="logbut_Click"/>
+            <Button Content="регистрация" Height="40" Width="220" Margin="0,5,0,0" Foreground="#FF2A35E4" FontSize="18" Background="#FFCBDBF9"/>
+        </StackPanel>
+
     </Grid>
 </Page>
