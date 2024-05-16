@@ -26,8 +26,6 @@ namespace Bakery
             AppConect.bakerymod = new Entities();
             AppFrame.BakeryFrame = BakFrame;
 
-            del
-
             BakFrame.Navigate(new goodslist());
 
 
