@@ -13,24 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bakery
+namespace Bakery.regauth
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для authorizathion.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class authorizathion : Page
     {
-        public MainWindow()
+        public authorizathion()
         {
             InitializeComponent();
-            AppConect.bakerymod = new Entities();
-            AppFrame.BakeryFrame = BakFrame;
-
-            del
-
-            BakFrame.Navigate(new goodslist());
-
-
         }
     }
 }

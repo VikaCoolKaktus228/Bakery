@@ -16,20 +16,19 @@ using System.Windows.Shapes;
 namespace Bakery
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для goodslist.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class goodslist : Page
     {
-        public MainWindow()
+        public goodslist()
         {
             InitializeComponent();
-            AppConect.bakerymod = new Entities();
-            AppFrame.BakeryFrame = BakFrame;
+            List<GoodsBakery> bakerygoods = AppConect.bakerymod.GoodsBakery.ToList();
+            BakeryList.ItemsSource = bakerygoods;
+        }
 
-            del
-
-            BakFrame.Navigate(new goodslist());
-
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }

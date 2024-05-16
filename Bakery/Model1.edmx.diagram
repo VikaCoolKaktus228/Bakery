@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c346b4d64a7243af9905396b36977c15" Name="Diagram1">
+        <EntityTypeShape EntityType="BackeryModel.Allergens" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.Cart" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.Category" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.GoodsBakery" Width="1.5" PointX="4" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.Order" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.Provider" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.Role" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.Status" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.TypeOfGoods" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackeryModel.Users" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="BackeryModel.FK_GoodsBakery_Allergens" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_Cart_GoodsBakery1" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_Cart_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_GoodsBakery_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_Cart_GoodsBakery" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_GoodsBakery_Provider" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_GoodsBakery_TypeOfGoods" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_Cart_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_Order_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="BackeryModel.FK_Users_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

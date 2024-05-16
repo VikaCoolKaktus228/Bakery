@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Bakery"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="0,0,0,378" Background="#FFFFC9E9">
+        <Grid/>
+        <Label x:Name="Bakery" Content="Cute bakery!!!" HorizontalAlignment="Left" Margin="293,3,0,0" VerticalAlignment="Top" Background="Transparent" FontFamily="Pristina" Foreground="#FFDA547F" FontSize="33"/>
+        <Frame x:Name="BakFrame" Content="Frame" Margin="0,56,0,-377"/>
+
     </Grid>
 </Window>
