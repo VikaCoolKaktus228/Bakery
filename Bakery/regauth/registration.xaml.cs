@@ -69,5 +69,10 @@ namespace Bakery.regauth
         {
 
         }
+
+        private void regbut_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new authorizathion());
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Bakery.editgoods;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,15 @@ using System.Windows.Shapes;
 namespace Bakery
 {
     /// <summary>
-    /// Логика взаимодействия для goodslist.xaml
+    /// Логика взаимодействия для goodslistuser.xaml
     /// </summary>
-    public partial class goodslist : Page
+    public partial class goodslistuser : Page
     {
-        public goodslist()
+        public goodslistuser()
         {
             InitializeComponent();
             List<GoodsBakery> bakerygoods = AppConect.bakerymod.GoodsBakery.ToList();
-            bakeryproducts.ItemsSource = bakerygoods;
+            userbakeryproducts.ItemsSource = bakerygoods;
 
 
             List<GoodsBakery> bakgoods = AppConect.bakerymod.GoodsBakery.ToList();
@@ -38,7 +37,7 @@ namespace Bakery
             {
                 tbCounter.Text = "Ничего не найдено";
             }
-            bakeryproducts.ItemsSource = bakgoods;
+            userbakeryproducts.ItemsSource = bakgoods;
             ComboSort.Items.Add("По уменьшению цены");
             ComboSort.Items.Add("По возрастанию цены");
 
@@ -91,7 +90,7 @@ namespace Bakery
             {
                 tbCounter.Text = "Ничего не найдено";
             }
-            bakeryproducts.ItemsSource = product;
+            userbakeryproducts.ItemsSource = product;
             return product.ToArray();
 
         }
@@ -99,37 +98,6 @@ namespace Bakery
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             findGoods();
-        }
-
-        private void addgooods_Click(object sender, RoutedEventArgs e)
-        {
-            AppFrame.BakeryFrame.Navigate(new AddEditgoods());
-        }
-
-        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-        }
-
-        private void delete_Click(object sender, RoutedEventArgs e)
-        {
-            var goodsfordeleting = bakeryproducts.SelectedItems.Cast<GoodsBakery>().ToList();
-
-            if(MessageBox.Show($"Вы точно хотите удалить следующие {goodsfordeleting.Count()} элементов?", "Внимание",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    Entities.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
-                    Entities.GetContext().SaveChanges();
-                    MessageBox.Show("ДАННЫЕ УДАЛЕНЫ");
-
-                    bakeryproducts.ItemsSource = Entities.GetContext().GoodsBakery.ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
-            }
         }
     }
 }

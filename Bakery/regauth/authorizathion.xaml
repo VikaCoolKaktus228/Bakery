@@ -32,8 +32,8 @@
                 </Label.Foreground>
             </Label>
             <PasswordBox x:Name="passwordauth" Width="312" Height="43" Margin="0,0,0,10"/>
-            <Button x:Name="logbut" Content="войти" Height="37" Width="220" FontSize="20" Foreground="#FF171AD6" Background="#FFD3E2FF" Click="logbut_Click"/>
-            <Button Content="регистрация" Height="40" Width="220" Margin="0,5,0,0" Foreground="#FF2A35E4" FontSize="18" Background="#FFCBDBF9"/>
+            <Button x:Name="loginreg" Content="войти" Height="37" Width="220" FontSize="20" Foreground="#FF171AD6" Background="#FFD3E2FF" Click="loginreg_Click"/>
+            <Button Content="регистрация" Height="40" Width="220" Margin="0,5,0,0" Foreground="#FF2A35E4" FontSize="18" Background="#FFCBDBF9" Click="Button_Click"/>
         </StackPanel>
 
     </Grid>

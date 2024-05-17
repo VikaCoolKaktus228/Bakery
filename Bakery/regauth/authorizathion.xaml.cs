@@ -24,7 +24,9 @@ namespace Bakery.regauth
         {
             InitializeComponent();
 
-            private void logbut_Click(object sender, RoutedEventArgs e)
+        }
+
+        private void loginreg_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -42,10 +44,12 @@ namespace Bakery.regauth
                         case 1:
                             MessageBox.Show("здраствйте админ",
                     "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            AppFrame.BakeryFrame.Navigate(new goodslist());
                             break;
                         case 2:
                             MessageBox.Show("здраствйте пользователь",
                     "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            AppFrame.BakeryFrame.Navigate(new goodslistuser());
                             break;
                         default:
                             MessageBox.Show("данные не обнаружены!",
@@ -61,6 +65,10 @@ namespace Bakery.regauth
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new registration());
         }
     }
 }

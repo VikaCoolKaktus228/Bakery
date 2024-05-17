@@ -75,11 +75,17 @@
     <Compile Include="Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="editgoods\AddEditgoods.xaml.cs">
+      <DependentUpon>AddEditgoods.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GoodsBakery.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="goodslist.xaml.cs">
       <DependentUpon>goodslist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="goodslistuser.xaml.cs">
+      <DependentUpon>goodslistuser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
@@ -119,7 +125,15 @@
     <Compile Include="Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Page Include="editgoods\AddEditgoods.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="goodslist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="goodslistuser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

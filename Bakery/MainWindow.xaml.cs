@@ -1,4 +1,5 @@
-﻿using Bakery.regauth;
+﻿using Bakery.editgoods;
+using Bakery.regauth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
