@@ -21,7 +21,7 @@ namespace Bakery.editgoods
     public partial class AddEditgoods : Page
     {
         private GoodsBakery curbakery = new GoodsBakery();
-        public AddEditgoods()
+        public AddEditgoods(GoodsBakery selectedgoods)
         {
             InitializeComponent();
             DataContext = curbakery;
@@ -29,6 +29,11 @@ namespace Bakery.editgoods
             goodsallergienss.ItemsSource = Entities.GetContext().Allergens.Select(x => x.Allergen).ToList();
             goodsproviderr.ItemsSource = Entities.GetContext().Provider.Select(x => x.Provider1).ToList();
             goodstypee.ItemsSource = Entities.GetContext().TypeOfGoods.Select(x => x.Type).ToList();
+
+            if(selectedgoods != null)
+            {
+                curbakery = selectedgoods;
+            }
 
 
         }

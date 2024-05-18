@@ -131,5 +131,10 @@ namespace Bakery
                 }
             }
         }
+
+        private void change_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new AddEditgoods(sender as Button).DataContext as GoodsBakery);
+        }
     }
 }
