@@ -64,6 +64,7 @@
                                 <Run Text=" "/> 
                                 <Run Text=" "/>
                             </TextBlock>
+                            <Label x:Name="idforcart" Content="{Binding GoodsBakery.Id}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Width="306" Orientation="Vertical" HorizontalAlignment="Left" Margin="372,0,0,0">
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
@@ -78,7 +79,7 @@
                                 <Run Text=" "/> 
                                 <Run Text=" "/>
                             </TextBlock>
-                            <Button x:Name="cart" Content="добавить в корзину" Width="200" Height="53"/>
+                            <Button x:Name="cart" Content="добавить в корзину" Width="200" Height="53" Click="cart_Click"/>
                         </StackPanel>
 
                     </Grid>

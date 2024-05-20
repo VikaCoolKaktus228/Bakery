@@ -49,7 +49,8 @@ namespace Bakery.regauth
                         case 2:
                             MessageBox.Show("здраствйте пользователь",
                     "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                            AppFrame.BakeryFrame.Navigate(new goodslistuser());
+                            App.Current.Properties["Id"] = user.Id;
+                            AppFrame.BakeryFrame.Navigate(new goodslistuser((sender as Button).DataContext as Users));
                             break;
                         default:
                             MessageBox.Show("данные не обнаружены!",

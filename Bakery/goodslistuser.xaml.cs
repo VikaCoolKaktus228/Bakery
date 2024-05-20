@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,14 +22,16 @@ namespace Bakery
     /// </summary>
     public partial class goodslistuser : Page
     {
-        public goodslistuser()
+        private Users curuser = new Users();
+        public goodslistuser(Users user)
         {
             InitializeComponent();
             List<GoodsBakery> bakerygoods = AppConect.bakerymod.GoodsBakery.ToList();
             userbakeryproducts.ItemsSource = bakerygoods;
+            DataContext = curuser;
 
 
-            List<GoodsBakery> bakgoods = AppConect.bakerymod.GoodsBakery.ToList();
+        List<GoodsBakery> bakgoods = AppConect.bakerymod.GoodsBakery.ToList();
 
             if (bakgoods.Count > 0)
             {
@@ -44,6 +48,11 @@ namespace Bakery
             ComboFilter.Items.Add("вес от 0 до 100");
             ComboFilter.Items.Add("вес от 100 до 500");
             ComboFilter.Items.Add("вес от 500");
+
+
+
+
+
         }
 
         GoodsBakery[] findGoods()
@@ -98,6 +107,42 @@ namespace Bakery
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             findGoods();
+        }
+
+        private void cart_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = sender as Button;
+                int selectg = Convert.ToInt32(button.Tag);
+                int idUsers = Convert.ToInt32(App.Current.Properties["Id"].ToString());
+                if (userbakeryproducts.SelectedItem != null && userbakeryproducts.SelectedItem is GoodsBakery)
+                {
+                    int selectedGoodsId = ((GoodsBakery)userbakeryproducts.SelectedItem).Id;
+
+                    Order ordernew = new Order()
+                    {
+                        IdUser = idUsers,
+                        IdGoods = selectedGoodsId,
+                        IdStatus = 1
+                    };
+
+                    AppConect.bakerymod.Order.Add(ordernew);
+                    AppConect.bakerymod.SaveChanges();
+
+                    MessageBox.Show("Товар успешно добавлен в корзину!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    AppFrame.BakeryFrame.Navigate(new cart());
+                }
+                else
+                {
+                    MessageBox.Show("Выберите товар из списка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка при добавлении товара в корзину: " + ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

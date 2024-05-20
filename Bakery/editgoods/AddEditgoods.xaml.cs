@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,21 +22,15 @@ namespace Bakery.editgoods
     public partial class AddEditgoods : Page
     {
         private GoodsBakery curbakery = new GoodsBakery();
-        public AddEditgoods(GoodsBakery selectedgoods)
+        public AddEditgoods()
         {
             InitializeComponent();
-            DataContext = curbakery;
             goodscategoryy.ItemsSource = Entities.GetContext().Category.Select(x => x.Category1).ToList();
             goodsallergienss.ItemsSource = Entities.GetContext().Allergens.Select(x => x.Allergen).ToList();
             goodsproviderr.ItemsSource = Entities.GetContext().Provider.Select(x => x.Provider1).ToList();
             goodstypee.ItemsSource = Entities.GetContext().TypeOfGoods.Select(x => x.Type).ToList();
 
-            if(selectedgoods != null)
-            {
-                curbakery = selectedgoods;
-            }
-
-
+            DataContext = curbakery;
         }
 
         private void addbutton_Click(object sender, RoutedEventArgs e)
@@ -55,6 +50,34 @@ namespace Bakery.editgoods
                 MessageBox.Show(ex.Message.ToString());
             }
             AppFrame.BakeryFrame.Navigate(new goodslist());
+
+
+
+            try
+            {
+                GoodsBakery goodsobj = new GoodsBakery()
+                {
+                    Id = 23,
+                    NameGoods = goodsnamee.Text,
+                    Price = Convert.ToInt32(price.Text),
+                    TypeOfGoods= Convert.ToInt32(goodstypee.SelectedIndex + 1),
+                    Provider = Convert.ToInt32(goodsproviderr.SelectedIndex + 1),
+                    Category = Convert.ToInt32(goodscategoryy.SelectedIndex + 1),
+                    Weight = Convert.ToInt32(goodsweightt.Text),
+                    OnStock = Convert.ToInt32(onstock.Text),
+                    Description = description.Text,
+                    Image = null,
+                    CallorieValue = goodscalloriess.Text,
+                    Allergens = Convert.ToInt32(goodsallergienss.SelectedIndex + 1)
+                }; AppConect.bakerymod.GoodsBakery.Add(goodsobj);
+                AppConect.bakerymod.SaveChanges();
+                MessageBox.Show("Товар успешно добавлен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                AppFrame.BakeryFrame.Navigate(new goodslist());
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка при добавлении данных!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

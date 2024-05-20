@@ -46,7 +46,7 @@
                         <Run Text=" "/> 
                         <Run Text=" "/>
                             </TextBlock>
-                            <Button x:Name="removecart" Height="24" Content="убрть из корзины" RenderTransformOrigin="0.5,0.5" Width="134" Click="delete_Click" Foreground="#FF0111FF">
+                            <Button x:Name="removecart" Height="24" Content="убрть из корзины" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0111FF">
                                 <Button.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleY="-1"/>
@@ -64,5 +64,6 @@
         </ListView>
         <Button x:Name="orderbutton" Content="сформировать заказ" HorizontalAlignment="Center" Margin="0,357,0,0" VerticalAlignment="Top" Height="63" Width="158" Foreground="#FF1B1EF7"/>
         <Button x:Name="gobackbutton" Content="назад" HorizontalAlignment="Left" Margin="737,5,0,0" VerticalAlignment="Top" Height="31" Width="53" Foreground="#FF0B0FEC"/>
+        <Label x:Name="final_summ" Content="bnu" HorizontalAlignment="Left" Margin="724,325,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
