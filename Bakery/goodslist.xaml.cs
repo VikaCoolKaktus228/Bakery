@@ -103,11 +103,16 @@ namespace Bakery
 
         private void addgooods_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.BakeryFrame.Navigate(new AddEditgoods());
+            AppFrame.BakeryFrame.Navigate(new AddEditgoods(null));
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            if (Visibility == Visibility.Visible)
+            {
+                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                bakeryproducts.ItemsSource = Entities.GetContext().GoodsBakery.ToList();
+            }
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)
@@ -134,7 +139,7 @@ namespace Bakery
 
         private void change_Click(object sender, RoutedEventArgs e)
         {
-            //AppFrame.BakeryFrame.Navigate(new AddEditgoods(sender as Button).DataContext as GoodsBakery);
+            AppFrame.BakeryFrame.Navigate(new AddEditgoods((sender as Button).DataContext as GoodsBakery));
         }
     }
 }

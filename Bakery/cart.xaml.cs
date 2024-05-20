@@ -22,27 +22,48 @@ namespace Bakery
     public partial class cart : Page
     {
 
-        private Users Userid = new Users();
+        private Cart curcart = new Cart();
+
         public cart()
         {
+
             InitializeComponent();
-            //int userCart = Convert.ToInt32(App.Current.Properties["idUser"] = Userid.idUser);
 
-            //List<orders> order = AppConect..orders.ToList();
-            //ListOrders.ItemsSource = Entities.GetContext().orders
-            //                               .Where(x => x.idUsers == Useriddd.idUser)
-            //                               .Select(x => x.idGoods)
-            //                               .ToList();
-            ////order = order.Where(x => x.idUsers == 1).Select(x => x.idGoods).ToList();
+            var cartItems = GetCartItems();
+            cartbakery.ItemsSource = cartItems;
+        }
 
-            //if (order.Count > 0)
-            //{
-            //    tbCounter.Text = "Всего в корзине " + order.Count + " товаров";
-            //}
-            //else
-            //{
-            //    tbCounter.Text = "Ваша корзина пуста!";
-            //}
+        //int idusercart = Convert.ToInt32(App.Current.Properties["Id"].ToString());
+
+        public List<GoodsBakery> GetCartItems()
+        {
+            int idusercart = Convert.ToInt32(App.Current.Properties["Id"].ToString());
+
+            var userOrders = Entities.GetContext().Order
+                                        .Where(x => x.IdUser == idusercart)
+                                        .Select(x => x.Id)
+                                        .ToList();
+
+            var userCartItems = Entities.GetContext().Cart
+                                       .Where(x => userOrders.Contains(x.Id))
+                                       .Select(x => x.Id)
+                                       .ToList();
+
+            var goodsInCart = Entities.GetContext().GoodsBakery
+                                     .Where(x => userCartItems.Contains(x.Id))
+                                     .ToList();
+
+            return goodsInCart;
+        }
+
+        private void gobackbutton_Click_1(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new goodslistuser((sender as Button).DataContext as Users));
+        }
+
+        private void removecart_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

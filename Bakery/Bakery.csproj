@@ -211,6 +211,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="image\Frutiger_Aero_%283%29.jpg" />
+    <Resource Include="images\aqua.jpg" />
+    <Resource Include="images\cacao.jpg" />
+    <Resource Include="images\chia.jpg" />
+    <Resource Include="images\convert.jpg" />
+    <Resource Include="images\crous1.jpg" />
+    <Resource Include="images\cruas.jpg" />
+    <Resource Include="images\fistashka.jpg" />
+    <Resource Include="images\irisk.jpg" />
+    <Resource Include="images\kosich.jpg" />
+    <Resource Include="images\mak.jpg" />
+    <Resource Include="images\mango.jpeg" />
+    <Resource Include="images\medovik.jpg" />
+    <Resource Include="images\pers.jpg" />
+    <Resource Include="images\pizza.jpg" />
+    <Resource Include="images\van.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

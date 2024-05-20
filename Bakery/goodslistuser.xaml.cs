@@ -126,8 +126,16 @@ namespace Bakery
                         IdGoods = selectedGoodsId,
                         IdStatus = 1
                     };
-
                     AppConect.bakerymod.Order.Add(ordernew);
+                    AppConect.bakerymod.SaveChanges();
+
+                    Cart cartnew = new Cart()
+                    {
+                        IdOrder = ordernew.Id,
+                        IdGoods = selectedGoodsId,
+                    };
+
+                    AppConect.bakerymod.Cart.Add(cartnew);
                     AppConect.bakerymod.SaveChanges();
 
                     MessageBox.Show("Товар успешно добавлен в корзину!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
