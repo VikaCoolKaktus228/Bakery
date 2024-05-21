@@ -47,9 +47,9 @@ namespace Bakery.regauth
                             AppFrame.BakeryFrame.Navigate(new goodslist());
                             break;
                         case 2:
-                            MessageBox.Show("здраствйте пользователь",
-                    "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                             App.Current.Properties["Id"] = user.Id;
+                            MessageBox.Show("здраствйте пользователь",
+                    "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);  
                             AppFrame.BakeryFrame.Navigate(new goodslistuser((sender as Button).DataContext as Users));
                             break;
                         default:

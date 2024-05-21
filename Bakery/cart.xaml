@@ -62,8 +62,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="orderbutton" Content="сформировать заказ" HorizontalAlignment="Center" Margin="0,357,0,0" VerticalAlignment="Top" Height="63" Width="158" Foreground="#FF1B1EF7"/>
-        <Button x:Name="gobackbutton" Content="назад" HorizontalAlignment="Left" Margin="737,5,0,0" VerticalAlignment="Top" Height="31" Width="53" Foreground="#FF0B0FEC" Click="gobackbutton_Click_1"/>
-        <Label x:Name="final_summ" Content="bnu" HorizontalAlignment="Left" Margin="724,325,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="orderbutton" Content="сформировать заказ" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Height="63" Width="158" Foreground="#FF1B1EF7"/>
+        <Button x:Name="gobackbutton" Content="назад" HorizontalAlignment="Left" Margin="737,5,0,0" VerticalAlignment="Top" Height="31" Width="53" Foreground="#FF0B0FEC" Click="gobackbutton_Click"/>
     </Grid>
 </Page>
