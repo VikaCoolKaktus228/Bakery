@@ -7,7 +7,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="834" d:DesignWidth="808"
       Title="goodslist" IsVisibleChanged="Page_IsVisibleChanged">
-    <Grid Margin="0,0,0,10" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}">
+    <Grid Margin="0,0,0,10">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF48789E"/>
+                <GradientStop Color="#FFB2DDFF" Offset="1"/>
+                <GradientStop Color="White" Offset="0.14"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -16,7 +23,14 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="510"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="bakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Background="#FF75A4C8" Margin="0,0,0,-244" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="bakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Margin="0,0,0,-244" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8EC8FD"/>
+                    <GradientStop Color="#FF92CBFF" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.487"/>
+                </LinearGradientBrush>
+            </ListView.Background>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -25,7 +39,7 @@
                             <ColumnDefinition Width="700" />
                             <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Image}" Grid.Column="0" Margin="0,0,10,0"/>
+                        <Image Source="{Binding CurrentPhoto}" Grid.Column="0" Margin="0,0,10,0"/>
                         <StackPanel Grid.Column="1" Width="auto" Orientation="Vertical" HorizontalAlignment="Left">
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Наименование:"/> 

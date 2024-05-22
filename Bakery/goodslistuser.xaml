@@ -26,7 +26,7 @@
                             <ColumnDefinition Width="700" />
                             <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Image}" Grid.Column="0" Margin="0,0,10,0"/>
+                        <Image Source="{Binding CurrentPhoto}" Grid.Column="0" Margin="0,0,10,0"/>
                         <StackPanel Grid.Column="1" Width="auto" Orientation="Vertical" HorizontalAlignment="Left">
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Наименование:"/> 
@@ -64,7 +64,6 @@
                                 <Run Text=" "/> 
                                 <Run Text=" "/>
                             </TextBlock>
-                            <Label x:Name="idforcart" Content="{Binding GoodsBakery.Id}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Width="306" Orientation="Vertical" HorizontalAlignment="Left" Margin="372,0,0,0">
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
@@ -79,7 +78,7 @@
                                 <Run Text=" "/> 
                                 <Run Text=" "/>
                             </TextBlock>
-                            <Button x:Name="cart" Content="добавить в корзину" Width="200" Height="53" Click="cart_Click"/>
+                            <Button x:Name="cart" Content="добавить в корзину" Width="200" Height="53" Click="cart_Click" Foreground="#FF2244FF" FontFamily="Cascadia Code Light"/>
                         </StackPanel>
 
                     </Grid>
@@ -102,6 +101,6 @@
         <Label Content="сортировка" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="74"/>
         <Label Content="фильтрация" HorizontalAlignment="Left" Margin="182,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="76"/>
         <Label Content="поиск" HorizontalAlignment="Left" Margin="350,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="42"/>
-        <Button Content="поиск" HorizontalAlignment="Left" Margin="711,23,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36"/>
+        <Button Content="поиск" HorizontalAlignment="Left" Margin="711,23,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF193CFF"/>
     </Grid>
 </Page>

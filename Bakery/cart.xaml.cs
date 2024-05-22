@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aspose.BarCode.Generation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,17 +25,19 @@ namespace Bakery
 
         public cart()
         {
-
+            int idusercart = Convert.ToInt32(App.Current.Properties["Id"].ToString());
             InitializeComponent();
 
-            //ListOrders.ItemsSource = Entities.GetContext().orders
-                               //.Where(x => x.idUsers == Useriddd.idUser)
-                               //.Select(x => x.idGoods)
-                               //.ToList();
+            var orderobj = Entities.GetContext().Order
+                               .Where(x => x.IdUser == idusercart)
+                               .Select(x => x.IdGoods)
+                               .ToList();
+            var goodsInCart = Entities.GetContext().GoodsBakery
+                                         .Where(x => orderobj.Contains(x.Id))
+                                         .ToList();
+
+            cartbakery.ItemsSource = goodsInCart;
         }
-
-        //int idusercart = Convert.ToInt32(App.Current.Properties["Id"].ToString());
-
 
         private void removecart_Click(object sender, RoutedEventArgs e)
         {
@@ -44,6 +47,11 @@ namespace Bakery
         private void gobackbutton_Click(object sender, RoutedEventArgs e)
         {
             AppFrame.BakeryFrame.Navigate(new goodslistuser((sender as Button).DataContext as Users));
+        }
+        private void orderbutton_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new OrderForm());
+
         }
     }
 }

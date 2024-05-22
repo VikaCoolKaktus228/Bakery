@@ -25,8 +25,8 @@
                             <ColumnDefinition Width="700" />
                             <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Image}" Grid.Column="0" Margin="0,0,10,0"/>
-                        <StackPanel Grid.Column="1" Width="auto" Orientation="Vertical" HorizontalAlignment="Left">
+                        <Image Source="{Binding CurrentPhoto}" Grid.Column="0" Margin="0,0,10,0"/>
+                        <StackPanel Grid.Column="1" Width="112" Orientation="Vertical" HorizontalAlignment="Left">
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                         <Run Text="Наименование:"/> 
                         <Run Text="{Binding NameGoods}"/>
@@ -37,7 +37,7 @@
                              <Run Text=" "/>
                             </TextBlock>
                         </StackPanel>
-                        <StackPanel Grid.Column="1" Width="306" Orientation="Vertical" HorizontalAlignment="Left" Margin="372,0,0,0">
+                        <StackPanel Grid.Column="1" Width="138" Orientation="Vertical" HorizontalAlignment="Left" Margin="421,0,0,0">
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                        <Run Text="Цена: "/> 
                         <Run Text="{Binding Price}"/>
@@ -62,7 +62,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="orderbutton" Content="сформировать заказ" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Height="63" Width="158" Foreground="#FF1B1EF7"/>
+        <Button x:Name="orderbutton" Content="сформировать заказ" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Height="63" Width="158" Foreground="#FF1B1EF7" Click="orderbutton_Click"/>
         <Button x:Name="gobackbutton" Content="назад" HorizontalAlignment="Left" Margin="737,5,0,0" VerticalAlignment="Top" Height="31" Width="53" Foreground="#FF0B0FEC" Click="gobackbutton_Click"/>
     </Grid>
 </Page>
