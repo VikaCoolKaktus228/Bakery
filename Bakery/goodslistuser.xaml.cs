@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,27 +133,29 @@ namespace Bakery
                 var button = sender as Button;
                 int selectg = Convert.ToInt32(button.Tag);
                 int idUsers = Convert.ToInt32(App.Current.Properties["Id"].ToString());
+                int selectedGoodsId = ((GoodsBakery)userbakeryproducts.SelectedItem).Id;
                 if (userbakeryproducts.SelectedItem != null && userbakeryproducts.SelectedItem is GoodsBakery)
                 {
-                    int selectedGoodsId = ((GoodsBakery)userbakeryproducts.SelectedItem).Id;
-
-                    Order ordernew = new Order()
+                    var order = Entities3.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
+                    if (order == null)
                     {
-                        IdUser = idUsers,
-                        IdGoods = selectedGoodsId,
-                        IdStatus = 1
-                    };
-                    AppConect.bakerymod.Order.Add(ordernew);
-                    AppConect.bakerymod.SaveChanges();
+                        order = new Order()
+                        {
+                            IdUser = idUsers,
+                            IdStatus = 2
+                        };
+                        Entities3.GetContext().Order.Add(order);
+                        Entities3.GetContext().SaveChanges();
+                    }
 
-                    Cart cartnew = new Cart()
+                    var cartnew = new Cart()
                     {
-                        IdOrder = ordernew.Id,
-                        IdGoods = selectedGoodsId,
+                        IdOrder = order.Id,
+                        IdGoods = selectedGoodsId
                     };
 
-                    AppConect.bakerymod.Cart.Add(cartnew);
-                    AppConect.bakerymod.SaveChanges();
+                    Entities3.GetContext().Cart.Add(cartnew);
+                    Entities3.GetContext().SaveChanges();
 
                     MessageBox.Show("Товар успешно добавлен в корзину!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -168,6 +171,7 @@ namespace Bakery
                 MessageBox.Show("Произошла ошибка при добавлении товара в корзину: " + ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         private void tocartbttn_Click(object sender, RoutedEventArgs e)
         {

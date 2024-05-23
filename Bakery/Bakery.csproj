@@ -90,6 +90,12 @@
     <Compile Include="editgoods\AddEditgoods.xaml.cs">
       <DependentUpon>AddEditgoods.xaml</DependentUpon>
     </Compile>
+    <Compile Include="editgoods\AddEditUsers.xaml.cs">
+      <DependentUpon>AddEditUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="editgoods\UsersList.xaml.cs">
+      <DependentUpon>UsersList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GoodsBakery.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -99,10 +105,26 @@
     <Compile Include="goodslistuser.xaml.cs">
       <DependentUpon>goodslistuser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerOrder.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mangerpages\OrderManager.xaml.cs">
+      <DependentUpon>OrderManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -148,6 +170,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="editgoods\AddEditUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="editgoods\UsersList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="goodslist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +198,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Mangerpages\OrderManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrderForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,16 +216,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -226,6 +250,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="image\ffff.jpg" />
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Resource Include="image\Frutiger_Aero_%283%29.jpg" />
     <Resource Include="images\aqua.jpg" />
     <Resource Include="images\cacao.jpg" />
@@ -243,16 +278,6 @@
     <Resource Include="images\pizza.jpg" />
     <Resource Include="images\van.jpg" />
     <Resource Include="image\gggg.jpg" />
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

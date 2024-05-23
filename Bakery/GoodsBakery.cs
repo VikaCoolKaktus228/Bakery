@@ -18,7 +18,6 @@ namespace Bakery
         public GoodsBakery()
         {
             this.Cart = new HashSet<Cart>();
-            this.Order = new HashSet<Order>();
         }
     
         public int Id { get; set; }
@@ -33,30 +32,12 @@ namespace Bakery
         public string Image { get; set; }
         public string Description { get; set; }
         public Nullable<int> Price { get; set; }
-
     
         public virtual Allergens Allergens1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Cart { get; set; }
         public virtual Category Category1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
         public virtual Provider Provider1 { get; set; }
         public virtual TypeOfGoods TypeOfGoods1 { get; set; }
-
-        public string CurrentPhoto
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Image) || String.IsNullOrWhiteSpace(Image))
-                {
-                    return "/images/cruas.jpg";
-                }
-                else
-                {
-                    return "/images/" + Image;
-                }
-            }
-        }
     }
 }

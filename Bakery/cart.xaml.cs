@@ -37,14 +37,20 @@ namespace Bakery
            
             InitializeComponent();
 
-            var orderobj = Entities.GetContext().Order
+            var orderobj = Entities3.GetContext().Order
                                .Where(x => x.IdUser == idusercart)
+                               .Select(x => x.Id)
+                               .ToList();
+
+            var cartobj = Entities3.GetContext().Cart
+                               .Where(c => orderobj.Contains(c.IdOrder))
                                //.Select(x => x.IdGoods)
                                .ToList();
-            //var goodsInCart = Entities.GetContext().GoodsBakery
-            //                             .Where(x => orderobj.Contains(x.Id))
+            //var goodsInCart = Entities3.GetContext().GoodsBakery
+            //                             .Where(x => cartobj.Contains(x.Id))
+            //                             .Select(x => x.Id)
             //                             .ToList();
-            cartbakery.ItemsSource = orderobj;
+            cartbakery.ItemsSource = cartobj;
         }
 
         private void CreatePDF()
@@ -65,18 +71,23 @@ namespace Bakery
                 doc.Add(paragraph1);
                 int sum = 0;
 
-                var orderobj = Entities.GetContext().Order
+                var orderobj = Entities3.GetContext().Order
                                .Where(x => x.IdUser == idusercart)
+                               .Select(x => x.Id)
                                .ToList();
 
-                foreach (var item in orderobj)
+                var cartobj = Entities3.GetContext().Cart
+                                   .Where(c => orderobj.Contains(c.IdOrder))
+                                   .ToList();
+
+                foreach (var item in cartobj)
                 {
-                    if (item is Order)
+                    if (item is Cart)
                     {
-                        Order data = (Order)item;
-                        Image img = Image.GetInstance("C:\\Users\\10210806\\source\\repos\\Bakery\\Bakery\\" + data.GoodsBakery.CurrentPhoto);
-                        img.ScaleAbsolute(100f, 100f);
-                        doc.Add(img);
+                        Cart data = (Cart)item;
+                        //Image img = Image.GetInstance("C:\\Users\\10210806\\source\\repos\\Bakery\\Bakery\\" + data.GoodsBakery.CurrentPhoto);
+                        //img.ScaleAbsolute(100f, 100f);
+                        //doc.Add(img);
                         doc.Add(new Paragraph("Haзвaние: " + data.GoodsBakery.NameGoods, font));
                         doc.Add(new Paragraph("Oпиcaние: " + data.GoodsBakery.Description, font));
                         doc.Add(new Paragraph("Производитель: " + data.GoodsBakery.Provider1.Provider1, font));
@@ -102,51 +113,47 @@ namespace Bakery
             }
         }
 
-        public void RemoveItemsFromCart(List<Order> goodsfordeleting)
-        {
-            int idusercart = Convert.ToInt32(App.Current.Properties["Id"].ToString());
+        //public void RemoveItemsFromCart(List<Cart> goodsfordeleting)
+        //{
+        //    int idusercart = Convert.ToInt32(App.Current.Properties["Id"].ToString());
 
-             
-            var context = Entities.GetContext();            
-            var goodsIds = goodsfordeleting.Select(x => x.IdGoods).ToList();
 
-            
+        //    var context = Entities3.GetContext();
+        //    var goodsIds = goodsfordeleting.Select(x => x.IdGoods).ToList();
 
-            var ordersToRemove = context.Order
-                                       .Where(x => x.IdUser == idusercart && goodsIds.Contains(x.IdGoods))
-                                       .ToList();
-            context.Order.RemoveRange(ordersToRemove);
-            context.SaveChanges();
-            var remainingGoodsInCart = context.GoodsBakery
-                                              .Where(x => context.Order.Any(o => o.IdUser == idusercart && o.IdGoods == x.Id))
-                                              .ToList();
 
-            cartbakery.ItemsSource = remainingGoodsInCart;
-        }
+
+        //    var ordersToRemove = context.Order
+        //                               .Where(x => x.IdUser == idusercart)
+        //                               .Select(x => x.Id)
+        //                               .ToList();
+        //    var cartobjtoremove = context.Cart
+        //        .Where(c => ordersToRemove.Contains(c.IdOrder) && goodsIds.Contains(c.IdGoods))
+        //        .ToList();
+        //    context.Cart.RemoveRange(cartobjtoremove);
+        //    context.SaveChanges();
+
+        //    var orderobj = Entities3.GetContext().Order
+        //                       .Where(x => x.IdUser == idusercart)
+        //                       .Select(x => x.Id)
+        //                       .ToList();
+
+        //    var cartobj = Entities3.GetContext().Cart
+        //                       .Where(c => orderobj.Contains(c.IdOrder))
+        //                       .ToList();
+
+        //    cartbakery.ItemsSource = cartobj;
+
+        //}
         private void removecart_Click(object sender, RoutedEventArgs e)
         {
-            cartbakery.ItemsSource = Entities.GetContext().Order.ToList(); 
+            cartbakery.ItemsSource = Entities3.GetContext().Cart.ToList(); 
             Button b = sender as Button;
             int ID = int.Parse(((b.Parent as StackPanel).Children[0] as TextBlock).Text); 
-            AppConect.bakerymod.Order.Remove(AppConect.bakerymod.Order.Where(x => x.Id == ID).First()
-            ); AppConect.bakerymod.SaveChanges();
-            AppFrame.BakeryFrame.GoBack(); AppFrame.BakeryFrame.Navigate(new cart());
-        }
-
-        private void RemoveOrder(object sender, MouseButtonEventArgs e)
-        {
-            StackPanel sp = sender as StackPanel;
-            int ID = int.Parse((sp.Children[0] as TextBlock).Text);
-            AppConect.bakerymod.Order.Remove(AppConect.bakerymod.Order.Where(x => x.Id == ID).First());
+            AppConect.bakerymod.Cart.Remove(AppConect.bakerymod.Cart.Where(x => x.Id == ID).First());
             AppConect.bakerymod.SaveChanges();
-            var orderobj = Entities.GetContext().Order
-                               .Where(x => x.IdUser == idusercart)
-                               .Select(x => x.IdGoods)
-                               .ToList();
-            var goodsInCart = Entities.GetContext().GoodsBakery
-                                         .Where(x => orderobj.Contains(x.Id))
-                                         .ToList();
-            cartbakery.ItemsSource = goodsInCart;
+            AppFrame.BakeryFrame.GoBack(); 
+            AppFrame.BakeryFrame.Navigate(new cart());
         }
 
 
@@ -154,6 +161,29 @@ namespace Bakery
         {
             AppFrame.BakeryFrame.Navigate(new goodslistuser((sender as Button).DataContext as Users));
         }
+
+        private void addmanagerorder()
+        {
+            try
+            {
+                var order = Entities3.GetContext().Order.FirstOrDefault(o => o.IdUser == idusercart);
+                ManagerOrder neworder = new ManagerOrder()
+                {
+                    IdUser = idusercart,
+                    IdOrder = order.Id,
+                    DateTimeOrder = DateTime.Now,
+                    Status = 2
+
+                };
+
+                AppConect.bakerymod.ManagerOrder.Add(neworder);
+                AppConect.bakerymod.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            }
         private void orderbutton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -162,12 +192,14 @@ namespace Bakery
             {
                 try
                 {
+                    addmanagerorder();
                     CreatePDF();
                     MessageBox.Show("PDF документ заказа успешно сформирован!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                    var goodsIds = Entities.GetContext().Order
-                    .Where(x => x.IdUser == idusercart).ToList();
-                    RemoveItemsFromCart(goodsIds);
-                    AppFrame.BakeryFrame.Navigate(new OrderForm());
+                    //var goodsIds = Entities3.GetContext().Order
+                    //.Where(x => x.IdUser == idusercart).Select(x => x.Id);
+                    //var cartids = Entities3.GetContext().Cart.Where(c => goodsIds.Contains(c.IdOrder)).ToList();
+                    //RemoveItemsFromCart(cartids);
+                    //AppFrame.BakeryFrame.Navigate(new OrderForm());
                 }
                 catch (Exception ex)
                 {

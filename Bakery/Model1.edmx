@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище BackeryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище bakerybaseModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Allergens">
           <Key>
             <PropertyRef Name="Id" />
@@ -45,12 +45,21 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Price" Type="int" />
         </EntityType>
+        <EntityType Name="ManagerOrder">
+          <Key>
+            <PropertyRef Name="IdTablOrd" />
+          </Key>
+          <Property Name="IdTablOrd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdOrder" Type="int" Nullable="false" />
+          <Property Name="DateTimeOrder" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdGoods" Type="int" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="IdStatus" Type="int" Nullable="false" />
         </EntityType>
@@ -104,20 +113,6 @@
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="Role" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Cart_GoodsBakery">
-          <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GoodsBakery">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="IdGoods" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Cart_GoodsBakery1">
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
@@ -211,6 +206,42 @@
             </Principal>
             <Dependent Role="GoodsBakery">
               <PropertyRef Name="TypeOfGoods" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerOrder_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="ManagerOrder" Type="Self.ManagerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManagerOrder">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerOrder_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="ManagerOrder" Type="Self.ManagerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManagerOrder">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerOrder_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ManagerOrder" Type="Self.ManagerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManagerOrder">
+              <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -273,11 +304,12 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="Хранилище BackeryModelContainer">
+        <EntityContainer Name="Хранилище bakerybaseModel1Container">
           <EntitySet Name="Allergens" EntityType="Self.Allergens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsBakery" EntityType="Self.GoodsBakery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagerOrder" EntityType="Self.ManagerOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -285,10 +317,6 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfGoods" EntityType="Self.TypeOfGoods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Cart_GoodsBakery" Association="Self.FK_Cart_GoodsBakery">
-            <End Role="GoodsBakery" EntitySet="GoodsBakery" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_Cart_GoodsBakery1" Association="Self.FK_Cart_GoodsBakery1">
             <End Role="GoodsBakery" EntitySet="GoodsBakery" />
             <End Role="Cart" EntitySet="Cart" />
@@ -317,6 +345,18 @@
             <End Role="TypeOfGoods" EntitySet="TypeOfGoods" />
             <End Role="GoodsBakery" EntitySet="GoodsBakery" />
           </AssociationSet>
+          <AssociationSet Name="FK_ManagerOrder_Order" Association="Self.FK_ManagerOrder_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="ManagerOrder" EntitySet="ManagerOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerOrder_Status" Association="Self.FK_ManagerOrder_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="ManagerOrder" EntitySet="ManagerOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerOrder_Users" Association="Self.FK_ManagerOrder_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ManagerOrder" EntitySet="ManagerOrder" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="Order" EntitySet="Order" />
@@ -330,7 +370,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BackeryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="bakerybaseModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Allergens">
           <Key>
             <PropertyRef Name="Id" />
@@ -377,20 +417,31 @@
           <NavigationProperty Name="Allergens1" Relationship="Self.FK_GoodsBakery_Allergens" FromRole="GoodsBakery" ToRole="Allergens" />
           <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_GoodsBakery1" FromRole="GoodsBakery" ToRole="Cart" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_GoodsBakery_Category" FromRole="GoodsBakery" ToRole="Category" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Cart_GoodsBakery" FromRole="GoodsBakery" ToRole="Order" />
           <NavigationProperty Name="Provider1" Relationship="Self.FK_GoodsBakery_Provider" FromRole="GoodsBakery" ToRole="Provider" />
           <NavigationProperty Name="TypeOfGoods1" Relationship="Self.FK_GoodsBakery_TypeOfGoods" FromRole="GoodsBakery" ToRole="TypeOfGoods" />
+        </EntityType>
+        <EntityType Name="ManagerOrder">
+          <Key>
+            <PropertyRef Name="IdTablOrd" />
+          </Key>
+          <Property Name="IdTablOrd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdOrder" Type="Int32" Nullable="false" />
+          <Property Name="DateTimeOrder" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_ManagerOrder_Order" FromRole="ManagerOrder" ToRole="Order" />
+          <NavigationProperty Name="Status1" Relationship="Self.FK_ManagerOrder_Status" FromRole="ManagerOrder" ToRole="Status" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_ManagerOrder_Users" FromRole="ManagerOrder" ToRole="Users" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdGoods" Type="Int32" Nullable="false" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="IdStatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_Order" FromRole="Order" ToRole="Cart" />
-          <NavigationProperty Name="GoodsBakery" Relationship="Self.FK_Cart_GoodsBakery" FromRole="Order" ToRole="GoodsBakery" />
+          <NavigationProperty Name="ManagerOrder" Relationship="Self.FK_ManagerOrder_Order" FromRole="Order" ToRole="ManagerOrder" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Cart_Users" FromRole="Order" ToRole="Users" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Order_Status" FromRole="Order" ToRole="Status" />
         </EntityType>
@@ -416,6 +467,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ManagerOrder" Relationship="Self.FK_ManagerOrder_Status" FromRole="Status" ToRole="ManagerOrder" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Status" FromRole="Status" ToRole="Order" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -447,6 +499,7 @@
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagerOrder" Relationship="Self.FK_ManagerOrder_Users" FromRole="Users" ToRole="ManagerOrder" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Cart_Users" FromRole="Users" ToRole="Order" />
           <NavigationProperty Name="Role1" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
         </EntityType>
@@ -504,20 +557,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Cart_GoodsBakery">
-          <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GoodsBakery">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="IdGoods" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_GoodsBakery_Provider">
           <End Role="Provider" Type="Self.Provider" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -543,6 +582,42 @@
             </Principal>
             <Dependent Role="GoodsBakery">
               <PropertyRef Name="TypeOfGoods" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerOrder_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="ManagerOrder" Type="Self.ManagerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManagerOrder">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerOrder_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="ManagerOrder" Type="Self.ManagerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManagerOrder">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerOrder_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ManagerOrder" Type="Self.ManagerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManagerOrder">
+              <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -588,11 +663,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Allergens" EntityType="Self.Allergens" />
           <EntitySet Name="Cart" EntityType="Self.Cart" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="GoodsBakery" EntityType="Self.GoodsBakery" />
+          <EntitySet Name="ManagerOrder" EntityType="Self.ManagerOrder" />
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="Provider" EntityType="Self.Provider" />
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -616,10 +692,6 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="GoodsBakery" EntitySet="GoodsBakery" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cart_GoodsBakery" Association="Self.FK_Cart_GoodsBakery">
-            <End Role="GoodsBakery" EntitySet="GoodsBakery" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_GoodsBakery_Provider" Association="Self.FK_GoodsBakery_Provider">
             <End Role="Provider" EntitySet="Provider" />
             <End Role="GoodsBakery" EntitySet="GoodsBakery" />
@@ -627,6 +699,18 @@
           <AssociationSet Name="FK_GoodsBakery_TypeOfGoods" Association="Self.FK_GoodsBakery_TypeOfGoods">
             <End Role="TypeOfGoods" EntitySet="TypeOfGoods" />
             <End Role="GoodsBakery" EntitySet="GoodsBakery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerOrder_Order" Association="Self.FK_ManagerOrder_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="ManagerOrder" EntitySet="ManagerOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerOrder_Status" Association="Self.FK_ManagerOrder_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="ManagerOrder" EntitySet="ManagerOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerOrder_Users" Association="Self.FK_ManagerOrder_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ManagerOrder" EntitySet="ManagerOrder" />
           </AssociationSet>
           <AssociationSet Name="FK_Cart_Users" Association="Self.FK_Cart_Users">
             <End Role="Users" EntitySet="Users" />
@@ -656,11 +740,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BackeryModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(bakerybaseModel1.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BackeryModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(bakerybaseModel1.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -687,9 +771,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище BackeryModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище bakerybaseModel1Container" CdmEntityContainer="Entities3">
           <EntitySetMapping Name="Allergens">
-            <EntityTypeMapping TypeName="BackeryModel.Allergens">
+            <EntityTypeMapping TypeName="bakerybaseModel1.Allergens">
               <MappingFragment StoreEntitySet="Allergens">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Allergen" ColumnName="Allergen" />
@@ -697,7 +781,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cart">
-            <EntityTypeMapping TypeName="BackeryModel.Cart">
+            <EntityTypeMapping TypeName="bakerybaseModel1.Cart">
               <MappingFragment StoreEntitySet="Cart">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
@@ -707,7 +791,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="BackeryModel.Category">
+            <EntityTypeMapping TypeName="bakerybaseModel1.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Category1" ColumnName="Category" />
@@ -715,7 +799,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GoodsBakery">
-            <EntityTypeMapping TypeName="BackeryModel.GoodsBakery">
+            <EntityTypeMapping TypeName="bakerybaseModel1.GoodsBakery">
               <MappingFragment StoreEntitySet="GoodsBakery">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NameGoods" ColumnName="NameGoods" />
@@ -732,18 +816,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ManagerOrder">
+            <EntityTypeMapping TypeName="bakerybaseModel1.ManagerOrder">
+              <MappingFragment StoreEntitySet="ManagerOrder">
+                <ScalarProperty Name="IdTablOrd" ColumnName="IdTablOrd" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="DateTimeOrder" ColumnName="DateTimeOrder" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Order">
-            <EntityTypeMapping TypeName="BackeryModel.Order">
+            <EntityTypeMapping TypeName="bakerybaseModel1.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdGoods" ColumnName="IdGoods" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Provider">
-            <EntityTypeMapping TypeName="BackeryModel.Provider">
+            <EntityTypeMapping TypeName="bakerybaseModel1.Provider">
               <MappingFragment StoreEntitySet="Provider">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Provider1" ColumnName="Provider" />
@@ -751,7 +845,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="BackeryModel.Role">
+            <EntityTypeMapping TypeName="bakerybaseModel1.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Role1" ColumnName="Role" />
@@ -759,7 +853,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="BackeryModel.Status">
+            <EntityTypeMapping TypeName="bakerybaseModel1.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Status1" ColumnName="Status" />
@@ -767,7 +861,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BackeryModel.sysdiagrams">
+            <EntityTypeMapping TypeName="bakerybaseModel1.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -778,7 +872,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfGoods">
-            <EntityTypeMapping TypeName="BackeryModel.TypeOfGoods">
+            <EntityTypeMapping TypeName="bakerybaseModel1.TypeOfGoods">
               <MappingFragment StoreEntitySet="TypeOfGoods">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -786,7 +880,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="BackeryModel.Users">
+            <EntityTypeMapping TypeName="bakerybaseModel1.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -798,20 +892,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище BackeryModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище BackeryModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище BackeryModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище BackeryModel.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище bakerybaseModel1.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище bakerybaseModel1.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище bakerybaseModel1.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище bakerybaseModel1.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BackeryModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="bakerybaseModel1.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище BackeryModel.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище bakerybaseModel1.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BackeryModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="bakerybaseModel1.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -820,8 +914,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище BackeryModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище BackeryModel.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище bakerybaseModel1.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище bakerybaseModel1.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

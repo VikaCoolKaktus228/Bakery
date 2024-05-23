@@ -30,21 +30,21 @@ namespace Bakery.regauth
         {
             try
             {
-                var user = AppConect.bakerymod.Users.FirstOrDefault(x => x.Login == loginauth.Text && x.Password == passwordauth.Password);
-                if (user == null)
-                {
-                    MessageBox.Show("Такого пользователя не существует",
-                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                }
                 var password = AppConect.bakerymod.Users.FirstOrDefault(x => x.Password == passwordauth.Password);
                 if (password == null)
                 {
                     MessageBox.Show("неверный пароль",
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
                 }
+                var user = AppConect.bakerymod.Users.FirstOrDefault(x => x.Login == loginauth.Text && x.Password == passwordauth.Password);
+                if (user == null)
+                {
+                    MessageBox.Show("Такого пользователя не существует",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
 
-
+                }
                 else
                 {
                     switch (user.Role)

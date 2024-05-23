@@ -18,16 +18,17 @@ namespace Bakery
         public Order()
         {
             this.Cart = new HashSet<Cart>();
+            this.ManagerOrder = new HashSet<ManagerOrder>();
         }
     
         public int Id { get; set; }
-        public int IdGoods { get; set; }
         public int IdUser { get; set; }
         public int IdStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Cart { get; set; }
-        public virtual GoodsBakery GoodsBakery { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ManagerOrder> ManagerOrder { get; set; }
         public virtual Users Users { get; set; }
         public virtual Status Status { get; set; }
     }

@@ -25,18 +25,18 @@
         <Label HorizontalAlignment="Left" Margin="303,60,0,0" VerticalAlignment="Top" Content="выберите поставщика товара"/>
         <Label HorizontalAlignment="Left" Margin="303,124,0,0" VerticalAlignment="Top" Content="выберите тип товара"/>
         <Label HorizontalAlignment="Left" Margin="301,181,0,0" VerticalAlignment="Top" Content="выберите аллергены в товаре"/>
-        <ComboBox SelectedItem="{Binding Category}" x:Name="goodscategoryy" HorizontalAlignment="Left" Margin="26,154,0,0" VerticalAlignment="Top" Width="211"/>
-        <ComboBox SelectedItem="{Binding Provider}" x:Name="goodsproviderr" HorizontalAlignment="Left" Margin="303,91,0,0" VerticalAlignment="Top" Width="211"/>
-        <ComboBox SelectedItem="{Binding TypeOfGoods}" x:Name="goodstypee" HorizontalAlignment="Left" Margin="303,154,0,0" VerticalAlignment="Top" Width="211"/>
-        <ComboBox SelectedItem="{Binding Allergens}" x:Name="goodsallergienss" HorizontalAlignment="Left" Margin="303,216,0,0" VerticalAlignment="Top" Width="211"/>
+        <ComboBox SelectedItem="{Binding Category1.Category1}" x:Name="goodscategoryy" HorizontalAlignment="Left" Margin="26,154,0,0" VerticalAlignment="Top" Width="211"/>
+        <ComboBox SelectedItem="{Binding Provider1.Provider1}" x:Name="goodsproviderr" HorizontalAlignment="Left" Margin="303,91,0,0" VerticalAlignment="Top" Width="211"/>
+        <ComboBox SelectedItem="{Binding TypeOfGoods1.Type}" x:Name="goodstypee" HorizontalAlignment="Left" Margin="303,154,0,0" VerticalAlignment="Top" Width="211"/>
+        <ComboBox SelectedItem="{Binding Allergens1.Allergen}" x:Name="goodsallergienss" HorizontalAlignment="Left" Margin="303,216,0,0" VerticalAlignment="Top" Width="211"/>
         <TextBox Text="{Binding Weight}" x:Name="goodsweightt" HorizontalAlignment="Left" Margin="26,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="28" KeyDown="goodsweightt_KeyDown"/>
         <TextBox Text="{Binding CallorieValue}" x:Name="goodscalloriess" HorizontalAlignment="Left" Margin="26,283,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="28"/>
         <Label Content="введите количество товара" HorizontalAlignment="Left" Margin="303,252,0,0" VerticalAlignment="Top"/>
         <TextBox Text="{Binding OnStock}" x:Name="onstock" HorizontalAlignment="Left" Margin="303,283,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="28" KeyDown="onstock_KeyDown"/>
         <Label Content="введите описание товара" HorizontalAlignment="Left" Margin="581,60,0,0" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding Description}" x:Name="description" HorizontalAlignment="Left" Margin="581,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209" Height="88"/>
-        <Label Content="введите цену товара" HorizontalAlignment="Left" Margin="581,181,0,0" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding Price}" x:Name="price" HorizontalAlignment="Left" Margin="581,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="105" Height="28" KeyDown="price_KeyDown"/>
+        <TextBox Text="{Binding Description}" x:Name="description" HorizontalAlignment="Left" Margin="581,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209" Height="124"/>
+        <Label Content="введите цену товара" HorizontalAlignment="Left" Margin="580,223,0,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Price}" x:Name="price" HorizontalAlignment="Left" Margin="580,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" Height="28" KeyDown="price_KeyDown"/>
         <Button x:Name="addbutton" Content="добавить товар" HorizontalAlignment="Left" Margin="321,361,0,0" VerticalAlignment="Top" Height="64" Width="175" Foreground="#FF2C42F9" Click="addbutton_Click"/>
 
 

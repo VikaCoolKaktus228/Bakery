@@ -1,0 +1,65 @@
+﻿<Page x:Class="Bakery.Mangerpages.OrderManager"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Bakery.Mangerpages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrderManager">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/image/ffff.jpg"/>
+        </Grid.Background>
+        <Label Content="Заказы" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF000A9C" FontSize="36" FontFamily="Cascadia Code Light"/>
+        <ListView x:Name="userlist" ScrollViewer.CanContentScroll="False" Margin="42,80,42,29" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8EC8FD"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.Background>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="690" Height="113">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="860"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Width="128" Orientation="Vertical" HorizontalAlignment="Left" Margin="68,-3,0,3">
+                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
+                        <Run Text="ID заказа: "/> 
+                        <Run Text="{Binding IdOrder}"/>
+                            </TextBlock>
+                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
+                        <Run Text="Пользователь: "/> 
+                        <Run Text="{Binding Users.Login}"/>
+                            </TextBlock>
+                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
+                       <Run Text="Дата и время:"/> 
+                        <Run Text="{Binding DateTimeOrder}"/>
+                            </TextBlock>
+                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
+                        <Run Text=" "/> 
+                        <Run Text=" "/>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Width="170" Orientation="Vertical" HorizontalAlignment="Left" Margin="460,10,0,-10">
+                            <Button x:Name="changestatusbutton" Height="24" Content="изменить статус" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0B2DE6">
+                                <Button.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="180"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Button.RenderTransform>
+                            </Button>
+                            <ComboBox x:Name="StatusCombo" Text="{Binding Status.Status1}" Width="139" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

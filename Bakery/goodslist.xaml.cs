@@ -126,8 +126,8 @@ namespace Bakery
         {
             if (Visibility == Visibility.Visible)
             {
-                Entities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                bakeryproducts.ItemsSource = Entities.GetContext().GoodsBakery.ToList();
+                Entities3.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                bakeryproducts.ItemsSource = Entities3.GetContext().GoodsBakery.ToList();
             }
         }
 
@@ -140,11 +140,11 @@ namespace Bakery
             {
                 try
                 {
-                    Entities.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
-                    Entities.GetContext().SaveChanges();
+                    Entities3.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
+                    Entities3.GetContext().SaveChanges();
                     MessageBox.Show("ДАННЫЕ УДАЛЕНЫ");
 
-                    bakeryproducts.ItemsSource = Entities.GetContext().GoodsBakery.ToList();
+                    bakeryproducts.ItemsSource = Entities3.GetContext().GoodsBakery.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -156,6 +156,11 @@ namespace Bakery
         private void change_Click(object sender, RoutedEventArgs e)
         {
             AppFrame.BakeryFrame.Navigate(new AddEditgoods((sender as Button).DataContext as GoodsBakery));
+        }
+
+        private void userslistbutton_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new UsersList());
         }
     }
 }

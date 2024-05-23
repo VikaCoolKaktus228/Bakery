@@ -26,9 +26,9 @@
                             <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding GoodsBakery.CurrentPhoto}" Grid.Column="0" Margin="0,0,10,0"/>
-                        <StackPanel MouseLeftButtonUp="RemoveOrder" Grid.Column="1" Margin="262,0,300,0">
+                        <StackPanel Grid.Column="1" Margin="423,0,139,0">
                             <TextBlock Text="{Binding Id}" Visibility="Collapsed"/>
-                            <Button x:Name="removecart" Height="24" Content="убрать из корзины" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0111FF" Click="removecart_Click">
+                            <Button x:Name="removecart" Height="29" Content="убрать из корзины" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0111FF" Click="removecart_Click">
                                 <Button.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="-1" ScaleY="-1"/>
@@ -46,9 +46,9 @@
                         <Run Text=" "/>
                         <Run Text=" "/>
                             </TextBlock>
-                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" ><Run Text="Описание: "/><Run Text=" "/><Run Text="{Binding GoodsBakery.Description}"/><Run Text=" "/><Run Text=" "/></TextBlock>
+                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" ><Run Text=" "/><Run Text=" "/><Run Text=" "/></TextBlock>
                         </StackPanel>
-                        <StackPanel Grid.Column="1" Width="138" Orientation="Vertical" HorizontalAlignment="Left" Margin="421,0,0,0">
+                        <StackPanel Grid.Column="1" Width="138" Orientation="Vertical" HorizontalAlignment="Left" Margin="305,0,0,0">
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                        <Run Text="Цена: "/> 
                         <Run Text="{Binding GoodsBakery.Price}"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Bakery.regauth
         {
             InitializeComponent();
             emailreg.MaxLength = 100;
-            phonereg.MaxLength = 13;
+            phonereg.MaxLength = 15;
             loginreg.MaxLength = 50;
             tbpasswordreg.MaxLength = 20;
             repeatpasswordreg.MaxLength = 20;
@@ -50,22 +51,22 @@ namespace Bakery.regauth
 
             if (emailreg.Text.Contains("@"))
             {
-                registr();
+                if (phonereg.Text.Length < 10 || !phonereg.Text.Contains("+") || phonereg.Text.Length > 15 )
+                {
+                    MessageBox.Show("Неверный формат телефона",
+                           "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                else
+                {
+                    registr();
+                }
             }
             else
             {
                 MessageBox.Show("Неверный формат почты",
                        "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
-            if(phonereg.Text.Length < 10)
-            {
-                MessageBox.Show("Неверный телефон",
-                       "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                registr();
+                return;
             }
 
 
