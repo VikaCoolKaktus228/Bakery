@@ -18,7 +18,7 @@
         </Grid.Background>
         <TextBox Text="{Binding NameGoods}" x:Name="goodsnamee" HorizontalAlignment="Left" Margin="26,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="28"/>
         <Label Content="введите наименование товара" HorizontalAlignment="Left" Margin="26,60,0,0" VerticalAlignment="Top"/>
-        <Label Content="ДОБАВИТЬ ТОВАР" HorizontalAlignment="Left" Margin="237,0,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Cascadia Code Light" Foreground="#FF102B96"/>
+        <Label Content="ДОБАВИТЬ ТОВАР" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" FontFamily="Cascadia Code Light" Foreground="#FF102B96"/>
         <Label HorizontalAlignment="Left" Margin="26,124,0,0" VerticalAlignment="Top" Content="выберите категорию товара"/>
         <Label Content="введите вес товара" HorizontalAlignment="Left" Margin="26,181,0,0" VerticalAlignment="Top"/>
         <Label Content="введите каллорийность товара" HorizontalAlignment="Left" Margin="26,251,0,0" VerticalAlignment="Top"/>

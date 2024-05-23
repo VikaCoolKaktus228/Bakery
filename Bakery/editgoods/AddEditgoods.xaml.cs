@@ -29,6 +29,7 @@ namespace Bakery.editgoods
             {
                 curbakery = selectedgood;
             }
+
             goodscategoryy.ItemsSource = Entities.GetContext().Category.Select(x => x.Category1).ToList();
             goodsallergienss.ItemsSource = Entities.GetContext().Allergens.Select(x => x.Allergen).ToList();
             goodsproviderr.ItemsSource = Entities.GetContext().Provider.Select(x => x.Provider1).ToList();
@@ -43,7 +44,7 @@ namespace Bakery.editgoods
         {
             StringBuilder errors = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Allergens < 0
+            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Weight < 0 || curbakery.Allergens < 0
                 || curbakery.TypeOfGoods < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.Allergens < 0
                 || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
                 || curbakery.Provider < 0 || curbakery.OnStock <= 0)
@@ -87,22 +88,26 @@ namespace Bakery.editgoods
 
         private void UpdateGoods()
         {
+
+            goodscategoryy.ItemsSource = Entities.GetContext().Category.Select(x => x.Category1).ToList();
+            goodsallergienss.ItemsSource = Entities.GetContext().Allergens.Select(x => x.Allergen).ToList();
+            goodsproviderr.ItemsSource = Entities.GetContext().Provider.Select(x => x.Provider1).ToList();
+            goodstypee.ItemsSource = Entities.GetContext().TypeOfGoods.Select(x => x.Type).ToList();
             StringBuilder errors = new StringBuilder();
 
-            //if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Allergens < 0
-            //    || curbakery.TypeOfGoods < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.Allergens < 0
-            //    || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
-            //    || curbakery.Provider < 0 || curbakery.OnStock <= 0)
-            //{
-            //    errors.AppendLine("некорректные данные");
-            //}
-            //if (errors.Length > 0)
-            //{
-            //    MessageBox.Show(errors.ToString());
-            //    return;
+            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Weight < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue)
+                || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
+                || curbakery.OnStock <= 0)
+            {
+                errors.AppendLine("некорректные данные");
+            }
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
 
-            //}
-            try
+            }
+                try
             {
                 curbakery.NameGoods = goodsnamee.Text;
                 curbakery.Price = Convert.ToInt32(price.Text);

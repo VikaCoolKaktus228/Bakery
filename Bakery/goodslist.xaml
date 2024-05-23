@@ -91,23 +91,23 @@
                                 <Run Text=" "/> 
                                 <Run Text=" "/>
                             </TextBlock>
-                            <Button x:Name="delete" Height="24" Content="удалить" RenderTransformOrigin="0.5,0.5" Width="134" Click="delete_Click">
+                            <Button x:Name="delete" Height="24" Content="удалить" RenderTransformOrigin="0.5,0.5" Width="134" Click="delete_Click" Foreground="#FF0B2DE6">
                                 <Button.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleY="-1"/>
+                                        <ScaleTransform ScaleX="-1" ScaleY="-1"/>
                                         <SkewTransform/>
-                                        <RotateTransform Angle="-180"/>
+                                        <RotateTransform Angle="180"/>
                                         <TranslateTransform/>
                                     </TransformGroup>
                                 </Button.RenderTransform>
                             </Button>
-                            <Button x:Name="change" Height="25" Content="обновить" RenderTransformOrigin="0.5,0.5" Width="133" Click="change_Click">
+                            <Button x:Name="change" Height="25" Content="обновить" RenderTransformOrigin="0.5,0.5" Width="133" Click="change_Click" Foreground="#FF1236FD">
                                 <Button.RenderTransform>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleY="-1"/>
-                                        <SkewTransform AngleX="0"/>
-                                        <RotateTransform Angle="-180"/>
-                                        <TranslateTransform X="0"/>
+                                        <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="180"/>
+                                        <TranslateTransform/>
                                     </TransformGroup>
                                 </Button.RenderTransform>
                             </Button>
@@ -117,10 +117,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock x:Name="tbCounter" Text="Не найдено" Width="147" HorizontalAlignment="Left" Margin="553,19,0,12" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="tbCounter" Text="Не найдено" Width="146" HorizontalAlignment="Left" Margin="552,20,0,11" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
+                    <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
@@ -131,11 +131,11 @@
         <ComboBox x:Name="ComboSort" HorizontalAlignment="Left" Margin="10,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22"/>
         <ComboBox x:Name="ComboFilter" HorizontalAlignment="Left" Margin="182,36,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22"/>
         <TextBox x:Name="TextSearche" HorizontalAlignment="Left" Margin="350,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="18"/>
-        <Label Content="сортировка" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="74"/>
-        <Label Content="фильтрация" HorizontalAlignment="Left" Margin="182,32,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="76"/>
-        <Label Content="поиск" HorizontalAlignment="Left" Margin="350,35,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="42"/>
-        <Button Content="поиск" HorizontalAlignment="Left" Margin="711,0,0,0" Grid.Row="1" VerticalAlignment="Center" Click="Button_Click" Height="20" Width="36"/>
-        <Button x:Name="addgooods" Content="добавить товар" HorizontalAlignment="Left" Margin="10,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="addgooods_Click"/>
+        <Label Content="сортировка" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="74"/>
+        <Label Content="фильтрация" HorizontalAlignment="Left" Margin="182,16,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="76"/>
+        <Label Content="поиск" HorizontalAlignment="Left" Margin="350,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="42"/>
+        <Button Content="поиск" HorizontalAlignment="Left" Margin="499,39,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF1215EC"/>
+        <Button x:Name="addgooods" Content="добавить товар" HorizontalAlignment="Left" Margin="685,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="addgooods_Click" Foreground="#FF0A19FF" Height="28" Width="113"/>
     </Grid>
 
 </Page>

@@ -37,6 +37,14 @@ namespace Bakery.regauth
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
+                var password = AppConect.bakerymod.Users.FirstOrDefault(x => x.Password == passwordauth.Password);
+                if (password == null)
+                {
+                    MessageBox.Show("неверный пароль",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+
+
                 else
                 {
                     switch (user.Role)

@@ -23,6 +23,11 @@ namespace Bakery.regauth
         public registration()
         {
             InitializeComponent();
+            emailreg.MaxLength = 100;
+            phonereg.MaxLength = 13;
+            loginreg.MaxLength = 50;
+            tbpasswordreg.MaxLength = 20;
+            repeatpasswordreg.MaxLength = 20;
         }
 
         private void repeatpasswordreg_PasswordChanged(object sender, RoutedEventArgs e)
@@ -42,6 +47,33 @@ namespace Bakery.regauth
                     "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
+
+            if (emailreg.Text.Contains("@"))
+            {
+                registr();
+            }
+            else
+            {
+                MessageBox.Show("Неверный формат почты",
+                       "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            if(phonereg.Text.Length < 10)
+            {
+                MessageBox.Show("Неверный телефон",
+                       "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                registr();
+            }
+
+
+            
+        }
+
+        public void registr()
+        {
             try
             {
                 Users user = new Users()
