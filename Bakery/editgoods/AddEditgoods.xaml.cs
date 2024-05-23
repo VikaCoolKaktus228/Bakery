@@ -89,19 +89,19 @@ namespace Bakery.editgoods
         {
             StringBuilder errors = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Allergens < 0
-                || curbakery.TypeOfGoods < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.Allergens < 0
-                || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
-                || curbakery.Provider < 0 || curbakery.OnStock <= 0)
-            {
-                errors.AppendLine("некорректные данные");
-            }
-            if (errors.Length > 0)
-            {
-                MessageBox.Show(errors.ToString());
-                return;
+            //if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Allergens < 0
+            //    || curbakery.TypeOfGoods < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.Allergens < 0
+            //    || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
+            //    || curbakery.Provider < 0 || curbakery.OnStock <= 0)
+            //{
+            //    errors.AppendLine("некорректные данные");
+            //}
+            //if (errors.Length > 0)
+            //{
+            //    MessageBox.Show(errors.ToString());
+            //    return;
 
-            }
+            //}
             try
             {
                 curbakery.NameGoods = goodsnamee.Text;

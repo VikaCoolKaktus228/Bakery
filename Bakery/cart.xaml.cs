@@ -20,6 +20,7 @@ using System.Windows.Markup;
 using System.IO;
 using System.Xml.Linq;
 using Paragraph = iTextSharp.text.Paragraph;
+using System.Runtime.Remoting.Contexts;
 
 namespace Bakery
 {
@@ -38,13 +39,12 @@ namespace Bakery
 
             var orderobj = Entities.GetContext().Order
                                .Where(x => x.IdUser == idusercart)
-                               .Select(x => x.IdGoods)
+                               //.Select(x => x.IdGoods)
                                .ToList();
-            var goodsInCart = Entities.GetContext().GoodsBakery
-                                         .Where(x => orderobj.Contains(x.Id))
-                                         .ToList();
-
-            cartbakery.ItemsSource = goodsInCart;
+            //var goodsInCart = Entities.GetContext().GoodsBakery
+            //                             .Where(x => orderobj.Contains(x.Id))
+            //                             .ToList();
+            cartbakery.ItemsSource = orderobj;
         }
 
         private void CreatePDF()
@@ -53,7 +53,8 @@ namespace Bakery
 
             try
             {
-                PdfWriter.GetInstance(doc, new FileStream("..\\..\\output.pdf", FileMode.Create));
+                string fileName = System.IO.Path.Combine("C:\\Users\\10210806\\Downloads", $"order_{DateTime.Now:yyyyMMddHH}.pdf"); 
+                PdfWriter.GetInstance(doc, new FileStream(fileName, FileMode.Create));
 
                 doc.Open();
                 BaseFont basefont = BaseFont.CreateFont("C:\\Windows\\Fonts\\Arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
@@ -73,17 +74,17 @@ namespace Bakery
                     if (item is Order)
                     {
                         Order data = (Order)item;
-                        //Image img = Image.GetInstance("C:\\Users\\User\\Pictures\\bakeryhome\\Bakery\\" + data.GoodsBakery.CurrentPhoto);
-                        //img.ScaleAbsolute(100f, 100f);
-                        //doc.Add(img);
+                        Image img = Image.GetInstance("C:\\Users\\10210806\\source\\repos\\Bakery\\Bakery\\" + data.GoodsBakery.CurrentPhoto);
+                        img.ScaleAbsolute(100f, 100f);
+                        doc.Add(img);
                         doc.Add(new Paragraph("Haзвaние: " + data.GoodsBakery.NameGoods, font));
                         doc.Add(new Paragraph("Oпиcaние: " + data.GoodsBakery.Description, font));
-                        doc.Add(new Paragraph("производитель " + data.GoodsBakery.Provider1.Provider1, font));
+                        doc.Add(new Paragraph("Производитель: " + data.GoodsBakery.Provider1.Provider1, font));
                         doc.Add(new Paragraph("Cтоимость: " + data.GoodsBakery.Price.ToString() + "py6.", font));
                         sum += (int)data.GoodsBakery.Price;
                     }
                 }
-                Paragraph paragraph = new Paragraph("Cymma = " + sum.ToString(), font);
+                Paragraph paragraph = new Paragraph("Cyммa = " + sum.ToString() + "руб.", font);
                 paragraph.Alignment = Element.ALIGN_RIGHT;
                 doc.Add(paragraph);
             }
@@ -101,20 +102,78 @@ namespace Bakery
             }
         }
 
+        public void RemoveItemsFromCart(List<Order> goodsfordeleting)
+        {
+            int idusercart = Convert.ToInt32(App.Current.Properties["Id"].ToString());
+
+             
+            var context = Entities.GetContext();            
+            var goodsIds = goodsfordeleting.Select(x => x.IdGoods).ToList();
+
+            
+
+            var ordersToRemove = context.Order
+                                       .Where(x => x.IdUser == idusercart && goodsIds.Contains(x.IdGoods))
+                                       .ToList();
+            context.Order.RemoveRange(ordersToRemove);
+            context.SaveChanges();
+            var remainingGoodsInCart = context.GoodsBakery
+                                              .Where(x => context.Order.Any(o => o.IdUser == idusercart && o.IdGoods == x.Id))
+                                              .ToList();
+
+            cartbakery.ItemsSource = remainingGoodsInCart;
+        }
         private void removecart_Click(object sender, RoutedEventArgs e)
         {
-
+            cartbakery.ItemsSource = Entities.GetContext().Order.ToList(); 
+            Button b = sender as Button;
+            int ID = int.Parse(((b.Parent as StackPanel).Children[0] as TextBlock).Text); 
+            AppConect.bakerymod.Order.Remove(AppConect.bakerymod.Order.Where(x => x.Id == ID).First()
+            ); AppConect.bakerymod.SaveChanges();
+            AppFrame.BakeryFrame.GoBack(); AppFrame.BakeryFrame.Navigate(new cart());
         }
 
-        private void gobackbutton_Click(object sender, RoutedEventArgs e)
+        private void RemoveOrder(object sender, MouseButtonEventArgs e)
+        {
+            StackPanel sp = sender as StackPanel;
+            int ID = int.Parse((sp.Children[0] as TextBlock).Text);
+            AppConect.bakerymod.Order.Remove(AppConect.bakerymod.Order.Where(x => x.Id == ID).First());
+            AppConect.bakerymod.SaveChanges();
+            var orderobj = Entities.GetContext().Order
+                               .Where(x => x.IdUser == idusercart)
+                               .Select(x => x.IdGoods)
+                               .ToList();
+            var goodsInCart = Entities.GetContext().GoodsBakery
+                                         .Where(x => orderobj.Contains(x.Id))
+                                         .ToList();
+            cartbakery.ItemsSource = goodsInCart;
+        }
+
+
+            private void gobackbutton_Click(object sender, RoutedEventArgs e)
         {
             AppFrame.BakeryFrame.Navigate(new goodslistuser((sender as Button).DataContext as Users));
         }
         private void orderbutton_Click(object sender, RoutedEventArgs e)
         {
-            CreatePDF();
 
-            AppFrame.BakeryFrame.Navigate(new OrderForm());
+            if (MessageBox.Show($"Вы точно хотите сформировать заказ?", "Внимание",
+               MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    CreatePDF();
+                    MessageBox.Show("PDF документ заказа успешно сформирован!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    var goodsIds = Entities.GetContext().Order
+                    .Where(x => x.IdUser == idusercart).ToList();
+                    RemoveItemsFromCart(goodsIds);
+                    AppFrame.BakeryFrame.Navigate(new OrderForm());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
 
         }
     }

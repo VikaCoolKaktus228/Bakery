@@ -85,7 +85,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock x:Name="tbCounter" Text="Не найдено" Width="147" HorizontalAlignment="Left" Margin="553,19,0,12" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="tbCounter" Text="Не найдено" Width="76" HorizontalAlignment="Left" Margin="624,19,0,12" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1"/>
@@ -101,6 +101,7 @@
         <Label Content="сортировка" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="74"/>
         <Label Content="фильтрация" HorizontalAlignment="Left" Margin="182,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="76"/>
         <Label Content="поиск" HorizontalAlignment="Left" Margin="350,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="42"/>
-        <Button Content="поиск" HorizontalAlignment="Left" Margin="711,23,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF193CFF"/>
+        <Button Content="поиск" HorizontalAlignment="Left" Margin="498,23,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF193CFF"/>
+        <Button x:Name="tocartbttn" Content="корзина" HorizontalAlignment="Left" Margin="730,15,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="34" Width="68" Foreground="#FF1E2CFF" Click="tocartbttn_Click"/>
     </Grid>
 </Page>
