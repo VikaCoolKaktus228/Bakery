@@ -45,6 +45,10 @@ namespace Bakery
             ComboFilter.Items.Add("вес от 0 до 100");
             ComboFilter.Items.Add("вес от 100 до 500");
             ComboFilter.Items.Add("вес от 500");
+            ComboFilter.Items.Add("цена от 0 до 100");
+            ComboFilter.Items.Add("цена от 100 до 500");
+            ComboFilter.Items.Add("цена от 500 до 1000");
+            ComboFilter.Items.Add("цена от 1000");
         }
 
         GoodsBakery[] findGoods()
@@ -68,6 +72,18 @@ namespace Bakery
                         break;
                     case 2:
                         product = product.Where(x => x.Weight > 500).ToList();
+                        break;
+                    case 3:
+                        product = product.Where(x => x.Price >= 0 && x.Price <= 100).ToList();
+                        break;
+                    case 4:
+                        product = product.Where(x => x.Price >= 100 && x.Weight < 500).ToList();
+                        break;
+                    case 5:
+                        product = product.Where(x => x.Price >= 500 && x.Price < 1000).ToList();
+                        break;
+                    case 6:
+                        product = product.Where(x => x.Price > 1000).ToList();
                         break;
                 }
             }

@@ -41,6 +41,21 @@ namespace Bakery.editgoods
 
         public void AddNewGoods()
         {
+            StringBuilder errors = new StringBuilder();
+
+            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Allergens < 0
+                || curbakery.TypeOfGoods < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.Allergens < 0
+                || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
+                || curbakery.Provider < 0 || curbakery.OnStock <= 0)
+            {
+                errors.AppendLine("некорректные данные");
+            }
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+
+            }
             try
             {
                 curbakery = new GoodsBakery()
@@ -72,6 +87,21 @@ namespace Bakery.editgoods
 
         private void UpdateGoods()
         {
+            StringBuilder errors = new StringBuilder();
+
+            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Allergens < 0
+                || curbakery.TypeOfGoods < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.Allergens < 0
+                || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
+                || curbakery.Provider < 0 || curbakery.OnStock <= 0)
+            {
+                errors.AppendLine("некорректные данные");
+            }
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+
+            }
             try
             {
                 curbakery.NameGoods = goodsnamee.Text;
@@ -104,6 +134,30 @@ namespace Bakery.editgoods
             else
             {
                 UpdateGoods();
+            }
+        }
+
+        private void goodsweightt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key < Key.D0 || e.Key > Key.D9) && e.Key != Key.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void onstock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key < Key.D0 || e.Key > Key.D9) && e.Key != Key.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void price_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key < Key.D0 || e.Key > Key.D9) && e.Key != Key.Back)
+            {
+                e.Handled = true;
             }
         }
     }
