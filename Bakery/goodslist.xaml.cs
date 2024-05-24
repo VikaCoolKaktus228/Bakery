@@ -126,8 +126,8 @@ namespace Bakery
         {
             if (Visibility == Visibility.Visible)
             {
-                Entities3.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                bakeryproducts.ItemsSource = Entities3.GetContext().GoodsBakery.ToList();
+                Entities7.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                bakeryproducts.ItemsSource = Entities7.GetContext().GoodsBakery.ToList();
             }
         }
 
@@ -140,11 +140,11 @@ namespace Bakery
             {
                 try
                 {
-                    Entities3.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
-                    Entities3.GetContext().SaveChanges();
+                    Entities7.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
+                    Entities7.GetContext().SaveChanges();
                     MessageBox.Show("ДАННЫЕ УДАЛЕНЫ");
 
-                    bakeryproducts.ItemsSource = Entities3.GetContext().GoodsBakery.ToList();
+                    bakeryproducts.ItemsSource = Entities7.GetContext().GoodsBakery.ToList();
                 }
                 catch (Exception ex)
                 {

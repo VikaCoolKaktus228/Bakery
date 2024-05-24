@@ -30,7 +30,7 @@ namespace Bakery.editgoods
                 curuser = selecteduser;
             }
 
-            combouserrole.ItemsSource = Entities3.GetContext().Role.Select(x => x.Role1).ToList();
+            combouserrole.ItemsSource = Entities7.GetContext().Role.Select(x => x.Role1).ToList();
 
             DataContext = curuser;
         }
@@ -61,7 +61,7 @@ namespace Bakery.editgoods
                     curuser.Login = loginuser.Text;
                     curuser.Password = passworduser.Text;
                     curuser.Role = Convert.ToInt32(combouserrole.SelectedIndex + 1);
-                    Entities3.GetContext().SaveChanges();
+                    Entities7.GetContext().SaveChanges();
                     MessageBox.Show("данные пользователя успешно измененны!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                     AppFrame.BakeryFrame.Navigate(new UsersList());
                     //AppConect.bakerymod.Users.Add(curuser);

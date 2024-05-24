@@ -30,10 +30,10 @@ namespace Bakery.editgoods
                 curbakery = selectedgood;
             }
 
-            goodscategoryy.ItemsSource = Entities3.GetContext().Category.Select(x => x.Category1).ToList();
-            goodsallergienss.ItemsSource = Entities3.GetContext().Allergens.Select(x => x.Allergen).ToList();
-            goodsproviderr.ItemsSource = Entities3.GetContext().Provider.Select(x => x.Provider1).ToList();
-            goodstypee.ItemsSource = Entities3.GetContext().TypeOfGoods.Select(x => x.Type).ToList();
+            goodscategoryy.ItemsSource = Entities7.GetContext().Category.Select(x => x.Category1).ToList();
+            goodsallergienss.ItemsSource = Entities7.GetContext().Allergens.Select(x => x.Allergen).ToList();
+            goodsproviderr.ItemsSource = Entities7.GetContext().Provider.Select(x => x.Provider1).ToList();
+            goodstypee.ItemsSource = Entities7.GetContext().TypeOfGoods.Select(x => x.Type).ToList();
 
             DataContext = curbakery;
 
@@ -115,7 +115,7 @@ namespace Bakery.editgoods
                 curbakery.CallorieValue = goodscalloriess.Text;
                 curbakery.Allergens = Convert.ToInt32(goodsallergienss.SelectedIndex + 1);
 
-                Entities3.GetContext().SaveChanges();
+                Entities7.GetContext().SaveChanges();
 
                 MessageBox.Show("Данные успешно изменены!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                 AppFrame.BakeryFrame.Navigate(new goodslist());

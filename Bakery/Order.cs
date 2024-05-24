@@ -18,7 +18,7 @@ namespace Bakery
         public Order()
         {
             this.Cart = new HashSet<Cart>();
-            this.ManagerOrder = new HashSet<ManagerOrder>();
+            this.OrderManager = new HashSet<OrderManager>();
         }
     
         public int Id { get; set; }
@@ -28,8 +28,8 @@ namespace Bakery
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Cart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ManagerOrder> ManagerOrder { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual ICollection<OrderManager> OrderManager { get; set; }
         public virtual Status Status { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

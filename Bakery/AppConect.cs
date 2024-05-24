@@ -8,6 +8,6 @@ namespace Bakery
 {
     internal class AppConect
     {
-        public static Entities3 bakerymod;
+        public static Entities7 bakerymod;
     }
 }

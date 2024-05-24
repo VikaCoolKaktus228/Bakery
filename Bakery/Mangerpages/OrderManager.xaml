@@ -32,14 +32,6 @@
                         <Run Text="{Binding IdOrder}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
-                        <Run Text="Пользователь: "/> 
-                        <Run Text="{Binding Users.Login}"/>
-                            </TextBlock>
-                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
-                       <Run Text="Дата и время:"/> 
-                        <Run Text="{Binding DateTimeOrder}"/>
-                            </TextBlock>
-                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                         <Run Text=" "/> 
                         <Run Text=" "/>
                             </TextBlock>
@@ -56,6 +48,7 @@
                                 </Button.RenderTransform>
                             </Button>
                             <ComboBox x:Name="StatusCombo" Text="{Binding Status.Status1}" Width="139" Margin="0,10,0,0"/>
+                            <Button x:Name="aboutOrder" Content="Подробнее" Foreground="#FF0004FF" Height="29" Width="137" Margin="0,5,0,0"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

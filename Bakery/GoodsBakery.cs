@@ -18,6 +18,7 @@ namespace Bakery
         public GoodsBakery()
         {
             this.Cart = new HashSet<Cart>();
+            this.OrderManager = new HashSet<OrderManager>();
         }
     
         public int Id { get; set; }
@@ -39,5 +40,7 @@ namespace Bakery
         public virtual Category Category1 { get; set; }
         public virtual Provider Provider1 { get; set; }
         public virtual TypeOfGoods TypeOfGoods1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderManager> OrderManager { get; set; }
     }
 }

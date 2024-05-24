@@ -136,7 +136,7 @@ namespace Bakery
                 int selectedGoodsId = ((GoodsBakery)userbakeryproducts.SelectedItem).Id;
                 if (userbakeryproducts.SelectedItem != null && userbakeryproducts.SelectedItem is GoodsBakery)
                 {
-                    var order = Entities3.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
+                    var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
                     if (order == null)
                     {
                         order = new Order()
@@ -144,8 +144,8 @@ namespace Bakery
                             IdUser = idUsers,
                             IdStatus = 2
                         };
-                        Entities3.GetContext().Order.Add(order);
-                        Entities3.GetContext().SaveChanges();
+                        Entities7.GetContext().Order.Add(order);
+                        Entities7.GetContext().SaveChanges();
                     }
 
                     var cartnew = new Cart()
@@ -154,8 +154,8 @@ namespace Bakery
                         IdGoods = selectedGoodsId
                     };
 
-                    Entities3.GetContext().Cart.Add(cartnew);
-                    Entities3.GetContext().SaveChanges();
+                    Entities7.GetContext().Cart.Add(cartnew);
+                    Entities7.GetContext().SaveChanges();
 
                     MessageBox.Show("Товар успешно добавлен в корзину!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 

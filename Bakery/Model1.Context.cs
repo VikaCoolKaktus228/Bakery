@@ -15,18 +15,20 @@ namespace Bakery
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class Entities3 : DbContext
+    public partial class Entities7 : DbContext
     {
-        private static Entities3 _context;
-        public Entities3()
-            : base("name=Entities3")
+        private static Entities7 _context;
+        public Entities7()
+            : base("name=Entities7")
         {
         }
-        public static Entities3 GetContext()
+
+        public static Entities7 GetContext()
         {
-            if (_context == null) _context = new Entities3();
+            if (_context == null) _context = new Entities7();
             return _context;
         }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,8 +39,8 @@ namespace Bakery
         public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<GoodsBakery> GoodsBakery { get; set; }
-        public virtual DbSet<ManagerOrder> ManagerOrder { get; set; }
         public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderManager> OrderManager { get; set; }
         public virtual DbSet<Provider> Provider { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Status> Status { get; set; }

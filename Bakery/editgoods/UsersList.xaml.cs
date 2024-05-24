@@ -33,8 +33,8 @@ namespace Bakery.editgoods
         {
             if (Visibility == Visibility.Visible)
             {
-                Entities3.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                userlist.ItemsSource = Entities3.GetContext().Users.ToList();
+                Entities7.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                userlist.ItemsSource = Entities7.GetContext().Users.ToList();
             }
         }
 
@@ -52,11 +52,11 @@ namespace Bakery.editgoods
             {
                 try
                 {
-                    Entities3.GetContext().Users.RemoveRange(usersfordeleting);
-                    Entities3.GetContext().SaveChanges();
+                    Entities7.GetContext().Users.RemoveRange(usersfordeleting);
+                    Entities7.GetContext().SaveChanges();
                     MessageBox.Show("пользователь удален");
 
-                    userlist.ItemsSource = Entities3.GetContext().Users.ToList();
+                    userlist.ItemsSource = Entities7.GetContext().Users.ToList();
                 }
                 catch (Exception ex)
                 {

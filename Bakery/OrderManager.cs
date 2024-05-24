@@ -12,16 +12,13 @@ namespace Bakery
     using System;
     using System.Collections.Generic;
     
-    public partial class ManagerOrder
+    public partial class OrderManager
     {
-        public int IdTablOrd { get; set; }
-        public int IdUser { get; set; }
+        public int Id { get; set; }
         public int IdOrder { get; set; }
-        public System.DateTime DateTimeOrder { get; set; }
-        public int Status { get; set; }
+        public int IdGoods { get; set; }
     
+        public virtual GoodsBakery GoodsBakery { get; set; }
         public virtual Order Order { get; set; }
-        public virtual Status Status1 { get; set; }
-        public virtual Users Users { get; set; }
     }
 }
