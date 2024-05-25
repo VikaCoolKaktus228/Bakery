@@ -23,6 +23,18 @@ namespace Bakery.Mangerpages
         public OrderManager()
         {
             InitializeComponent();
+            List<Order> ordersman = AppConect.bakerymod.Order.ToList();
+            orderslist.ItemsSource = ordersman;
+        }
+
+        private void aboutOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new OrderPage((sender as Button).DataContext as Order));
+        }
+
+        private void changestatusbutton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

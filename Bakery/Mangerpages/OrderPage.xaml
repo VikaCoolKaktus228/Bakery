@@ -13,17 +13,16 @@
             <ImageBrush ImageSource="/image/ffff.jpg"/>
         </Grid.Background>
         <Label Content="Заказ" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF000A9C" FontSize="36" FontFamily="Cascadia Code Light"/>
-        <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" Margin="38,60,633,324" >
-                        <Run Text="ID заказа: "/> 
-                        <Run Text="{Binding Order.Id}"/>
-                        <Run Text="Пользователь: "/> 
-                        <Run Text="{Binding Users.Login}"/>
-                        <Run Text="Статус: "/> 
-                        <Run Text="{Binding Status1.Status1}"/>
-            
-        </TextBlock>
+        <Label x:Name="labeluser" Content="" HorizontalAlignment="Left" Margin="178,99,0,0" VerticalAlignment="Top" Height="39" Width="100" Background="{x:Null}" Panel.ZIndex="1" FontSize="14"/>
+        <Label Content="Пользователь" HorizontalAlignment="Left" Margin="100,69,0,0" VerticalAlignment="Top" Panel.ZIndex="1" FontSize="16"/>
+        <Label x:Name="labelstatus" Content="" HorizontalAlignment="Left" Margin="272,100,0,0" VerticalAlignment="Top" Height="39" Width="154" Background="{x:Null}" Panel.ZIndex="1" FontSize="14"/>
+        <Label Content="Статус" HorizontalAlignment="Left" Margin="250,69,0,0" VerticalAlignment="Top" Panel.ZIndex="1" FontSize="16"/>
+        <Label x:Name="labelId" Content="" HorizontalAlignment="Left" Margin="50,100,0,0" VerticalAlignment="Top" Height="39" Width="50" Background="{x:Null}" Panel.ZIndex="1" FontSize="14"/>
+        <Label Content="Id" HorizontalAlignment="Left" Margin="40,69,0,0" VerticalAlignment="Top" Panel.ZIndex="1" FontSize="16"/>
+        <Button x:Name="ToOrders" Content="к заказам" HorizontalAlignment="Left" Margin="681,16,0,0" VerticalAlignment="Top" Foreground="#FF001BFF" Width="109" Height="46" Panel.ZIndex="1" Click="ToOrders_Click"/>
+        <Label Content="" HorizontalAlignment="Center" Margin="0,72,0,0" VerticalAlignment="Top" Background="#FFCDE5FF" Opacity="0.515" Height="542" Width="1008"/>
 
-        <ListView x:Name="listgoodsorder" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="38,131,38,19">
+        <ListView x:Name="listgoodsorder" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="22,183,30,10" Panel.ZIndex="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -32,29 +31,36 @@
                             <ColumnDefinition Width="700" />
                             <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding GoodsBakery.CurrentPhoto}" Grid.Column="0" Margin="0,0,10,0"/>
+                        <Image Source="{Binding CurrentPhoto}" Grid.Column="0" Margin="0,0,10,0"/>
                         <StackPanel Grid.Column="1" Margin="423,0,139,0">
-
                         </StackPanel>
-                        <StackPanel Grid.Column="1" Width="146" Orientation="Vertical" HorizontalAlignment="Left">
-                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
-                        <Run Text="Наименование:"/> 
-                        <Run Text="{Binding GoodsBakery.NameGoods}"/>
-                        <Run Text="Описание:"/> 
-                        <Run Text="{Binding GoodsBakery.Description}"/>
+                        <StackPanel Grid.Column="1" Width="146" Orientation="Vertical" HorizontalAlignment="Left" Margin="10,0,0,0">
+                            <TextBlock Width="110" TextWrapping="Wrap" Height="98" >
+                <Run Text="Наименование:"/> 
+                <Run Text="{Binding NameGoods}"/>
+
+                <Run Text=" "/>
+                <Run Text=" "/>
+                            </TextBlock>
+                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" ><Run Text=" "/><Run Text=" "/><Run Text=" "/></TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Width="244" Orientation="Vertical" HorizontalAlignment="Left" Margin="156,0,0,0">
+                            <TextBlock Width="110" TextWrapping="Wrap" Height="98" >
+                        <Run Text="Описание:"/>
+                        <Run Text="{Binding Description}"/>
                         <Run Text=" "/>
                         <Run Text=" "/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" ><Run Text=" "/><Run Text=" "/><Run Text=" "/></TextBlock>
                         </StackPanel>
-                        <StackPanel Grid.Column="1" Width="138" Orientation="Vertical" HorizontalAlignment="Left" Margin="423,0,0,0">
+                        <StackPanel Grid.Column="1" Width="138" Orientation="Vertical" HorizontalAlignment="Left" Margin="442,0,0,0">
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
-                       <Run Text="Цена: "/> 
-                        <Run Text="{Binding GoodsBakery.Price}"/>
+               <Run Text="Цена: "/> 
+                <Run Text="{Binding Price}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
-                        <Run Text=" "/> 
-                        <Run Text=" "/>
+                <Run Text=" "/> 
+                <Run Text=" "/>
                             </TextBlock>
 
                         </StackPanel>
@@ -63,5 +69,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Label Content="Содержание" HorizontalAlignment="Left" Margin="22,154,0,0" VerticalAlignment="Top" FontSize="16"/>
     </Grid>
 </Page>

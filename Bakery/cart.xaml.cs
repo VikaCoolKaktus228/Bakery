@@ -127,12 +127,12 @@ namespace Bakery
         }
         private void removecart_Click(object sender, RoutedEventArgs e)
         {
-            cartbakery.ItemsSource = Entities7.GetContext().Cart.ToList(); 
+            cartbakery.ItemsSource = Entities7.GetContext().Cart.ToList();
             Button b = sender as Button;
-            int ID = int.Parse(((b.Parent as StackPanel).Children[0] as TextBlock).Text); 
-            AppConect.bakerymod.Cart.Remove(AppConect.bakerymod.Cart.Where(x => x.Id == ID).First());
+            int ID = int.Parse(((b.Parent as StackPanel).Children[0] as TextBlock).Text);
+            AppConect.bakerymod.Cart.Remove(AppConect.bakerymod.Cart.Where(x => x.IdGoods == ID).First());
             AppConect.bakerymod.SaveChanges();
-            AppFrame.BakeryFrame.GoBack(); 
+            AppFrame.BakeryFrame.GoBack();
             AppFrame.BakeryFrame.Navigate(new cart());
         }
 
@@ -146,17 +146,27 @@ namespace Bakery
         {
             try
             {
-                int idUsers = Convert.ToInt32(App.Current.Properties["Id"].ToString());
-                var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
-                var cartt = Entities7.GetContext().Cart.FirstOrDefault(o => o.Order.IdUser == idUsers);
-                var cartnew = new OrderManager()
-                {
-                    IdOrder = order.Id,
-                    IdGoods = cartt.IdGoods
-                };
+                var orderobj = Entities7.GetContext().Order
+                .Where(x => x.IdUser == idusercart)
+                .Select(x => x.Id)
+                .ToList();
 
-                Entities7.GetContext().OrderManager.Add(cartnew);
-                Entities7.GetContext().SaveChanges();
+                var cartobj = Entities7.GetContext().Cart
+                                   .Where(c => orderobj.Contains(c.IdOrder))
+                                   .ToList();
+
+                foreach (var item in cartobj)
+                {
+                    int idUsers = Convert.ToInt32(App.Current.Properties["Id"].ToString());
+                    var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
+                    var cartnew = new OrderManager()
+                    {
+                        IdOrder = order.Id,
+                        IdGoods = item.IdGoods
+                    };
+                    Entities7.GetContext().OrderManager.Add(cartnew);
+                    Entities7.GetContext().SaveChanges();
+                }
             }
             catch (Exception ex)
             {
@@ -171,9 +181,9 @@ namespace Bakery
             {
                 try
                 {
-                    removecart();
                     CreatePDF();
-                    //addmanagerorder();
+                    addmanagerorder();
+                    removecart();
                     MessageBox.Show("PDF документ заказа успешно сформирован!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                     AppFrame.BakeryFrame.Navigate(new OrderForm());
                 }
