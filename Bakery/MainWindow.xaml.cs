@@ -34,11 +34,15 @@ namespace Bakery
         private void Window_Closed(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(App.Current.Properties["Id"]);
-            var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == userId && o.IdStatus == 2);
+            if(userId == 1)
+            {
+                var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == userId && o.IdStatus == 2);
 
-            var cartItems = Entities7.GetContext().Cart.Where(c => c.IdOrder == order.Id).ToList();
-            Entities7.GetContext().Cart.RemoveRange(cartItems);
-            //Entities7.GetContext().SaveChanges();
+                var cartItems = Entities7.GetContext().Cart.Where(c => c.IdOrder == order.Id).ToList();
+                Entities7.GetContext().Cart.RemoveRange(cartItems);
+                Entities7.GetContext().SaveChanges();
+            }
+
         }
     }
 }

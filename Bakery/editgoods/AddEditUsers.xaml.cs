@@ -46,6 +46,8 @@ namespace Bakery.editgoods
             {
                 errors.AppendLine("заполните все данные");
             }
+
+            if( )
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());

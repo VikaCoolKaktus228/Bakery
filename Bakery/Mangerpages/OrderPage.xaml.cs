@@ -20,6 +20,7 @@ namespace Bakery.Mangerpages
     /// </summary>
     public partial class OrderPage : Page
     {
+        private Order currentorder = new Order();
         public OrderPage(Order selectedorder)
         {
             var curentorderid = selectedorder.Id;
@@ -36,6 +37,11 @@ namespace Bakery.Mangerpages
                                          .ToList();
             listgoodsorder.ItemsSource = goodsInorder;
 
+            if (selectedorder != null)
+            {
+                currentorder = selectedorder;
+            }
+
             var userlogin = Entities7.GetContext().Users
                                .FirstOrDefault(s => s.Id == curentorderuser);
             labeluser.Content = userlogin.Login;
@@ -45,12 +51,35 @@ namespace Bakery.Mangerpages
             var statusorder = Entities7.GetContext().Status
                                .FirstOrDefault(s => s.Id == curentorderstatus);
 
-            labelstatus.Content = statusorder.Status1;
+            orderstatuscombo.ItemsSource = Entities7.GetContext().Status.Select(x => x.Status1).ToList();
+
+            DataContext = currentorder;
+
         }
 
         private void ToOrders_Click(object sender, RoutedEventArgs e)
         {
             AppFrame.BakeryFrame.Navigate(new OrderManager());
+        }
+
+        private void changestatusbttn_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentorder.Id != 0)
+            {
+                try
+                {
+
+                    currentorder.IdStatus = Convert.ToInt32(orderstatuscombo.SelectedIndex + 1);
+
+                    Entities7.GetContext().SaveChanges();
+
+                    MessageBox.Show("Статус успешно изменен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка при изменении статуса!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

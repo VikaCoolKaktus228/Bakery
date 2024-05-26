@@ -21,9 +21,9 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <TextBox x:Name="loginreg" TextWrapping="Wrap" Width="316" Height="33" Margin="474,99,10,318"/>
-        <TextBox x:Name="emailreg" TextWrapping="Wrap" Width="316" Height="34" Margin="13,99,471,317"/>
-        <TextBox x:Name="phonereg" Text = "+" TextWrapping="Wrap" Width="316" Height="37" Margin="13,182,471,231"/>
+        <TextBox x:Name="loginreg" TextWrapping="Wrap" Width="316" Height="33" Margin="474,99,10,318" MaxLength="49"/>
+        <TextBox x:Name="emailreg" TextWrapping="Wrap" Width="316" Height="34" Margin="13,99,471,317" MaxLength="100"/>
+        <TextBox x:Name="phonereg" Text = "+" TextWrapping="Wrap" Width="316" Height="37" Margin="13,182,471,231" MaxLength="16"/>
         <Label Content="введите пароль" FontSize="22" Background="Transparent" Height="39" Width="311" Margin="478,138,11,273">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -43,7 +43,7 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <TextBox x:Name="namereg" TextWrapping="Wrap" Width="316" Height="33" Margin="13,266,471,151"/>
+        <TextBox x:Name="namereg" TextWrapping="Wrap" Width="316" Height="33" Margin="13,266,471,151" MaxLength="49"/>
         <Label Content="введите логин&#xD;&#xA;" FontSize="22" Background="Transparent" Width="269" Height="37" Margin="474,57,57,356">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -52,7 +52,7 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <TextBox x:Name="tbpasswordreg" TextWrapping="Wrap" Width="316" Height="33" Margin="475,187,9,230"/>
+        <TextBox x:Name="tbpasswordreg" TextWrapping="Wrap" Width="316" Height="33" Margin="475,187,9,230" MaxLength="49"/>
         <Label Content="введите телефон" FontSize="22" Background="Transparent" Width="269" Height="37" Margin="13,138,518,275">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
