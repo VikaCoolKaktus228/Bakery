@@ -1,4 +1,4 @@
-﻿<Page x:Class="Bakery.editgoods.AddEditUsers"
+﻿<Page x:Class="Bakery.editgoods.AddUser"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Bakery.editgoods"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddEditUsers">
+      Title="AddUser">
 
     <Grid>
         <Grid.Background>
@@ -15,7 +15,7 @@
                 <GradientStop Color="#FF6567FF" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="Изменить пользователя" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF0700F3" FontFamily="Cascadia Code Light" FontSize="36"/>
+        <Label Content="Добавить пользователя" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF0700F3" FontFamily="Cascadia Code Light" FontSize="36"/>
         <TextBox x:Name="nameuser" Text="{Binding Name}" HorizontalAlignment="Left" Margin="60,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="28" MaxLength="49"/>
         <TextBox x:Name="loginuser" Text="{Binding Login}" HorizontalAlignment="Left" Margin="60,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="32" MaxLength="49"/>
         <TextBox x:Name="phoneuser" Text="{Binding Phone}" HorizontalAlignment="Left" Margin="561,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="28" MaxLength="16"/>
@@ -26,9 +26,8 @@
         <Label Content="Введите почту:" HorizontalAlignment="Left" Margin="561,157,0,0" VerticalAlignment="Top" Width="125"/>
         <Label Content="Введите телефон:" HorizontalAlignment="Left" Margin="561,228,0,0" VerticalAlignment="Top" Width="145"/>
         <Label Content="Введите пароль:" HorizontalAlignment="Left" Margin="561,89,0,0" VerticalAlignment="Top" Width="136"/>
-        <Button x:Name="edituserbutton" Content="Изменить" HorizontalAlignment="Center" Margin="0,347,0,0" VerticalAlignment="Top" Height="45" Width="122" Foreground="#FF0800FF" Click="edituserbutton_Click"/>
+        <Button x:Name="adduserbutton" Content="Добавить" HorizontalAlignment="Center" Margin="0,347,0,0" VerticalAlignment="Top" Height="45" Width="122" Foreground="#FF0800FF" Click="adduserbutton_Click"/>
         <ComboBox x:Name="combouserrole" Text="{Binding Role.Role1}" HorizontalAlignment="Left" Margin="60,273,0,0" VerticalAlignment="Top" Width="208" Height="22"/>
         <Label Content="Выберите роль:" HorizontalAlignment="Left" Margin="60,242,0,0" VerticalAlignment="Top" Width="130"/>
-
     </Grid>
 </Page>

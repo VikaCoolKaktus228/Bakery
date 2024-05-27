@@ -61,7 +61,7 @@
                             </TextBlock>
                         </StackPanel>
                         <StackPanel Width="170" Orientation="Vertical" HorizontalAlignment="Left" Margin="460,10,0,-10">
-                            <Button x:Name="deleteuser" Height="24" Content="удалить" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0B2DE6" Click="deleteuser_Click">
+                            <Button x:Name="deleteuser" Height="24" Content="удалить" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0B2DE6" Click="deleteuser_Click" Margin="0,0,0,5">
                                 <Button.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="-1" ScaleY="-1"/>
@@ -86,5 +86,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button x:Name="adduserbttn" Content="добавить пользователя" HorizontalAlignment="Left" Margin="646,10,0,0" VerticalAlignment="Top" Height="38" Width="144" Foreground="#FF4200FF"/>
     </Grid>
 </Page>

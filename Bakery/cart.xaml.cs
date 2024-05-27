@@ -50,6 +50,12 @@ namespace Bakery
                                          .Where(x => cartobj.Contains(x.Id))
                                          .ToList();
             cartbakery.ItemsSource = goodsInCart;
+
+            if (cartbakery.Items.Count <= 0)
+            {
+                orderbutton.IsEnabled = false;
+            }
+            else { orderbutton.IsEnabled = true; }
         }
 
         private void CreatePDF()

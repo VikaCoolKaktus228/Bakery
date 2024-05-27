@@ -22,7 +22,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <Label x:Name="Bakery" Content="Cute bakery" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Gill Sans Ultra Bold" FontSize="33" Foreground="#FF3E63AD" Background="#00000000"/>
+        <Label x:Name="Bakery" Content="Cute bakery" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Cascadia Code" FontSize="33" Foreground="#FF3E63AD" Background="#00000000"/>
         <Frame x:Name="BakFrame" Content="Frame" Margin="0,56,0,0"/>
 
     </Grid>
