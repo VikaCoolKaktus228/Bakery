@@ -161,5 +161,10 @@ namespace Bakery.editgoods
                 e.Handled = true;
             }
         }
+
+        private void gobackbttn_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new goodslist());
+        }
     }
 }

@@ -47,22 +47,35 @@ namespace Bakery.editgoods
         {
             var usersfordeleting = userlist.SelectedItems.Cast<Users>().ToList();
 
-            if (MessageBox.Show($"Вы точно хотите удалить следующие {usersfordeleting.Count()} элементов?", "Внимание",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if(usersfordeleting.Count > 0)
             {
-                try
+                if (MessageBox.Show($"Вы точно хотите удалить следующие {usersfordeleting.Count()} элементов?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    Entities7.GetContext().Users.RemoveRange(usersfordeleting);
-                    Entities7.GetContext().SaveChanges();
-                    MessageBox.Show("пользователь удален");
+                    try
+                    {
+                        Entities7.GetContext().Users.RemoveRange(usersfordeleting);
+                        Entities7.GetContext().SaveChanges();
+                        MessageBox.Show("пользователь удален");
 
-                    userlist.ItemsSource = Entities7.GetContext().Users.ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
+                        userlist.ItemsSource = Entities7.GetContext().Users.ToList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("выберите пользователя!");
+            }
+            
+        }
+
+        private void adduserbttn_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new AddUser());
         }
     }
 }

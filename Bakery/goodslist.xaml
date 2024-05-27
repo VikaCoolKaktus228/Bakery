@@ -137,7 +137,7 @@
         <Button Content="поиск" HorizontalAlignment="Left" Margin="499,39,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF1215EC"/>
         <Button x:Name="addgooods" Content="добавить товар" HorizontalAlignment="Left" Margin="698,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="addgooods_Click" Foreground="#FF0A19FF" Height="24" Width="98"/>
         <Button x:Name="userslistbutton" Content="список пользователей" HorizontalAlignment="Left" Margin="660,34,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="24" Width="134" Foreground="#FF2715FF" Click="userslistbutton_Click"/>
-        <Button x:Name="eraseall" Content="очистить" HorizontalAlignment="Left" Margin="499,15,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="19" Width="36" Click="eraseall_Click"/>
+        <Button x:Name="eraseall" Content="очистить" HorizontalAlignment="Left" Margin="499,15,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="19" Width="36" Click="eraseall_Click" Foreground="#FF003CF7"/>
     </Grid>
 
 </Page>

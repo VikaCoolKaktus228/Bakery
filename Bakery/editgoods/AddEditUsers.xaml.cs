@@ -37,23 +37,46 @@ namespace Bakery.editgoods
 
         private void edituserbutton_Click(object sender, RoutedEventArgs e)
         {
+
+            if (emailuser.Text.Contains("@"))
+            {
+                if (phoneuser.Text.Length < 10 || !phoneuser.Text.Contains("+") || phoneuser.Text.Length > 15)
+                {
+                    MessageBox.Show("Неверный формат телефона",
+                           "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                else
+                {
+                    edituser();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Неверный формат почты",
+                       "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+        }
+
+        public void edituser()
+        {
             StringBuilder errors = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(curuser.Name) || curuser.Role < 0 || 
+            if (string.IsNullOrWhiteSpace(curuser.Name) || curuser.Role < 0 ||
                 string.IsNullOrWhiteSpace(curuser.Phone)
                 || string.IsNullOrWhiteSpace(curuser.Login) || string.IsNullOrWhiteSpace(curuser.Password)
                 )
             {
                 errors.AppendLine("заполните все данные");
             }
-
-            if( )
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            if(curuser.Id != 0)
+            if (curuser.Id != 0)
             {
                 try
                 {
@@ -73,7 +96,11 @@ namespace Bakery.editgoods
                     MessageBox.Show("Ошибка при изменении данных!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            
         }
+
+            private void backbttn_Click(object sender, RoutedEventArgs e)
+            {
+                AppFrame.BakeryFrame.Navigate(new UsersList());
+            }
     }
-}
+} 

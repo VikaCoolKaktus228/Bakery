@@ -177,5 +177,13 @@ namespace Bakery
         {
             AppFrame.BakeryFrame.Navigate(new cart());
         }
+
+        private void erasebutton_Click(object sender, RoutedEventArgs e)
+        {
+            TextSearche.Text = string.Empty;
+            ComboFilter.SelectedIndex = -1;
+            ComboSort.SelectedIndex = -1;
+            findGoods();
+        }
     }
 }

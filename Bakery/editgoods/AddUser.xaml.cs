@@ -29,7 +29,39 @@ namespace Bakery.editgoods
             combouserrole.ItemsSource = Entities7.GetContext().Role.Select(x => x.Role1).ToList();
         }
 
-        private void adduserbutton_Click(object sender, RoutedEventArgs e)
+
+
+    private void adduserbutton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AppConect.bakerymod.Users.Count(x => x.Login == loginuser.Text) > 0)
+            {
+                MessageBox.Show("такой пользователь уже существует",
+                    "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (emailuser.Text.Contains("@"))
+            {
+                if (phoneuser.Text.Length < 10 || !phoneuser.Text.Contains("+") || phoneuser.Text.Length > 15)
+                {
+                    MessageBox.Show("Неверный формат телефона",
+                           "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                else
+                {
+                    adduser();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Неверный формат почты",
+                       "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+        }
+
+        public void adduser()
         {
             try
             {
@@ -53,6 +85,19 @@ namespace Bakery.editgoods
             {
                 MessageBox.Show("Ошибка при добавлении данных!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void phoneuser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key < Key.D0 || e.Key > Key.D9 || e.Key == Key.OemPlus || e.Key == Key.Add) && e.Key != Key.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void backbttn_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new UsersList());
         }
     }
 }

@@ -134,22 +134,28 @@ namespace Bakery
         private void delete_Click(object sender, RoutedEventArgs e)
         {
             var goodsfordeleting = bakeryproducts.SelectedItems.Cast<GoodsBakery>().ToList();
-
-            if(MessageBox.Show($"Вы точно хотите удалить следующие {goodsfordeleting.Count()} элементов?", "Внимание",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if(goodsfordeleting.Count > 0)
             {
-                try
+                if (MessageBox.Show($"Вы точно хотите удалить следующие {goodsfordeleting.Count()} элементов?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    Entities7.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
-                    Entities7.GetContext().SaveChanges();
-                    MessageBox.Show("ДАННЫЕ УДАЛЕНЫ");
+                    try
+                    {
+                        Entities7.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
+                        Entities7.GetContext().SaveChanges();
+                        MessageBox.Show("Данные удалены");
 
-                    bakeryproducts.ItemsSource = Entities7.GetContext().GoodsBakery.ToList();
+                        bakeryproducts.ItemsSource = Entities7.GetContext().GoodsBakery.ToList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+            }
+            else
+            {
+                MessageBox.Show("выберите товар!");
             }
         }
 

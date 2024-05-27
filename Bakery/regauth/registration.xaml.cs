@@ -107,5 +107,13 @@ namespace Bakery.regauth
         {
             AppFrame.BakeryFrame.Navigate(new authorizathion());
         }
+
+        private void phonereg_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key < Key.D0 || e.Key > Key.D9 || e.Key == Key.OemPlus || e.Key == Key.Add) && e.Key != Key.Back)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -68,18 +68,27 @@ namespace Bakery.Mangerpages
             {
                 try
                 {
+                    int Id = currentorder.Id;
+                    var StatusToUpdate = AppConect.bakerymod.OrderManager.FirstOrDefault(u => u.IdOrder == Id);
+                    if (orderstatuscombo.SelectedItem != null)
+                    {
+                        StatusToUpdate.Order.IdStatus = Convert.ToInt32(orderstatuscombo.SelectedIndex + 1);
 
-                    currentorder.IdStatus = Convert.ToInt32(orderstatuscombo.SelectedIndex + 1);
-
-                    Entities7.GetContext().SaveChanges();
-
-                    MessageBox.Show("Статус успешно изменен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                        AppConect.bakerymod.SaveChanges();
+                        MessageBox.Show("Статус заказа успешно изменен!",
+                            "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
                 catch
                 {
                     MessageBox.Show("Ошибка при изменении статуса!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void orderstatuscombo_DropDownOpened(object sender, EventArgs e)
+        {
+            changestatusbttn.IsEnabled = true;
         }
     }
 }

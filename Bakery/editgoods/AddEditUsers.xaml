@@ -29,6 +29,7 @@
         <Button x:Name="edituserbutton" Content="Изменить" HorizontalAlignment="Center" Margin="0,347,0,0" VerticalAlignment="Top" Height="45" Width="122" Foreground="#FF0800FF" Click="edituserbutton_Click"/>
         <ComboBox x:Name="combouserrole" Text="{Binding Role.Role1}" HorizontalAlignment="Left" Margin="60,273,0,0" VerticalAlignment="Top" Width="208" Height="22"/>
         <Label Content="Выберите роль:" HorizontalAlignment="Left" Margin="60,242,0,0" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="backbttn" Content="назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="37" Width="72" Foreground="#FF1300F7" Click="backbttn_Click"/>
 
     </Grid>
 </Page>

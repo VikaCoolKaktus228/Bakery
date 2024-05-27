@@ -23,7 +23,7 @@
         </Label>
         <TextBox x:Name="loginreg" TextWrapping="Wrap" Width="316" Height="33" Margin="474,99,10,318" MaxLength="49"/>
         <TextBox x:Name="emailreg" TextWrapping="Wrap" Width="316" Height="34" Margin="13,99,471,317" MaxLength="100"/>
-        <TextBox x:Name="phonereg" Text = "+" TextWrapping="Wrap" Width="316" Height="37" Margin="13,182,471,231" MaxLength="16"/>
+        <TextBox x:Name="phonereg" Text = "+" TextWrapping="Wrap" Width="316" Height="37" Margin="13,182,471,231" MaxLength="16" KeyDown="phonereg_KeyDown"/>
         <Label Content="введите пароль" FontSize="22" Background="Transparent" Height="39" Width="311" Margin="478,138,11,273">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

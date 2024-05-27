@@ -18,7 +18,7 @@
         <Label Content="Добавить пользователя" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF0700F3" FontFamily="Cascadia Code Light" FontSize="36"/>
         <TextBox x:Name="nameuser" Text="{Binding Name}" HorizontalAlignment="Left" Margin="60,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="28" MaxLength="49"/>
         <TextBox x:Name="loginuser" Text="{Binding Login}" HorizontalAlignment="Left" Margin="60,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="32" MaxLength="49"/>
-        <TextBox x:Name="phoneuser" Text="{Binding Phone}" HorizontalAlignment="Left" Margin="561,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="28" MaxLength="16"/>
+        <TextBox x:Name="phoneuser" Text="{Binding Phone}" HorizontalAlignment="Left" Margin="561,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="28" MaxLength="16" KeyDown="phoneuser_KeyDown"/>
         <TextBox x:Name="emailuser" Text="{Binding Email}" HorizontalAlignment="Left" Margin="561,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="30" MaxLength="100"/>
         <TextBox x:Name="passworduser" Text="{Binding Password}" HorizontalAlignment="Left" Margin="561,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="28" MaxLength="49"/>
         <Label Content="Введите имя:" HorizontalAlignment="Left" Margin="60,89,0,0" VerticalAlignment="Top" Width="111"/>
@@ -29,5 +29,6 @@
         <Button x:Name="adduserbutton" Content="Добавить" HorizontalAlignment="Center" Margin="0,347,0,0" VerticalAlignment="Top" Height="45" Width="122" Foreground="#FF0800FF" Click="adduserbutton_Click"/>
         <ComboBox x:Name="combouserrole" Text="{Binding Role.Role1}" HorizontalAlignment="Left" Margin="60,273,0,0" VerticalAlignment="Top" Width="208" Height="22"/>
         <Label Content="Выберите роль:" HorizontalAlignment="Left" Margin="60,242,0,0" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="backbttn" Content="назад" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Height="35" Width="63" Foreground="#FF000FFD" Click="backbttn_Click"/>
     </Grid>
 </Page>

@@ -34,6 +34,7 @@ namespace Bakery
 
         public cart()
         {
+            
            
             InitializeComponent();
 
@@ -56,6 +57,8 @@ namespace Bakery
                 orderbutton.IsEnabled = false;
             }
             else { orderbutton.IsEnabled = true; }
+
+
         }
 
         private void CreatePDF()

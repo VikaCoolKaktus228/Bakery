@@ -68,7 +68,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <Label Content="Содержание" HorizontalAlignment="Left" Margin="22,154,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox x:Name="orderstatuscombo" SelectedItem="{Binding Status.Status1}" HorizontalAlignment="Left" Margin="306,97,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="changestatusbttn" Content="изменить статус" HorizontalAlignment="Left" Margin="438,117,0,0" VerticalAlignment="Top" Height="22" Width="108" Foreground="#FF0800FF" Click="changestatusbttn_Click"/>
+        <ComboBox x:Name="orderstatuscombo" SelectedItem="{Binding Status.Status1}" HorizontalAlignment="Left" Margin="306,97,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="orderstatuscombo_DropDownOpened"/>
+        <Button x:Name="changestatusbttn" Content="изменить статус" HorizontalAlignment="Left" Margin="438,117,0,0" VerticalAlignment="Top" Height="22" Width="108" Foreground="#FF0800FF" Click="changestatusbttn_Click" IsEnabled="False"/>
     </Grid>
 </Page>

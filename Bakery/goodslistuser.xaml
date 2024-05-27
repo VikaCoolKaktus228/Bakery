@@ -103,5 +103,6 @@
         <Label Content="поиск" HorizontalAlignment="Left" Margin="350,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="42"/>
         <Button Content="поиск" HorizontalAlignment="Left" Margin="498,23,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF193CFF"/>
         <Button x:Name="tocartbttn" Content="корзина" HorizontalAlignment="Left" Margin="730,15,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="34" Width="68" Foreground="#FF1E2CFF" Click="tocartbttn_Click"/>
+        <Button x:Name="erasebutton" Content="оистить" HorizontalAlignment="Left" Margin="549,22,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Foreground="#FF001BFF" Click="erasebutton_Click"/>
     </Grid>
 </Page>
