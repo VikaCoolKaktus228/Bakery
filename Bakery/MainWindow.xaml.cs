@@ -2,6 +2,7 @@
 using Bakery.regauth;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,13 +34,11 @@ namespace Bakery
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            int userId = Convert.ToInt32(App.Current.Properties["Id"]);
-            if(userId == 1)
-            {
-                var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == userId && o.IdStatus == 2);
 
-                var cartItems = Entities7.GetContext().Cart.Where(c => c.IdOrder == order.Id).ToList();
-                Entities7.GetContext().Cart.RemoveRange(cartItems);
+            if (Entities7.GetContext().Cart.Any())
+            {
+                var allCartRecords = Entities7.GetContext().Cart.ToList();
+                Entities7.GetContext().Cart.RemoveRange(allCartRecords);
                 Entities7.GetContext().SaveChanges();
             }
 

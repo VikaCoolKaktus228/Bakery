@@ -22,13 +22,11 @@ namespace Bakery
             : base("name=Entities7")
         {
         }
-
         public static Entities7 GetContext()
         {
             if (_context == null) _context = new Entities7();
             return _context;
         }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
