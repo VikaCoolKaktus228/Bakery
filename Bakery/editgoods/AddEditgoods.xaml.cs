@@ -144,6 +144,11 @@ namespace Bakery.editgoods
             {
                 e.Handled = true;
             }
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                goodscalloriess.Focus();
+            }
+
         }
 
         private void onstock_KeyDown(object sender, KeyEventArgs e)
@@ -151,6 +156,10 @@ namespace Bakery.editgoods
             if ((e.Key < Key.D0 || e.Key > Key.D9) && e.Key != Key.Back)
             {
                 e.Handled = true;
+            }
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                description.Focus();
             }
         }
 
@@ -165,6 +174,62 @@ namespace Bakery.editgoods
         private void gobackbttn_Click(object sender, RoutedEventArgs e)
         {
             AppFrame.BakeryFrame.Navigate(new goodslist());
+        }
+
+        private void goodsnamee_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                goodscategoryy.Focus();
+            }
+        }
+
+        private void goodscategoryy_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                goodsweightt.Focus();
+            }
+        }
+
+        private void goodscalloriess_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                goodsproviderr.Focus();
+            }
+        }
+
+        private void goodsproviderr_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                goodstypee.Focus();
+            }
+        }
+
+        private void goodstypee_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                goodsallergienss.Focus();
+            }
+        }
+
+        private void goodsallergienss_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                onstock.Focus();
+            }
+        }
+
+        private void description_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                price.Focus();
+            }
         }
     }
 }

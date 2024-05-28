@@ -24,7 +24,7 @@ namespace Bakery.editgoods
         private Users curuser = new Users();
         public AddEditUsers(Users selecteduser)
         {
-            var Rolen = Entities9.GetContext().Role.FirstOrDefault(s => s.Users.Any(o => o.Id == selecteduser.Id));
+           
             InitializeComponent();
             if (selecteduser != null)
             {
@@ -32,8 +32,6 @@ namespace Bakery.editgoods
             }
 
             combouserrole.ItemsSource = Entities9.GetContext().Role.ToList();
-
-            combouserrole.SelectedItem = Rolen.IdRole; 
 
             DataContext = curuser;
         }
@@ -105,5 +103,45 @@ namespace Bakery.editgoods
             {
                 AppFrame.BakeryFrame.Navigate(new UsersList());
             }
+
+        private void loginuser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                combouserrole.Focus();
+            }
+        }
+
+        private void combouserrole_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                passworduser.Focus();
+            }
+        }
+
+        private void passworduser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                emailuser.Focus();
+            }
+        }
+
+        private void emailuser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                phoneuser.Focus();
+            }
+        }
+
+        private void nameuser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                loginuser.Focus();
+            }
+        }
     }
 } 

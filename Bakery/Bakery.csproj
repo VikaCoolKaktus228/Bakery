@@ -112,9 +112,6 @@
     <Compile Include="Mangerpages\ManOrder.xaml.cs">
       <DependentUpon>ManOrder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mangerpages\OrderManager.xaml.cs">
-      <DependentUpon>OrderManager.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Mangerpages\OrderPage.xaml.cs">
       <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
@@ -213,10 +210,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Mangerpages\ManOrder.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Mangerpages\OrderManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

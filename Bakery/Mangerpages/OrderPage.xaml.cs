@@ -54,17 +54,9 @@ namespace Bakery.Mangerpages
             var statusorder = Entities9.GetContext().Status
                                .FirstOrDefault(s => s.IdStatuss == curentorderstatus);
 
-            labelstatus.Content = statusorder.StatusName;
-
-            //orderstatuscombo.ItemsSource = Entities9.GetContext().Status.ToList();
-            //orderstatuscombo.SelectedValue = statusOrder.IdStatuss;
+            orderstatuscombo.ItemsSource = Entities9.GetContext().Status.ToList();
 
             DataContext = currentorder;
-            //orderstatuscombo.Items.Add("Статус заказа");
-            //foreach (var item in AppConect.bakerymod.Status.ToList()) {
-            //    orderstatuscombo.Items.Add(item.StatusName);
-            //}
-            //orderstatuscombo.SelectedIndex = selectedorder.IdStatus;
 
 
         }

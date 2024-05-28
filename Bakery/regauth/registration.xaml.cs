@@ -134,6 +134,10 @@ namespace Bakery.regauth
             {
                 e.Handled = true;
             }
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                namereg.Focus();
+            }
         }
 
         private void namereg_KeyDown(object sender, KeyEventArgs e)
@@ -141,6 +145,34 @@ namespace Bakery.regauth
             if ((e.Key < Key.A || e.Key > Key.Z) && e.Key != Key.Back)
             {
                 e.Handled = true;
+            }
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                loginreg.Focus();
+            }
+        }
+
+        private void emailreg_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                phonereg.Focus();
+            }
+        }
+
+        private void loginreg_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                tbpasswordreg.Focus();
+            }
+        }
+
+        private void tbpasswordreg_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                repeatpasswordreg.Focus();
             }
         }
     }

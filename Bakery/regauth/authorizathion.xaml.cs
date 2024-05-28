@@ -85,5 +85,13 @@ namespace Bakery.regauth
         {
             AppFrame.BakeryFrame.Navigate(new registration());
         }
+
+        private void loginauth_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                passwordauth.Focus();
+            }
+        }
     }
 }

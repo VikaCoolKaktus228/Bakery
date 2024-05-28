@@ -99,5 +99,45 @@ namespace Bakery.editgoods
         {
             AppFrame.BakeryFrame.Navigate(new UsersList());
         }
+
+        private void nameuser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                loginuser.Focus();
+            }
+        }
+
+        private void loginuser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                combouserrole.Focus();
+            }
+        }
+
+        private void combouserrole_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                passworduser.Focus();
+            }
+        }
+
+        private void passworduser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                emailuser.Focus();
+            }
+        }
+
+        private void emailuser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                phoneuser.Focus();
+            }
+        }
     }
 }

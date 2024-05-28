@@ -36,11 +36,11 @@
                             </Button>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Width="146" Orientation="Vertical" HorizontalAlignment="Left">
-                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
+                            <TextBlock Width="105" TextWrapping="Wrap" Height="auto" >
                         <Run Text="Id товара:"/> 
                         <Run Text="{Binding Id}"/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
+                        <Run Text="Статус: "/>
+                        <Run Text="{Binding Status.StatusName}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" ><Run Text=" "/><Run Text=" "/><Run Text=" "/></TextBlock>
                         </StackPanel>
