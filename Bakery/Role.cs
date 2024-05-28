@@ -20,8 +20,8 @@ namespace Bakery
             this.Users = new HashSet<Users>();
         }
     
-        public int Id { get; set; }
-        public string Role1 { get; set; }
+        public int IdRole { get; set; }
+        public string RoleName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }

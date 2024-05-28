@@ -26,7 +26,7 @@ namespace Bakery.editgoods
         {
             InitializeComponent();
             DataContext = curuser;
-            combouserrole.ItemsSource = Entities7.GetContext().Role.Select(x => x.Role1).ToList();
+            combouserrole.ItemsSource = Entities9.GetContext().Role.ToList();
         }
 
 
@@ -72,7 +72,7 @@ namespace Bakery.editgoods
                     Email = emailuser.Text,
                     Password = passworduser.Text,
                     Login = loginuser.Text,
-                    Role = Convert.ToInt32(combouserrole.SelectedIndex + 1)
+                    RoleId = Convert.ToInt32(combouserrole.SelectedIndex + 1)
                 };
 
                 AppConect.bakerymod.Users.Add(curuser);

@@ -1,4 +1,4 @@
-﻿<Page x:Class="Bakery.Mangerpages.OrderManager"
+﻿<Page x:Class="Bakery.Mangerpages.ManOrder"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,14 +6,14 @@
       xmlns:local="clr-namespace:Bakery.Mangerpages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="OrderManager">
+      Title="ManOrder">
 
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/image/ffff.jpg"/>
         </Grid.Background>
         <Label Content="Заказы" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF000A9C" FontSize="36" FontFamily="Cascadia Code Light"/>
-        <ListView x:Name="orderlist" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="38,99,38,141">
+        <ListView x:Name="orderslist" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="38,99,38,141">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

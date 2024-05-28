@@ -33,8 +33,8 @@
             </Label.Foreground>
         </Label>
         <PasswordBox x:Name="repeatpasswordreg" Width="312" Height="35" Margin="477,269,11,146" PasswordChanged="repeatpasswordreg_PasswordChanged"/>
-        <Button x:Name="regbutton" Content="зарегистрироваться" Height="35" Width="211" Foreground="#FF2A35E4" FontSize="18" Background="#FFCBDBF9" Margin="305,341,284,74" IsEnabled="False" Click="regbutton_Click"/>
-        <Button x:Name="regbut" Content="войти" Height="34" Width="211" FontSize="20" Foreground="#FF171AD6" Background="#FFD3E2FF" Margin="305,381,284,35" Click="regbut_Click"/>
+        <Button x:Name="regbutton" Content="зарегистрироваться" Height="35" Width="211" Foreground="#FF2A35E4" FontSize="18" Background="#FFCBDBF9" Margin="305,357,284,58" IsEnabled="False" Click="regbutton_Click"/>
+        <Button x:Name="regbut" Content="назад" FontSize="20" Foreground="#FF171AD6" Background="#FFD3E2FF" Margin="684,2,11,409" Click="regbut_Click" Width="105" Height="39"/>
         <Label Content="повторите пароль" FontSize="22" Background="Transparent" Height="39" Width="311" Margin="479,225,10,186">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -43,7 +43,7 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <TextBox x:Name="namereg" TextWrapping="Wrap" Width="316" Height="33" Margin="13,266,471,151" MaxLength="49"/>
+        <TextBox x:Name="namereg" TextWrapping="Wrap" Width="316" Height="33" Margin="13,266,471,151" MaxLength="49" KeyDown="namereg_KeyDown"/>
         <Label Content="введите логин&#xD;&#xA;" FontSize="22" Background="Transparent" Width="269" Height="37" Margin="474,57,57,356">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

@@ -20,8 +20,8 @@ namespace Bakery
             this.GoodsBakery = new HashSet<GoodsBakery>();
         }
     
-        public int Id { get; set; }
-        public string Category1 { get; set; }
+        public int IdCategory { get; set; }
+        public string CategoryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsBakery> GoodsBakery { get; set; }

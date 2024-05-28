@@ -17,7 +17,7 @@
             <RowDefinition Height="97"/>
             <RowDefinition Height="483"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="userbakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Background="#FF75A4C8" Margin="0,1,0,-244" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="userbakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Background="#FF75A4C8" Margin="0,1,0,-244" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="userbakeryproducts_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -34,7 +34,7 @@
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Категория: "/> 
-                                <Run Text="{Binding Category1.Category1}"/>
+                                <Run Text="{Binding Category.CategoryName}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                <Run Text="Вес:"/> 
@@ -46,15 +46,15 @@
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Поставщик:"/> 
-                                <Run Text="{Binding Provider1.Provider1}"/>
+                                <Run Text="{Binding Provider.ProviderName}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Тип изделия: "/> 
-                                <Run Text="{Binding TypeOfGoods1.Type}"/>
+                                <Run Text="{Binding TypeOfGoods.TypeName}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Аллергены:"/> 
-                                <Run Text="{Binding Allergens1.Allergen}"/>
+                                <Run Text="{Binding Allergens.Allergen}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="В наличие: "/> 
@@ -85,19 +85,19 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock x:Name="tbCounter" Text="Не найдено" Width="76" HorizontalAlignment="Left" Margin="624,19,0,12" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="tbCounter" Text="Не найдено" Width="161" HorizontalAlignment="Left" Margin="549,60,0,454" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
             <TextBlock.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
+                    <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <ComboBox x:Name="ComboSort" HorizontalAlignment="Left" Margin="10,21,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22"/>
-        <ComboBox x:Name="ComboFilter" HorizontalAlignment="Left" Margin="182,21,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22"/>
-        <TextBox x:Name="TextSearche" HorizontalAlignment="Left" Margin="350,23,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="18"/>
+        <ComboBox x:Name="ComboSort" HorizontalAlignment="Left" Margin="10,21,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="ComboSort_SelectionChanged"/>
+        <ComboBox x:Name="ComboFilter" HorizontalAlignment="Left" Margin="182,21,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="ComboFilter_SelectionChanged"/>
+        <TextBox x:Name="TextSearche" HorizontalAlignment="Left" Margin="350,23,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="18" KeyDown="TextSearche_KeyDown"/>
         <Label Content="сортировка" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="74"/>
         <Label Content="фильтрация" HorizontalAlignment="Left" Margin="182,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="76"/>
         <Label Content="поиск" HorizontalAlignment="Left" Margin="350,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="42"/>

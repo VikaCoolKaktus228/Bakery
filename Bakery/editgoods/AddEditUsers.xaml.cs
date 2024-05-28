@@ -24,13 +24,16 @@ namespace Bakery.editgoods
         private Users curuser = new Users();
         public AddEditUsers(Users selecteduser)
         {
+            var Rolen = Entities9.GetContext().Role.FirstOrDefault(s => s.Users.Any(o => o.Id == selecteduser.Id));
             InitializeComponent();
             if (selecteduser != null)
             {
                 curuser = selecteduser;
             }
 
-            combouserrole.ItemsSource = Entities7.GetContext().Role.Select(x => x.Role1).ToList();
+            combouserrole.ItemsSource = Entities9.GetContext().Role.ToList();
+
+            combouserrole.SelectedItem = Rolen.IdRole; 
 
             DataContext = curuser;
         }
@@ -64,7 +67,7 @@ namespace Bakery.editgoods
         {
             StringBuilder errors = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(curuser.Name) || curuser.Role < 0 ||
+            if (string.IsNullOrWhiteSpace(curuser.Name) || curuser.RoleId < 0 ||
                 string.IsNullOrWhiteSpace(curuser.Phone)
                 || string.IsNullOrWhiteSpace(curuser.Login) || string.IsNullOrWhiteSpace(curuser.Password)
                 )
@@ -85,8 +88,8 @@ namespace Bakery.editgoods
                     curuser.Email = emailuser.Text;
                     curuser.Login = loginuser.Text;
                     curuser.Password = passworduser.Text;
-                    curuser.Role = Convert.ToInt32(combouserrole.SelectedIndex + 1);
-                    Entities7.GetContext().SaveChanges();
+                    curuser.RoleId = Convert.ToInt32(combouserrole.SelectedIndex + 1);
+                    Entities9.GetContext().SaveChanges();
                     MessageBox.Show("данные пользователя успешно измененны!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                     AppFrame.BakeryFrame.Navigate(new UsersList());
                     //AppConect.bakerymod.Users.Add(curuser);

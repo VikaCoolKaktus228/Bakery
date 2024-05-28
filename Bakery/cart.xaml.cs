@@ -38,16 +38,16 @@ namespace Bakery
            
             InitializeComponent();
 
-            var orderobj = Entities7.GetContext().Order
+            var orderobj = Entities9.GetContext().Order
                                .Where(x => x.IdUser == idusercart)
                                .Select(x => x.Id)
                                .ToList();
 
-            var cartobj = Entities7.GetContext().Cart
+            var cartobj = Entities9.GetContext().Cart
                                .Where(c => orderobj.Contains(c.IdOrder))
                                .Select(x => x.IdGoods)
                                .ToList();
-            var goodsInCart = Entities7.GetContext().GoodsBakery
+            var goodsInCart = Entities9.GetContext().GoodsBakery
                                          .Where(x => cartobj.Contains(x.Id))
                                          .ToList();
             cartbakery.ItemsSource = goodsInCart;
@@ -79,12 +79,12 @@ namespace Bakery
                 doc.Add(paragraph1);
                 int sum = 0;
 
-                var orderobj = Entities7.GetContext().Order
+                var orderobj = Entities9.GetContext().Order
                                .Where(x => x.IdUser == idusercart)
                                .Select(x => x.Id)
                                .ToList();
 
-                var cartobj = Entities7.GetContext().Cart
+                var cartobj = Entities9.GetContext().Cart
                                    .Where(c => orderobj.Contains(c.IdOrder))
                                    .ToList();
 
@@ -93,12 +93,12 @@ namespace Bakery
                     if (item is Cart)
                     {
                         Cart data = (Cart)item;
-                        //Image img = Image.GetInstance("C:\\Users\\10210806\\source\\repos\\Bakery\\Bakery\\" + data.GoodsBakery.CurrentPhoto);
-                        //img.ScaleAbsolute(100f, 100f);
-                        //doc.Add(img);
+                        Image img = Image.GetInstance("C:\\Users\\10210806\\source\\repos\\Bakery\\bakfin\\Bakery" + data.GoodsBakery.CurrentPhoto);
+                        img.ScaleAbsolute(100f, 100f);
+                        doc.Add(img);
                         doc.Add(new Paragraph("Haзвaние: " + data.GoodsBakery.NameGoods, font));
                         doc.Add(new Paragraph("Oпиcaние: " + data.GoodsBakery.Description, font));
-                        doc.Add(new Paragraph("Производитель: " + data.GoodsBakery.Provider1.Provider1, font));
+                        doc.Add(new Paragraph("Производитель: " + data.GoodsBakery.Provider.ProviderName, font));
                         doc.Add(new Paragraph("Cтоимость: " + data.GoodsBakery.Price.ToString() + "py6.", font));
                         sum += (int)data.GoodsBakery.Price;
                     }
@@ -124,19 +124,19 @@ namespace Bakery
         private void removecart()
         {
             int userId = Convert.ToInt32(App.Current.Properties["Id"]);
-            var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == userId && o.IdStatus == 2);
+            var order = Entities9.GetContext().Order.FirstOrDefault(o => o.IdUser == userId && o.IdStatus == 2);
 
-            var cartItems = Entities7.GetContext().Cart.Where(c => c.IdOrder == order.Id).ToList();
-            Entities7.GetContext().Cart.RemoveRange(cartItems);
-            Entities7.GetContext().SaveChanges();
+            var cartItems = Entities9.GetContext().Cart.Where(c => c.IdOrder == order.Id).ToList();
+            Entities9.GetContext().Cart.RemoveRange(cartItems);
+            Entities9.GetContext().SaveChanges();
 
-            // Очищаем ItemsSource для обновления ListView
-            cartbakery.ItemsSource = new List<Cart>(); // или null, если это приемлемо
+            
+            cartbakery.ItemsSource = new List<Cart>(); 
 
         }
         private void removecart_Click(object sender, RoutedEventArgs e)
         {
-            cartbakery.ItemsSource = Entities7.GetContext().Cart.ToList();
+            cartbakery.ItemsSource = Entities9.GetContext().Cart.ToList();
             Button b = sender as Button;
             int ID = int.Parse(((b.Parent as StackPanel).Children[0] as TextBlock).Text);
             AppConect.bakerymod.Cart.Remove(AppConect.bakerymod.Cart.Where(x => x.IdGoods == ID).First());
@@ -155,26 +155,26 @@ namespace Bakery
         {
             try
             {
-                var orderobj = Entities7.GetContext().Order
+                var orderobj = Entities9.GetContext().Order
                 .Where(x => x.IdUser == idusercart)
                 .Select(x => x.Id)
                 .ToList();
 
-                var cartobj = Entities7.GetContext().Cart
+                var cartobj = Entities9.GetContext().Cart
                                    .Where(c => orderobj.Contains(c.IdOrder))
                                    .ToList();
 
                 foreach (var item in cartobj)
                 {
                     int idUsers = Convert.ToInt32(App.Current.Properties["Id"].ToString());
-                    var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
+                    var order = Entities9.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
                     var cartnew = new OrderManager()
                     {
                         IdOrder = order.Id,
                         IdGoods = item.IdGoods
                     };
-                    Entities7.GetContext().OrderManager.Add(cartnew);
-                    Entities7.GetContext().SaveChanges();
+                    Entities9.GetContext().OrderManager.Add(cartnew);
+                    Entities9.GetContext().SaveChanges();
                 }
             }
             catch (Exception ex)

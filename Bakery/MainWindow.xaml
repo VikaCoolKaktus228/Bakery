@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakery"
         mc:Ignorable="d"
-        Title="MainWindow" Height="612" Width="902" Closed="Window_Closed">
+        Title="My Cute Bakery" Height="612" Width="902" Closed="Window_Closed">
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -23,7 +23,7 @@
             </Grid.Background>
         </Grid>
         <Label x:Name="Bakery" Content="Cute bakery" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Cascadia Code" FontSize="33" Foreground="#FF3E63AD" Background="#00000000"/>
-        <Frame x:Name="BakFrame" Content="Frame" Margin="0,56,0,0"/>
+        <Frame x:Name="BakFrame" Content="Frame" Margin="0,56,0,0" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

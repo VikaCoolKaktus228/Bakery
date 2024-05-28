@@ -24,17 +24,17 @@ namespace Bakery.Mangerpages
         {
             InitializeComponent();
             List<Order> ordersman = AppConect.bakerymod.Order.ToList();
-            orderslist.ItemsSource = ordersman;
-        }
-
-        private void aboutOrder_Click(object sender, RoutedEventArgs e)
-        {
-            AppFrame.BakeryFrame.Navigate(new OrderPage((sender as Button).DataContext as Order));
+            orderlist.ItemsSource = ordersman;
         }
 
         private void changestatusbutton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void aboutOrder_Click_1(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new OrderPage((sender as Button).DataContext as Order));
         }
     }
 }

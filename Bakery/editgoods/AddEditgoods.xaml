@@ -25,10 +25,10 @@
         <Label HorizontalAlignment="Left" Margin="303,60,0,0" VerticalAlignment="Top" Content="выберите поставщика товара"/>
         <Label HorizontalAlignment="Left" Margin="303,124,0,0" VerticalAlignment="Top" Content="выберите тип товара"/>
         <Label HorizontalAlignment="Left" Margin="301,181,0,0" VerticalAlignment="Top" Content="выберите аллергены в товаре"/>
-        <ComboBox SelectedItem="{Binding Category1.Category1}" x:Name="goodscategoryy" HorizontalAlignment="Left" Margin="26,154,0,0" VerticalAlignment="Top" Width="211"/>
-        <ComboBox SelectedItem="{Binding Provider1.Provider1}" x:Name="goodsproviderr" HorizontalAlignment="Left" Margin="303,91,0,0" VerticalAlignment="Top" Width="211"/>
-        <ComboBox SelectedItem="{Binding TypeOfGoods1.Type}" x:Name="goodstypee" HorizontalAlignment="Left" Margin="303,154,0,0" VerticalAlignment="Top" Width="211"/>
-        <ComboBox SelectedItem="{Binding Allergens1.Allergen}" x:Name="goodsallergienss" HorizontalAlignment="Left" Margin="303,216,0,0" VerticalAlignment="Top" Width="211"/>
+        <ComboBox SelectedItem="{Binding CategoryId}" x:Name="goodscategoryy" DisplayMemberPath="CategoryName" HorizontalAlignment="Left" Margin="26,154,0,0" VerticalAlignment="Top" Width="211"/>
+        <ComboBox SelectedItem="{Binding ProviderId}" DisplayMemberPath="ProviderName" x:Name="goodsproviderr" HorizontalAlignment="Left" Margin="303,91,0,0" VerticalAlignment="Top" Width="211"/>
+        <ComboBox SelectedItem="{Binding TypeId}"  DisplayMemberPath="TypeName" x:Name="goodstypee" HorizontalAlignment="Left" Margin="303,154,0,0" VerticalAlignment="Top" Width="211"/>
+        <ComboBox SelectedItem="{Binding AllergensId}" DisplayMemberPath="Allergen" x:Name="goodsallergienss" HorizontalAlignment="Left" Margin="303,216,0,0" VerticalAlignment="Top" Width="211"/>
         <TextBox Text="{Binding Weight}" x:Name="goodsweightt" HorizontalAlignment="Left" Margin="26,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="28" KeyDown="goodsweightt_KeyDown" MaxLength="49"/>
         <TextBox Text="{Binding CallorieValue}" x:Name="goodscalloriess" HorizontalAlignment="Left" Margin="26,283,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="28" MaxLength="49"/>
         <Label Content="введите количество товара" HorizontalAlignment="Left" Margin="303,252,0,0" VerticalAlignment="Top"/>

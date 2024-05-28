@@ -15,16 +15,17 @@ namespace Bakery
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class Entities7 : DbContext
+    public partial class Entities9 : DbContext
     {
-        private static Entities7 _context;
-        public Entities7()
-            : base("name=Entities7")
+        private static Entities9 _context;
+        public Entities9()
+            : base("name=Entities9")
         {
         }
-        public static Entities7 GetContext()
+
+        public static Entities9 GetContext()
         {
-            if (_context == null) _context = new Entities7();
+            if (_context == null) _context = new Entities9();
             return _context;
         }
 

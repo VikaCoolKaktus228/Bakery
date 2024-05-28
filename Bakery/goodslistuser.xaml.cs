@@ -128,54 +128,62 @@ namespace Bakery
 
         private void cart_Click(object sender, RoutedEventArgs e)
         {
-            try
+            var goodsfordeleting = userbakeryproducts.SelectedItems.Cast<GoodsBakery>().ToList();
+            if (goodsfordeleting.Count > 0)
             {
-                var button = sender as Button;
-                int selectg = Convert.ToInt32(button.Tag);
-                int idUsers = Convert.ToInt32(App.Current.Properties["Id"].ToString());
-                int selectedGoodsId = ((GoodsBakery)userbakeryproducts.SelectedItem).Id;
-                if (userbakeryproducts.SelectedItem != null && userbakeryproducts.SelectedItem is GoodsBakery)
+
+                try
                 {
-                    var order = Entities7.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
-                    if (order == null)
-                    {
-                        order = new Order()
+
+                    var button = sender as Button;
+                    int selectg = Convert.ToInt32(button.Tag);
+                    int idUsers = Convert.ToInt32(App.Current.Properties["Id"].ToString());
+                    int selectedGoodsId = ((GoodsBakery)userbakeryproducts.SelectedItem).Id;
+
+
+                        var order = Entities9.GetContext().Order.FirstOrDefault(o => o.IdUser == idUsers);
+                        if (order == null)
                         {
-                            IdUser = idUsers,
-                            IdStatus = 2
+                            order = new Order()
+                            {
+                                IdUser = idUsers,
+                                IdStatus = 2
+                            };
+                            Entities9.GetContext().Order.Add(order);
+                            Entities9.GetContext().SaveChanges();
+                        }
+
+                        var cartnew = new Cart()
+                        {
+                            IdOrder = order.Id,
+                            IdGoods = selectedGoodsId,
+                            Cost = +1
                         };
-                        Entities7.GetContext().Order.Add(order);
-                        Entities7.GetContext().SaveChanges();
-                    }
 
-                    var cartnew = new Cart()
-                    {
-                        IdOrder = order.Id,
-                        IdGoods = selectedGoodsId
-                    };
+                        Entities9.GetContext().Cart.Add(cartnew);
+                        Entities9.GetContext().SaveChanges();
 
-                    Entities7.GetContext().Cart.Add(cartnew);
-                    Entities7.GetContext().SaveChanges();
+                        MessageBox.Show("Товар успешно добавлен в корзину!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    MessageBox.Show("Товар успешно добавлен в корзину!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    AppFrame.BakeryFrame.Navigate(new cart());
+                        AppFrame.BakeryFrame.Navigate(new cart());
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Выберите товар из списка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Произошла ошибка при добавлении товара в корзину: " + ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Произошла ошибка при добавлении товара в корзину: " + ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Выберите товар из списка!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
 
         private void tocartbttn_Click(object sender, RoutedEventArgs e)
         {
             AppFrame.BakeryFrame.Navigate(new cart());
+
         }
 
         private void erasebutton_Click(object sender, RoutedEventArgs e)
@@ -183,6 +191,26 @@ namespace Bakery
             TextSearche.Text = string.Empty;
             ComboFilter.SelectedIndex = -1;
             ComboSort.SelectedIndex = -1;
+            findGoods();
+        }
+
+        private void userbakeryproducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            findGoods();
+        }
+
+        private void ComboFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            findGoods();
+        }
+
+        private void TextSearche_KeyDown(object sender, KeyEventArgs e)
+        {
             findGoods();
         }
     }

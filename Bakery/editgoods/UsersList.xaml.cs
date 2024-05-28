@@ -33,14 +33,23 @@ namespace Bakery.editgoods
         {
             if (Visibility == Visibility.Visible)
             {
-                Entities7.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                userlist.ItemsSource = Entities7.GetContext().Users.ToList();
+                Entities9.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                userlist.ItemsSource = Entities9.GetContext().Users.ToList();
             }
         }
 
         private void changeuser_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.BakeryFrame.Navigate(new AddEditUsers((sender as Button).DataContext as Users));
+            var usersfordeleting = userlist.SelectedItems.Cast<Users>().ToList();
+
+            if (usersfordeleting.Count > 0)
+            {
+                AppFrame.BakeryFrame.Navigate(new AddEditUsers((sender as Button).DataContext as Users));
+            }
+            else
+            {
+                MessageBox.Show("выберите пользователя!");
+            }
         }
 
         private void deleteuser_Click(object sender, RoutedEventArgs e)
@@ -54,11 +63,11 @@ namespace Bakery.editgoods
                 {
                     try
                     {
-                        Entities7.GetContext().Users.RemoveRange(usersfordeleting);
-                        Entities7.GetContext().SaveChanges();
+                        Entities9.GetContext().Users.RemoveRange(usersfordeleting);
+                        Entities9.GetContext().SaveChanges();
                         MessageBox.Show("пользователь удален");
 
-                        userlist.ItemsSource = Entities7.GetContext().Users.ToList();
+                        userlist.ItemsSource = Entities9.GetContext().Users.ToList();
                     }
                     catch (Exception ex)
                     {
@@ -76,6 +85,11 @@ namespace Bakery.editgoods
         private void adduserbttn_Click(object sender, RoutedEventArgs e)
         {
             AppFrame.BakeryFrame.Navigate(new AddUser());
+        }
+
+        private void gobackbttn_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new goodslist());
         }
     }
 }

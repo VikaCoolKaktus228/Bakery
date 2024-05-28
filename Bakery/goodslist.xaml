@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Bakery"
       mc:Ignorable="d" 
-      d:DesignHeight="834" d:DesignWidth="808"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="goodslist" IsVisibleChanged="Page_IsVisibleChanged">
-    <Grid Margin="0,0,0,10">
+    <Grid Margin="0,0,0,1">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF48789E"/>
@@ -23,7 +23,7 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="510"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="bakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Margin="0,0,0,-244" d:ItemsSource="{d:SampleData ItemCount=5}" Foreground="#FF062CFF">
+        <ListView x:Name="bakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Margin="0,0,0,130" d:ItemsSource="{d:SampleData ItemCount=5}" Foreground="#FF062CFF">
             <ListView.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF8EC8FD"/>
@@ -47,7 +47,7 @@
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Категория: "/> 
-                                <Run Text="{Binding Category1.Category1}"/>
+                                <Run Text="{Binding Category.CategoryName}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                <Run Text="Вес:"/> 
@@ -59,15 +59,15 @@
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Поставщик:"/> 
-                                <Run Text="{Binding Provider1.Provider1}"/>
+                                <Run Text="{Binding Provider.ProviderName}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Тип изделия: "/> 
-                                <Run Text="{Binding TypeOfGoods1.Type}"/>
+                                <Run Text="{Binding TypeOfGoods.TypeName}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="Аллергены:"/> 
-                                <Run Text="{Binding Allergens1.Allergen}"/>
+                                <Run Text="{Binding Allergens.Allergen}"/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                                 <Run Text="В наличие: "/> 
@@ -117,7 +117,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock x:Name="tbCounter" Text="Не найдено" Width="146" HorizontalAlignment="Left" Margin="552,20,0,11" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
+        <TextBlock x:Name="tbCounter" Text="Не найдено" Width="146" HorizontalAlignment="Left" Margin="590,20,0,11" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -130,14 +130,17 @@
         <Image HorizontalAlignment="Left" Height="74" Margin="305,2,0,0" VerticalAlignment="Top" Width="91" Source="/ssdfsd.png" Grid.Row="1" Grid.RowSpan="2"/>
         <ComboBox x:Name="ComboSort" HorizontalAlignment="Left" Margin="10,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22"/>
         <ComboBox x:Name="ComboFilter" HorizontalAlignment="Left" Margin="182,36,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="22"/>
-        <TextBox x:Name="TextSearche" HorizontalAlignment="Left" Margin="350,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="18"/>
+        <TextBox x:Name="TextSearche" HorizontalAlignment="Left" Margin="350,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="18" KeyDown="TextSearche_KeyDown"/>
         <Label Content="сортировка" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="74"/>
         <Label Content="фильтрация" HorizontalAlignment="Left" Margin="182,16,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="76"/>
         <Label Content="поиск" HorizontalAlignment="Left" Margin="350,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="42"/>
-        <Button Content="поиск" HorizontalAlignment="Left" Margin="499,39,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF1215EC"/>
+        <Button Content="поиск" HorizontalAlignment="Left" Margin="542,41,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF1215EC"/>
         <Button x:Name="addgooods" Content="добавить товар" HorizontalAlignment="Left" Margin="698,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="addgooods_Click" Foreground="#FF0A19FF" Height="24" Width="98"/>
         <Button x:Name="userslistbutton" Content="список пользователей" HorizontalAlignment="Left" Margin="660,34,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="24" Width="134" Foreground="#FF2715FF" Click="userslistbutton_Click"/>
-        <Button x:Name="eraseall" Content="очистить" HorizontalAlignment="Left" Margin="499,15,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="19" Width="36" Click="eraseall_Click" Foreground="#FF003CF7"/>
+        <Button x:Name="eraseall" Content="очистить все" HorizontalAlignment="Left" Margin="499,16,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="19" Width="85" Click="eraseall_Click" Foreground="#FF003CF7"/>
+        <Button x:Name="erasesort" Content="очистить" HorizontalAlignment="Left" Margin="135,41,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="19" Width="36" Foreground="#FF003CF7" Click="erasesort_Click"/>
+        <Button x:Name="erasefiltr" Content="очистить" HorizontalAlignment="Left" Margin="307,37,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="19" Width="36" Foreground="#FF003CF7" Click="erasefiltr_Click"/>
+        <Button x:Name="erasesearch" Content="очистить" HorizontalAlignment="Left" Margin="499,41,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="19" Width="36"  Foreground="#FF003CF7" Click="erasesearch_Click"/>
     </Grid>
 
 </Page>

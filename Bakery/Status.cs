@@ -20,8 +20,8 @@ namespace Bakery
             this.Order = new HashSet<Order>();
         }
     
-        public int Id { get; set; }
-        public string Status1 { get; set; }
+        public int IdStatuss { get; set; }
+        public string StatusName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

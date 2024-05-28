@@ -26,7 +26,7 @@ namespace Bakery
         public MainWindow()
         {
             InitializeComponent();
-            AppConect.bakerymod = new Entities7();
+            AppConect.bakerymod = new Entities9();
             AppFrame.BakeryFrame = BakFrame;
 
             BakFrame.Navigate(new authorizathion());
@@ -35,11 +35,11 @@ namespace Bakery
         private void Window_Closed(object sender, EventArgs e)
         {
 
-            if (Entities7.GetContext().Cart.Any())
+            if (Entities9.GetContext().Cart.Any())
             {
-                var allCartRecords = Entities7.GetContext().Cart.ToList();
-                Entities7.GetContext().Cart.RemoveRange(allCartRecords);
-                Entities7.GetContext().SaveChanges();
+                var allCartRecords = Entities9.GetContext().Cart.ToList();
+                Entities9.GetContext().Cart.RemoveRange(allCartRecords);
+                Entities9.GetContext().SaveChanges();
             }
 
         }

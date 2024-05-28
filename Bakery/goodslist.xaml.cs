@@ -126,8 +126,8 @@ namespace Bakery
         {
             if (Visibility == Visibility.Visible)
             {
-                Entities7.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                bakeryproducts.ItemsSource = Entities7.GetContext().GoodsBakery.ToList();
+                Entities9.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                bakeryproducts.ItemsSource = Entities9.GetContext().GoodsBakery.ToList();
             }
         }
 
@@ -141,11 +141,12 @@ namespace Bakery
                 {
                     try
                     {
-                        Entities7.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
-                        Entities7.GetContext().SaveChanges();
+                        Entities9.GetContext().GoodsBakery.RemoveRange(goodsfordeleting);
+                        Entities9.GetContext().SaveChanges();
                         MessageBox.Show("Данные удалены");
 
-                        bakeryproducts.ItemsSource = Entities7.GetContext().GoodsBakery.ToList();
+                        bakeryproducts.ItemsSource = Entities9.GetContext().GoodsBakery.ToList();
+                        findGoods();
                     }
                     catch (Exception ex)
                     {
@@ -161,7 +162,15 @@ namespace Bakery
 
         private void change_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.BakeryFrame.Navigate(new AddEditgoods((sender as Button).DataContext as GoodsBakery));
+            var goodsfordeleting = bakeryproducts.SelectedItems.Cast<GoodsBakery>().ToList();
+            if (goodsfordeleting.Count > 0)
+            {
+                AppFrame.BakeryFrame.Navigate(new AddEditgoods((sender as Button).DataContext as GoodsBakery));
+            }
+            else
+            {
+                MessageBox.Show("выберите товар!");
+            }
         }
 
         private void userslistbutton_Click(object sender, RoutedEventArgs e)
@@ -174,6 +183,32 @@ namespace Bakery
             TextSearche.Text = string.Empty;
             ComboFilter.SelectedIndex = -1;
             ComboSort.SelectedIndex = -1;
+            findGoods();
+        }
+
+        private void erasesort_Click(object sender, RoutedEventArgs e)
+        {
+            ComboSort.SelectedIndex = -1;
+            findGoods();
+        }
+
+        private void erasesearch_Click(object sender, RoutedEventArgs e)
+        {
+            TextSearche.Text = string.Empty;
+            findGoods();
+        }
+
+        private void erasefiltr_Click(object sender, RoutedEventArgs e)
+        {
+            ComboFilter.SelectedIndex = -1;
+            findGoods();
+        }
+
+        private void TextSearche_KeyDown(object sender, KeyEventArgs e)
+        {
+            List<GoodsBakery> product = AppConect.bakerymod.GoodsBakery.ToList();
+            var productall = product;
+            product = product.Where(x => x.NameGoods.ToLower().Contains(TextSearche.Text.ToLower())).ToList();
             findGoods();
         }
     }

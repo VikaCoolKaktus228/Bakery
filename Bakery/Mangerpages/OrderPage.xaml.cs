@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static iTextSharp.text.pdf.AcroFields;
 
 namespace Bakery.Mangerpages
 {
@@ -26,13 +28,14 @@ namespace Bakery.Mangerpages
             var curentorderid = selectedorder.Id;
             var curentorderuser = selectedorder.IdUser;
             var curentorderstatus = selectedorder.IdStatus;
+            var statusOrder = Entities9.GetContext().Status.FirstOrDefault(s => s.Order.Any(o => o.Id == curentorderid));
             InitializeComponent();
 
-            var moreorder = Entities7.GetContext().OrderManager
+            var moreorder = Entities9.GetContext().OrderManager
                                .Where(m => m.IdOrder == curentorderid)
                                .Select(m => m.IdGoods)
                                .ToList();
-            var goodsInorder = Entities7.GetContext().GoodsBakery
+            var goodsInorder = Entities9.GetContext().GoodsBakery
                                          .Where(x => moreorder.Contains(x.Id))
                                          .ToList();
             listgoodsorder.ItemsSource = goodsInorder;
@@ -42,18 +45,27 @@ namespace Bakery.Mangerpages
                 currentorder = selectedorder;
             }
 
-            var userlogin = Entities7.GetContext().Users
+            var userlogin = Entities9.GetContext().Users
                                .FirstOrDefault(s => s.Id == curentorderuser);
             labeluser.Content = userlogin.Login;
 
             labelId.Content = selectedorder.Id;
 
-            var statusorder = Entities7.GetContext().Status
-                               .FirstOrDefault(s => s.Id == curentorderstatus);
+            var statusorder = Entities9.GetContext().Status
+                               .FirstOrDefault(s => s.IdStatuss == curentorderstatus);
 
-            orderstatuscombo.ItemsSource = Entities7.GetContext().Status.Select(x => x.Status1).ToList();
+            labelstatus.Content = statusorder.StatusName;
+
+            //orderstatuscombo.ItemsSource = Entities9.GetContext().Status.ToList();
+            //orderstatuscombo.SelectedValue = statusOrder.IdStatuss;
 
             DataContext = currentorder;
+            //orderstatuscombo.Items.Add("Статус заказа");
+            //foreach (var item in AppConect.bakerymod.Status.ToList()) {
+            //    orderstatuscombo.Items.Add(item.StatusName);
+            //}
+            //orderstatuscombo.SelectedIndex = selectedorder.IdStatus;
+
 
         }
 
@@ -77,6 +89,10 @@ namespace Bakery.Mangerpages
                         AppConect.bakerymod.SaveChanges();
                         MessageBox.Show("Статус заказа успешно изменен!",
                             "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("выберите статус!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 catch

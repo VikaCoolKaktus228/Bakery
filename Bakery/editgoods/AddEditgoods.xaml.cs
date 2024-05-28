@@ -30,10 +30,10 @@ namespace Bakery.editgoods
                 curbakery = selectedgood;
             }
 
-            goodscategoryy.ItemsSource = Entities7.GetContext().Category.Select(x => x.Category1).ToList();
-            goodsallergienss.ItemsSource = Entities7.GetContext().Allergens.Select(x => x.Allergen).ToList();
-            goodsproviderr.ItemsSource = Entities7.GetContext().Provider.Select(x => x.Provider1).ToList();
-            goodstypee.ItemsSource = Entities7.GetContext().TypeOfGoods.Select(x => x.Type).ToList();
+            goodscategoryy.ItemsSource = Entities9.GetContext().Category.ToList();
+            goodsallergienss.ItemsSource = Entities9.GetContext().Allergens.ToList();
+            goodsproviderr.ItemsSource = Entities9.GetContext().Provider.ToList();
+            goodstypee.ItemsSource = Entities9.GetContext().TypeOfGoods.ToList();
 
             DataContext = curbakery;
 
@@ -44,10 +44,10 @@ namespace Bakery.editgoods
         {
             StringBuilder errors = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Weight < 0 || curbakery.Allergens < 0
-                || curbakery.TypeOfGoods < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.Allergens < 0
+            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.CategoryId < 0 || curbakery.Weight < 0
+                || curbakery.TypeOfGoodsId < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.AllergensId < 0
                 || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
-                || curbakery.Provider < 0 || curbakery.OnStock <= 0)
+                || curbakery.ProviderId < 0 || curbakery.OnStock <= 0)
             {
                 errors.AppendLine("Заполните все поля");
             }
@@ -63,15 +63,15 @@ namespace Bakery.editgoods
                 {
                     NameGoods = goodsnamee.Text,
                     Price = Convert.ToInt32(price.Text),
-                    TypeOfGoods = Convert.ToInt32(goodstypee.SelectedIndex + 1),
-                    Provider = Convert.ToInt32(goodsproviderr.SelectedIndex + 1),
-                    Category = Convert.ToInt32(goodscategoryy.SelectedIndex + 1),
+                    TypeOfGoodsId = Convert.ToInt32(goodstypee.SelectedIndex + 1),
+                    ProviderId = Convert.ToInt32(goodsproviderr.SelectedIndex + 1),
+                    CategoryId = Convert.ToInt32(goodscategoryy.SelectedIndex + 1),
                     Weight = Convert.ToInt32(goodsweightt.Text),
                     OnStock = Convert.ToInt32(onstock.Text),
                     Description = description.Text,
                     Image = null,
                     CallorieValue = goodscalloriess.Text,
-                    Allergens = Convert.ToInt32(goodsallergienss.SelectedIndex + 1)
+                    AllergensId = Convert.ToInt32(goodsallergienss.SelectedIndex + 1)
                 };
 
                 AppConect.bakerymod.GoodsBakery.Add(curbakery);
@@ -90,10 +90,10 @@ namespace Bakery.editgoods
         {
             StringBuilder errors = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.Category < 0 || curbakery.Weight < 0 || curbakery.Allergens < 0
-                || curbakery.TypeOfGoods < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.Allergens < 0
+            if (string.IsNullOrWhiteSpace(curbakery.NameGoods) || curbakery.CategoryId < 0 || curbakery.Weight < 0
+                || curbakery.TypeOfGoodsId < 0 || string.IsNullOrWhiteSpace(curbakery.CallorieValue) || curbakery.AllergensId < 0
                 || string.IsNullOrWhiteSpace(curbakery.Description) || curbakery.Price < 0
-                || curbakery.Provider < 0 || curbakery.OnStock <= 0)
+                || curbakery.ProviderId < 0 || curbakery.OnStock <= 0)
             {
                 errors.AppendLine("Заполните все поля");
             }
@@ -107,16 +107,16 @@ namespace Bakery.editgoods
             {
                 curbakery.NameGoods = goodsnamee.Text;
                 curbakery.Price = Convert.ToInt32(price.Text);
-                curbakery.TypeOfGoods = Convert.ToInt32(goodstypee.SelectedIndex + 1);
-                curbakery.Provider = Convert.ToInt32(goodsproviderr.SelectedIndex + 1);
-                curbakery.Category = Convert.ToInt32(goodscategoryy.SelectedIndex + 1);
+                curbakery.TypeOfGoodsId = Convert.ToInt32(goodstypee.SelectedIndex + 1);
+                curbakery.ProviderId = Convert.ToInt32(goodsproviderr.SelectedIndex + 1);
+                curbakery.CategoryId = Convert.ToInt32(goodscategoryy.SelectedIndex + 1);
                 curbakery.Weight = Convert.ToInt32(goodsweightt.Text);
                 curbakery.OnStock = Convert.ToInt32(onstock.Text);
                 curbakery.Description = description.Text;
                 curbakery.CallorieValue = goodscalloriess.Text;
-                curbakery.Allergens = Convert.ToInt32(goodsallergienss.SelectedIndex + 1);
+                curbakery.AllergensId = Convert.ToInt32(goodsallergienss.SelectedIndex + 1);
 
-                Entities7.GetContext().SaveChanges();
+                Entities9.GetContext().SaveChanges();
 
                 MessageBox.Show("Данные успешно изменены!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                 AppFrame.BakeryFrame.Navigate(new goodslist());

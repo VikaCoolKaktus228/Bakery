@@ -43,8 +43,6 @@
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
                         <Run Text="Наименование:"/> 
                         <Run Text="{Binding NameGoods}"/>
-                        <Run Text=" "/>
-                        <Run Text=" "/>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" ><Run Text=" "/><Run Text=" "/><Run Text=" "/></TextBlock>
                         </StackPanel>

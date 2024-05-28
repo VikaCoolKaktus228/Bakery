@@ -20,7 +20,7 @@ namespace Bakery
             this.GoodsBakery = new HashSet<GoodsBakery>();
         }
     
-        public int Id { get; set; }
+        public int IdAller { get; set; }
         public string Allergen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

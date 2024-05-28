@@ -23,23 +23,39 @@ namespace Bakery
     
         public int Id { get; set; }
         public string NameGoods { get; set; }
-        public int Category { get; set; }
+        public int CategoryId { get; set; }
         public Nullable<int> Weight { get; set; }
         public string CallorieValue { get; set; }
-        public int Provider { get; set; }
-        public int TypeOfGoods { get; set; }
-        public int Allergens { get; set; }
+        public int ProviderId { get; set; }
+        public int TypeOfGoodsId { get; set; }
+        public int AllergensId { get; set; }
         public Nullable<int> OnStock { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
         public Nullable<int> Price { get; set; }
-    
-        public virtual Allergens Allergens1 { get; set; }
+
+        public string CurrentPhoto
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Image) || String.IsNullOrWhiteSpace(Image))
+                {
+                    return "/images/nnn.jpg";
+                }
+                else
+                {
+                    return "/images/" + Image;
+                }
+            }
+        }
+
+
+        public virtual Allergens Allergens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Cart { get; set; }
-        public virtual Category Category1 { get; set; }
-        public virtual Provider Provider1 { get; set; }
-        public virtual TypeOfGoods TypeOfGoods1 { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual Provider Provider { get; set; }
+        public virtual TypeOfGoods TypeOfGoods { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderManager> OrderManager { get; set; }
     }

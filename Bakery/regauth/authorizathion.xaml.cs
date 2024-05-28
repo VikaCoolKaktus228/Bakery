@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bakery.Mangerpages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,7 @@ namespace Bakery.regauth
                 }
                 else
                 {
-                    switch (user.Role)
+                    switch (user.RoleId)
                     {
                         case 1:
                             MessageBox.Show("здраствйте админ",
@@ -59,6 +60,11 @@ namespace Bakery.regauth
                             MessageBox.Show("здраствйте пользователь",
                     "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);  
                             AppFrame.BakeryFrame.Navigate(new goodslistuser((sender as Button).DataContext as Users));
+                            break;
+                        case 3:
+                            MessageBox.Show("здраствйте менеджер",
+                    "уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            AppFrame.BakeryFrame.Navigate(new ManOrder());
                             break;
                         default:
                             MessageBox.Show("данные не обнаружены!",

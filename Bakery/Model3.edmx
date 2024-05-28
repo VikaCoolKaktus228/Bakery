@@ -7,9 +7,9 @@
       <Schema Namespace="Хранилище Model1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Allergens">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdAller" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdAller" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Allergen" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Cart">
@@ -23,10 +23,10 @@
         </EntityType>
         <EntityType Name="Category">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdCategory" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsBakery">
           <Key>
@@ -34,12 +34,12 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameGoods" Type="nvarchar(max)" />
-          <Property Name="Category" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="Weight" Type="int" />
           <Property Name="CallorieValue" Type="nvarchar" MaxLength="50" />
-          <Property Name="Provider" Type="int" Nullable="false" />
-          <Property Name="TypeOfGoods" Type="int" Nullable="false" />
-          <Property Name="Allergens" Type="int" Nullable="false" />
+          <Property Name="ProviderId" Type="int" Nullable="false" />
+          <Property Name="TypeOfGoodsId" Type="int" Nullable="false" />
+          <Property Name="AllergensId" Type="int" Nullable="false" />
           <Property Name="OnStock" Type="int" />
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -63,24 +63,24 @@
         </EntityType>
         <EntityType Name="Provider">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdProvider" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Provider" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdProvider" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdRole" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdStatuss" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdStatuss" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -94,10 +94,10 @@
         </EntityType>
         <EntityType Name="TypeOfGoods">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdType" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -109,7 +109,7 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar(max)" />
-          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Cart_GoodsBakery1">
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="1" />
@@ -144,10 +144,10 @@
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Allergens">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdAller" />
             </Principal>
             <Dependent Role="GoodsBakery">
-              <PropertyRef Name="Allergens" />
+              <PropertyRef Name="AllergensId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -158,10 +158,10 @@
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdCategory" />
             </Principal>
             <Dependent Role="GoodsBakery">
-              <PropertyRef Name="Category" />
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -172,10 +172,10 @@
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Provider">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdProvider" />
             </Principal>
             <Dependent Role="GoodsBakery">
-              <PropertyRef Name="Provider" />
+              <PropertyRef Name="ProviderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -186,10 +186,24 @@
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeOfGoods">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdType" />
             </Principal>
             <Dependent Role="GoodsBakery">
-              <PropertyRef Name="TypeOfGoods" />
+              <PropertyRef Name="TypeOfGoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatuss" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdStatus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -221,20 +235,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Orderr_Statuss">
-          <End Role="Status" Type="Self.Status" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="IdStatus" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Orderr_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -256,10 +256,10 @@
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdRole" />
             </Principal>
             <Dependent Role="Users">
-              <PropertyRef Name="Role" />
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -331,6 +331,10 @@
             <End Role="TypeOfGoods" EntitySet="TypeOfGoods" />
             <End Role="GoodsBakery" EntitySet="GoodsBakery" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderManager_GoodsBakery" Association="Self.FK_OrderManager_GoodsBakery">
             <End Role="GoodsBakery" EntitySet="GoodsBakery" />
             <End Role="OrderManager" EntitySet="OrderManager" />
@@ -338,10 +342,6 @@
           <AssociationSet Name="FK_OrderManager_Orderr" Association="Self.FK_OrderManager_Orderr">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderManager" EntitySet="OrderManager" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orderr_Statuss" Association="Self.FK_Orderr_Statuss">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Orderr_Users" Association="Self.FK_Orderr_Users">
             <End Role="Users" EntitySet="Users" />
@@ -359,9 +359,9 @@
       <Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Allergens">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdAller" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAller" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Allergen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="GoodsBakery" Relationship="Self.FK_GoodsBakery_Allergens" FromRole="Allergens" ToRole="GoodsBakery" />
         </EntityType>
@@ -378,10 +378,10 @@
         </EntityType>
         <EntityType Name="Category">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdCategory" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Category1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="GoodsBakery" Relationship="Self.FK_GoodsBakery_Category" FromRole="Category" ToRole="GoodsBakery" />
         </EntityType>
         <EntityType Name="GoodsBakery">
@@ -390,21 +390,21 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameGoods" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Category" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="Weight" Type="Int32" />
           <Property Name="CallorieValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Provider" Type="Int32" Nullable="false" />
-          <Property Name="TypeOfGoods" Type="Int32" Nullable="false" />
-          <Property Name="Allergens" Type="Int32" Nullable="false" />
+          <Property Name="ProviderId" Type="Int32" Nullable="false" />
+          <Property Name="TypeOfGoodsId" Type="Int32" Nullable="false" />
+          <Property Name="AllergensId" Type="Int32" Nullable="false" />
           <Property Name="OnStock" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Int32" />
-          <NavigationProperty Name="Allergens1" Relationship="Self.FK_GoodsBakery_Allergens" FromRole="GoodsBakery" ToRole="Allergens" />
+          <NavigationProperty Name="Allergens" Relationship="Self.FK_GoodsBakery_Allergens" FromRole="GoodsBakery" ToRole="Allergens" />
           <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_GoodsBakery1" FromRole="GoodsBakery" ToRole="Cart" />
-          <NavigationProperty Name="Category1" Relationship="Self.FK_GoodsBakery_Category" FromRole="GoodsBakery" ToRole="Category" />
-          <NavigationProperty Name="Provider1" Relationship="Self.FK_GoodsBakery_Provider" FromRole="GoodsBakery" ToRole="Provider" />
-          <NavigationProperty Name="TypeOfGoods1" Relationship="Self.FK_GoodsBakery_TypeOfGoods" FromRole="GoodsBakery" ToRole="TypeOfGoods" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_GoodsBakery_Category" FromRole="GoodsBakery" ToRole="Category" />
+          <NavigationProperty Name="Provider" Relationship="Self.FK_GoodsBakery_Provider" FromRole="GoodsBakery" ToRole="Provider" />
+          <NavigationProperty Name="TypeOfGoods" Relationship="Self.FK_GoodsBakery_TypeOfGoods" FromRole="GoodsBakery" ToRole="TypeOfGoods" />
           <NavigationProperty Name="OrderManager" Relationship="Self.FK_OrderManager_GoodsBakery" FromRole="GoodsBakery" ToRole="OrderManager" />
         </EntityType>
         <EntityType Name="Order">
@@ -415,8 +415,8 @@
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="IdStatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_Orderr" FromRole="Order" ToRole="Cart" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Order_Status" FromRole="Order" ToRole="Status" />
           <NavigationProperty Name="OrderManager" Relationship="Self.FK_OrderManager_Orderr" FromRole="Order" ToRole="OrderManager" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_Orderr_Statuss" FromRole="Order" ToRole="Status" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Orderr_Users" FromRole="Order" ToRole="Users" />
         </EntityType>
         <EntityType Name="OrderManager">
@@ -431,27 +431,27 @@
         </EntityType>
         <EntityType Name="Provider">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdProvider" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Provider1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdProvider" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="GoodsBakery" Relationship="Self.FK_GoodsBakery_Provider" FromRole="Provider" ToRole="GoodsBakery" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdRole" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role" ToRole="Users" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdStatuss" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Orderr_Statuss" FromRole="Status" ToRole="Order" />
+          <Property Name="IdStatuss" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Status" FromRole="Status" ToRole="Order" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -465,10 +465,10 @@
         </EntityType>
         <EntityType Name="TypeOfGoods">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdType" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="GoodsBakery" Relationship="Self.FK_GoodsBakery_TypeOfGoods" FromRole="TypeOfGoods" ToRole="GoodsBakery" />
         </EntityType>
         <EntityType Name="Users">
@@ -481,9 +481,9 @@
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Orderr_Users" FromRole="Users" ToRole="Order" />
-          <NavigationProperty Name="Role1" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
         </EntityType>
         <Association Name="FK_GoodsBakery_Allergens">
           <End Role="Allergens" Type="Self.Allergens" Multiplicity="1">
@@ -492,10 +492,10 @@
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Allergens">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdAller" />
             </Principal>
             <Dependent Role="GoodsBakery">
-              <PropertyRef Name="Allergens" />
+              <PropertyRef Name="AllergensId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -532,10 +532,10 @@
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdCategory" />
             </Principal>
             <Dependent Role="GoodsBakery">
-              <PropertyRef Name="Category" />
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -546,10 +546,10 @@
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Provider">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdProvider" />
             </Principal>
             <Dependent Role="GoodsBakery">
-              <PropertyRef Name="Provider" />
+              <PropertyRef Name="ProviderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -560,10 +560,10 @@
           <End Role="GoodsBakery" Type="Self.GoodsBakery" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeOfGoods">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdType" />
             </Principal>
             <Dependent Role="GoodsBakery">
-              <PropertyRef Name="TypeOfGoods" />
+              <PropertyRef Name="TypeOfGoodsId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -581,6 +581,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatuss" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderManager_Orderr">
           <End Role="Order" Type="Self.Order" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -592,20 +606,6 @@
             </Principal>
             <Dependent Role="OrderManager">
               <PropertyRef Name="IdOrder" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orderr_Statuss">
-          <End Role="Status" Type="Self.Status" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="IdStatus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -630,14 +630,14 @@
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="IdRole" />
             </Principal>
             <Dependent Role="Users">
-              <PropertyRef Name="Role" />
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities7" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities9" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Allergens" EntityType="Self.Allergens" />
           <EntitySet Name="Cart" EntityType="Self.Cart" />
           <EntitySet Name="Category" EntityType="Self.Category" />
@@ -678,13 +678,13 @@
             <End Role="GoodsBakery" EntitySet="GoodsBakery" />
             <End Role="OrderManager" EntitySet="OrderManager" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderManager_Orderr" Association="Self.FK_OrderManager_Orderr">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderManager" EntitySet="OrderManager" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orderr_Statuss" Association="Self.FK_Orderr_Statuss">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Orderr_Users" Association="Self.FK_Orderr_Users">
             <End Role="Users" EntitySet="Users" />
@@ -741,11 +741,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Model1Container" CdmEntityContainer="Entities7">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Model1Container" CdmEntityContainer="Entities9">
           <EntitySetMapping Name="Allergens">
             <EntityTypeMapping TypeName="Model1.Allergens">
               <MappingFragment StoreEntitySet="Allergens">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAller" ColumnName="IdAller" />
                 <ScalarProperty Name="Allergen" ColumnName="Allergen" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -763,8 +763,8 @@
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="Model1.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Category1" ColumnName="Category" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -773,12 +773,12 @@
               <MappingFragment StoreEntitySet="GoodsBakery">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NameGoods" ColumnName="NameGoods" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="CallorieValue" ColumnName="CallorieValue" />
-                <ScalarProperty Name="Provider" ColumnName="Provider" />
-                <ScalarProperty Name="TypeOfGoods" ColumnName="TypeOfGoods" />
-                <ScalarProperty Name="Allergens" ColumnName="Allergens" />
+                <ScalarProperty Name="ProviderId" ColumnName="ProviderId" />
+                <ScalarProperty Name="TypeOfGoodsId" ColumnName="TypeOfGoodsId" />
+                <ScalarProperty Name="AllergensId" ColumnName="AllergensId" />
                 <ScalarProperty Name="OnStock" ColumnName="OnStock" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -807,24 +807,24 @@
           <EntitySetMapping Name="Provider">
             <EntityTypeMapping TypeName="Model1.Provider">
               <MappingFragment StoreEntitySet="Provider">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Provider1" ColumnName="Provider" />
+                <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="Model1.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Role1" ColumnName="Role" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="Model1.Status">
               <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Status1" ColumnName="Status" />
+                <ScalarProperty Name="IdStatuss" ColumnName="IdStatuss" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -842,8 +842,8 @@
           <EntitySetMapping Name="TypeOfGoods">
             <EntityTypeMapping TypeName="Model1.TypeOfGoods">
               <MappingFragment StoreEntitySet="TypeOfGoods">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -856,7 +856,7 @@
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

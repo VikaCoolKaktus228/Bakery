@@ -33,9 +33,14 @@ namespace Bakery.regauth
 
         private void repeatpasswordreg_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if(repeatpasswordreg.Password != tbpasswordreg.Text)
+            if (tbpasswordreg.Text == "" || tbpasswordreg.Text == " ")
             {
-                regbutton.IsEnabled = false;
+                if (repeatpasswordreg.Password != tbpasswordreg.Text)
+                {
+
+                    regbutton.IsEnabled = false;
+                }
+                
             }
             else { regbutton.IsEnabled = true; }
         }
@@ -49,11 +54,25 @@ namespace Bakery.regauth
                 return;
             }
 
-            if (emailreg.Text.Contains("@"))
+
+
+            if (emailreg.Text.Contains("@") && emailreg.Text.Contains("."))
             {
                 if (phonereg.Text.Length < 10 || !phonereg.Text.Contains("+") || phonereg.Text.Length > 15 )
                 {
                     MessageBox.Show("Неверный формат телефона",
+                           "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                if (tbpasswordreg.Text == "" || tbpasswordreg.Text == " ")
+                {
+                    MessageBox.Show("введите пароль",
+                           "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                if (repeatpasswordreg.Password != tbpasswordreg.Text)
+                {
+                    MessageBox.Show("пароли не совпадают",
                            "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
@@ -84,12 +103,13 @@ namespace Bakery.regauth
                     Email = emailreg.Text,
                     Phone = phonereg.Text,
                     Password = tbpasswordreg.Text,
-                    Role = 2
+                    RoleId = 2
                 };
                 AppConect.bakerymod.Users.Add(user);
                 AppConect.bakerymod.SaveChanges();
                 MessageBox.Show("Вы успешно зарегистрировались",
                     "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                AppFrame.BakeryFrame.Navigate(new authorizathion());
             }
             catch
             {
@@ -110,7 +130,15 @@ namespace Bakery.regauth
 
         private void phonereg_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.Key < Key.D0 || e.Key > Key.D9 || e.Key == Key.OemPlus || e.Key == Key.Add) && e.Key != Key.Back)
+            if ((e.Key < Key.D0 || e.Key > Key.D9 ) && e.Key != Key.Back && e.Key !=Key.OemPlus)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void namereg_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key < Key.A || e.Key > Key.Z) && e.Key != Key.Back)
             {
                 e.Handled = true;
             }
