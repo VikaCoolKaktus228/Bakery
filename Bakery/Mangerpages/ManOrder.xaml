@@ -13,7 +13,7 @@
             <ImageBrush ImageSource="/image/ffff.jpg"/>
         </Grid.Background>
         <Label Content="Заказы" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF000A9C" FontSize="36" FontFamily="Cascadia Code Light"/>
-        <ListView x:Name="orderslist" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="38,99,38,141">
+        <ListView x:Name="orderslist" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="38,99,38,66" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -24,7 +24,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="1" Margin="423,0,139,0">
                             <TextBlock Text="{Binding Id}" Visibility="Collapsed"/>
-                            <Button x:Name="aboutOrder" Height="29" Content="подробнее" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0111FF" Click="aboutOrder_Click_1">
+                            <Button x:Name="aboutOrder" Height="29" Content="подробнее" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0111FF" Click="aboutOrder_Click_1" Background="#FFF8FCFF">
                                 <Button.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="-1" ScaleY="-1"/>
@@ -35,12 +35,23 @@
                                 </Button.RenderTransform>
                             </Button>
                         </StackPanel>
-                        <StackPanel Grid.Column="1" Width="146" Orientation="Vertical" HorizontalAlignment="Left">
-                            <TextBlock Width="105" TextWrapping="Wrap" Height="auto" >
+                        <StackPanel Width="236" Orientation="Vertical" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="10,0,0,0">
+                            <TextBlock Width="231" TextWrapping="Wrap" Height="auto" >
                         <Run Text="Id товара:"/> 
                         <Run Text="{Binding Id}"/>
+                        <Run Text=" "/> 
+                        <Run Text=" "/> 
+                        <TextBlock Width="231" TextWrapping="Wrap" Height="auto" >
                         <Run Text="Статус: "/>
                         <Run Text="{Binding Status.StatusName}"/>
+                        
+                         <Run Text=" "/> 
+                         <Run Text=" "/>
+                          </TextBlock>
+                                <Run Text="Пользователь: "/>
+                            <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" >
+                        <Run Text="{Binding Users.Login}"/>
+                             </TextBlock>
                             </TextBlock>
                             <TextBlock Width="auto" TextWrapping="Wrap" Height="auto" ><Run Text=" "/><Run Text=" "/><Run Text=" "/></TextBlock>
                         </StackPanel>

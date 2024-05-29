@@ -139,5 +139,19 @@ namespace Bakery.editgoods
                 phoneuser.Focus();
             }
         }
+
+        private void phoneuser_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!phoneuser.Text.StartsWith("+"))
+            {
+                phoneuser.TextChanged -= phoneuser_TextChanged;
+                var currentText = phoneuser.Text;
+                phoneuser.Text = "+" + currentText.TrimStart('+');
+
+                phoneuser.TextChanged += phoneuser_TextChanged;
+
+                phoneuser.SelectionStart = phoneuser.Text.Length;
+            }
+        }
     }
 }

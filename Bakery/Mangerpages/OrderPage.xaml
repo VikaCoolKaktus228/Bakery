@@ -18,9 +18,9 @@
         <Label Content="Статус" HorizontalAlignment="Left" Margin="250,69,0,0" VerticalAlignment="Top" Panel.ZIndex="1" FontSize="16"/>
         <Label x:Name="labelId" Content="" HorizontalAlignment="Left" Margin="50,100,0,0" VerticalAlignment="Top" Height="39" Width="50" Background="{x:Null}" Panel.ZIndex="1" FontSize="14"/>
         <Label Content="Id" HorizontalAlignment="Left" Margin="40,69,0,0" VerticalAlignment="Top" Panel.ZIndex="1" FontSize="16"/>
-        <Button x:Name="ToOrders" Content="к заказам" HorizontalAlignment="Left" Margin="681,16,0,0" VerticalAlignment="Top" Foreground="#FF001BFF" Width="109" Height="46" Panel.ZIndex="1" Click="ToOrders_Click"/>
+        <Button x:Name="ToOrders" Content="к заказам" HorizontalAlignment="Left" Margin="681,16,0,0" VerticalAlignment="Top" Foreground="#FF001BFF" Width="109" Height="46" Panel.ZIndex="1" Click="ToOrders_Click" Background="#FFE5F3FB"/>
 
-        <ListView x:Name="listgoodsorder" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="22,183,30,10" Panel.ZIndex="1">
+        <ListView x:Name="listgoodsorder" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="22,183,30,10" Panel.ZIndex="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -71,7 +71,19 @@
         <ComboBox x:Name="orderstatuscombo"  ItemsSource="{Binding Status}" 
                       DisplayMemberPath="StatusName"
                       SelectedValuePath="IdStatuss"
-                      SelectedValue="{Binding IdStatus}" HorizontalAlignment="Left" Margin="283,103,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="orderstatuscombo_DropDownOpened" Height="21.96"/>
+                      SelectedValue="{Binding IdStatus}" HorizontalAlignment="Left" Margin="283,103,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="orderstatuscombo_DropDownOpened" Height="21.96">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FFEDFAFF" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
         <Button x:Name="changestatusbttn" Content="изменить статус" HorizontalAlignment="Left" Margin="400,130,0,0" VerticalAlignment="Top" Height="22" Width="108" Foreground="#FF0800FF" Click="changestatusbttn_Click" IsEnabled="False"/>
+        <Label Content="" HorizontalAlignment="Center" Height="450" Margin="0,69,0,0" VerticalAlignment="Top" Width="1216" Panel.ZIndex="-1">
+            <Label.Background>
+                <SolidColorBrush Color="#FFC4E8FF" Opacity="0.9"/>
+            </Label.Background>
+        </Label>
     </Grid>
 </Page>

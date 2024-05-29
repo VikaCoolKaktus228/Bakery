@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Bakery"
       mc:Ignorable="d" 
-      d:DesignHeight="834" d:DesignWidth="808"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="goodslistuser">
 
-    <Grid Margin="0,10,0,10" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionBrushKey}}">
+    <Grid Margin="0,10,0,0" Background="#FF9CD4FF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -17,7 +17,7 @@
             <RowDefinition Height="97"/>
             <RowDefinition Height="483"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="userbakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Background="#FF75A4C8" Margin="0,1,0,-244" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="userbakeryproducts_SelectionChanged">
+        <ListView x:Name="userbakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Background="#FFC9E8FF" Margin="0,1,0,184" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="userbakeryproducts_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -78,7 +78,7 @@
                                 <Run Text=" "/> 
                                 <Run Text=" "/>
                             </TextBlock>
-                            <Button x:Name="cart" Content="добавить в корзину" Width="200" Height="53" Click="cart_Click" Foreground="#FF2244FF" FontFamily="Cascadia Code Light"/>
+                            <Button x:Name="cart" Content="добавить в корзину" Width="200" Height="53" Click="cart_Click" Foreground="#FF2244FF" FontFamily="Cascadia Code Light" Background="#FFF3FBFF"/>
                         </StackPanel>
 
                     </Grid>
@@ -101,8 +101,11 @@
         <Label Content="сортировка" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="74"/>
         <Label Content="фильтрация" HorizontalAlignment="Left" Margin="182,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="76"/>
         <Label Content="поиск" HorizontalAlignment="Left" Margin="350,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="42"/>
-        <Button Content="поиск" HorizontalAlignment="Left" Margin="498,23,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF193CFF"/>
-        <Button x:Name="tocartbttn" Content="корзина" HorizontalAlignment="Left" Margin="730,15,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="34" Width="68" Foreground="#FF1E2CFF" Click="tocartbttn_Click"/>
-        <Button x:Name="erasebutton" Content="оистить" HorizontalAlignment="Left" Margin="549,22,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Foreground="#FF001BFF" Click="erasebutton_Click"/>
+        <Button Content="поиск" HorizontalAlignment="Left" Margin="549,25,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="21" Width="36" Foreground="#FF193CFF" Background="#FFF4FAFF"/>
+        <Button x:Name="tocartbttn" Content="корзина" HorizontalAlignment="Left" Margin="673,20,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="48" Width="125" Foreground="#FF1E2CFF" Click="tocartbttn_Click" Background="#FFE2F3FF"/>
+        <Button x:Name="erasebutton" Content="очистить все" HorizontalAlignment="Left" Margin="498,0,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Foreground="#FF001BFF" Click="erasebutton_Click" Width="89" Background="#FFE5EFF7"/>
+        <Button x:Name="erasesortbutton" Content="очистить" HorizontalAlignment="Left" Margin="135,23,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Foreground="#FF001BFF" Width="35" Click="erasesortbutton_Click" Background="#FFE2EFF9"/>
+        <Button x:Name="erasefiltrbutton" Content="очистить" HorizontalAlignment="Left" Margin="307,23,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Foreground="#FF001BFF" Width="35" Click="erasefiltrbutton_Click" Background="#FFEDF7FF"/>
+        <Button x:Name="erasesearchebutton" Content="очистить" HorizontalAlignment="Left" Margin="498,25,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Foreground="#FF001BFF" Width="35" Click="erasesearchebutton_Click" Background="#FFE9F4FD" />
     </Grid>
 </Page>

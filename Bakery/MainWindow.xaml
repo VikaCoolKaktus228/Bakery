@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bakery"
         mc:Ignorable="d"
-        Title="My Cute Bakery" Height="612" Width="902" Closed="Window_Closed">
+        Title="My Cute Bakery" Height="612" Width="902" Closed="Window_Closed" MaxWidth="902" MaxHeight="612" MinWidth="902" MinHeight="612" Icon="/picmix.com_2469185.png">
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,7 +13,7 @@
                 <GradientStop Color="#FF6998E6" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Grid Margin="0,0,0,522">
+        <Grid Margin="0,0,0,480">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF5AA8E2" Offset="0.053"/>
@@ -21,9 +21,17 @@
                     <GradientStop Color="#FFEDF5F9" Offset="0.537"/>
                 </LinearGradientBrush>
             </Grid.Background>
+            <Button x:Name="exbttn" Content="к регистрации" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="39" Width="105" Foreground="#FF2477FF" Click="exbttn_Click" BorderBrush="#FF7D7D7D" Background="#FFFFFCFC"/>
         </Grid>
         <Label x:Name="Bakery" Content="Cute bakery" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Cascadia Code" FontSize="33" Foreground="#FF3E63AD" Background="#00000000"/>
-        <Frame x:Name="BakFrame" Content="Frame" Margin="0,56,0,0" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="BakFrame" Content="Frame" Margin="0,61,0,0" NavigationUIVisibility="Hidden">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF12B8FF" Offset="1"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+        </Frame>
 
     </Grid>
 </Window>

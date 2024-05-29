@@ -211,7 +211,28 @@ namespace Bakery
 
         private void TextSearche_KeyDown(object sender, KeyEventArgs e)
         {
+            List<GoodsBakery> product = AppConect.bakerymod.GoodsBakery.ToList();
+            var productall = product;
+            if (TextSearche != null)
+            {
+                product = product.Where(x => x.NameGoods.ToLower().Contains(TextSearche.Text.ToLower())).ToList();
+            }
             findGoods();
+        }
+
+        private void erasesortbutton_Click(object sender, RoutedEventArgs e)
+        {
+            ComboSort.SelectedIndex = -1;
+        }
+
+        private void erasefiltrbutton_Click(object sender, RoutedEventArgs e)
+        {
+            ComboFilter.SelectedIndex = -1;
+        }
+
+        private void erasesearchebutton_Click(object sender, RoutedEventArgs e)
+        {
+            TextSearche.Text = string.Empty;
         }
     }
 }

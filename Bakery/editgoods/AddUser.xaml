@@ -12,13 +12,13 @@
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFFBFBFF"/>
-                <GradientStop Color="#FF6567FF" Offset="1"/>
+                <GradientStop Color="#FF65CAFF" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="Добавить пользователя" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF0700F3" FontFamily="Cascadia Code Light" FontSize="36"/>
         <TextBox x:Name="nameuser" Text="{Binding Name}" HorizontalAlignment="Left" Margin="60,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="28" MaxLength="49" KeyDown="nameuser_KeyDown"/>
         <TextBox x:Name="loginuser" Text="{Binding Login}" HorizontalAlignment="Left" Margin="60,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="32" MaxLength="49" KeyDown="loginuser_KeyDown"/>
-        <TextBox x:Name="phoneuser" Text="{Binding Phone}" HorizontalAlignment="Left" Margin="561,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="28" MaxLength="16" KeyDown="phoneuser_KeyDown"/>
+        <TextBox x:Name="phoneuser" Text="{Binding Phone}" HorizontalAlignment="Left" Margin="561,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="28" MaxLength="16" KeyDown="phoneuser_KeyDown" TextChanged="phoneuser_TextChanged"/>
         <TextBox x:Name="emailuser" Text="{Binding Email}" HorizontalAlignment="Left" Margin="561,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="30" MaxLength="100" KeyDown="emailuser_KeyDown"/>
         <TextBox x:Name="passworduser" Text="{Binding Password}" HorizontalAlignment="Left" Margin="561,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="28" MaxLength="49" KeyDown="passworduser_KeyDown"/>
         <Label Content="Введите имя:" HorizontalAlignment="Left" Margin="60,89,0,0" VerticalAlignment="Top" Width="111"/>
@@ -26,9 +26,9 @@
         <Label Content="Введите почту:" HorizontalAlignment="Left" Margin="561,157,0,0" VerticalAlignment="Top" Width="125"/>
         <Label Content="Введите телефон:" HorizontalAlignment="Left" Margin="561,228,0,0" VerticalAlignment="Top" Width="145"/>
         <Label Content="Введите пароль:" HorizontalAlignment="Left" Margin="561,89,0,0" VerticalAlignment="Top" Width="136"/>
-        <Button x:Name="adduserbutton" Content="Добавить" HorizontalAlignment="Center" Margin="0,347,0,0" VerticalAlignment="Top" Height="45" Width="122" Foreground="#FF0800FF" Click="adduserbutton_Click"/>
+        <Button x:Name="adduserbutton" Content="Добавить" HorizontalAlignment="Center" Margin="0,347,0,0" VerticalAlignment="Top" Height="45" Width="122" Foreground="#FF0800FF" Click="adduserbutton_Click" Background="#FFDFEBFF"/>
         <ComboBox x:Name="combouserrole" ItemsSource="{Binding IdRole}" DisplayMemberPath="RoleName" HorizontalAlignment="Left" Margin="60,273,0,0" VerticalAlignment="Top" Width="208" Height="22" KeyDown="combouserrole_KeyDown"/>
         <Label Content="Выберите роль:" HorizontalAlignment="Left" Margin="60,242,0,0" VerticalAlignment="Top" Width="130"/>
-        <Button x:Name="backbttn" Content="назад" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Height="35" Width="63" Foreground="#FF000FFD" Click="backbttn_Click"/>
+        <Button x:Name="backbttn" Content="назад" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Height="35" Width="63" Foreground="#FF000FFD" Click="backbttn_Click" Background="#FFF0F9FF"/>
     </Grid>
 </Page>

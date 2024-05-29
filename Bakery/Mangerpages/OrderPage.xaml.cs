@@ -63,7 +63,7 @@ namespace Bakery.Mangerpages
 
         private void ToOrders_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.BakeryFrame.Navigate(new OrderManager());
+            AppFrame.BakeryFrame.Navigate(new ManOrder());
         }
 
         private void changestatusbttn_Click(object sender, RoutedEventArgs e)

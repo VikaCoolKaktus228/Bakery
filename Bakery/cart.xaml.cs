@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Drawing;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using iTextSharp.text;
@@ -93,7 +94,7 @@ namespace Bakery
                     if (item is Cart)
                     {
                         Cart data = (Cart)item;
-                        Image img = Image.GetInstance("C:\\Users\\10210806\\source\\repos\\Bakery\\bakfin\\Bakery" + data.GoodsBakery.CurrentPhoto);
+                        Image img = Image.GetInstance("C:\\Users\\10210806\\source\\repos\\Bakery\\Bakery" + data.GoodsBakery.CurrentPhoto);
                         img.ScaleAbsolute(100f, 100f);
                         doc.Add(img);
                         doc.Add(new Paragraph("Haзвaние: " + data.GoodsBakery.NameGoods, font));

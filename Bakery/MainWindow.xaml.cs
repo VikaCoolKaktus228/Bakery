@@ -43,5 +43,10 @@ namespace Bakery
             }
 
         }
+
+        private void exbttn_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.BakeryFrame.Navigate(new authorizathion());
+        }
     }
 }

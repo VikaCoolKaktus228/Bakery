@@ -12,8 +12,8 @@
         <Grid.Background>
             <ImageBrush ImageSource="/image/gggg.jpg"/>
         </Grid.Background>
-        <Image x:Name="img" HorizontalAlignment="Left" Height="225" Margin="277,140,0,0" VerticalAlignment="Top" Width="272"/>
-        <Label Content="QR код заказа" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Cascadia Code ExtraLight" FontSize="24"/>
+        <Image x:Name="img" HorizontalAlignment="Left" Height="250" Margin="327,106,0,0" VerticalAlignment="Top" Width="311"/>
+        <Label Content="QR код заказа" HorizontalAlignment="Left" Margin="372,22,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Cascadia Code ExtraLight" FontSize="24"/>
         <Button x:Name="exitbttn" Content="выход" HorizontalAlignment="Left" Margin="713,10,0,0" VerticalAlignment="Top" Height="39" Width="77" Foreground="#FF1537F3" Click="exitbttn_Click"/>
 
 

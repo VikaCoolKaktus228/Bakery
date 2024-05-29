@@ -103,28 +103,34 @@ namespace Bakery.editgoods
                 return;
 
             }
+            if(curbakery.Id > 0)
+            {
                 try
-            {
-                curbakery.NameGoods = goodsnamee.Text;
-                curbakery.Price = Convert.ToInt32(price.Text);
-                curbakery.TypeOfGoodsId = Convert.ToInt32(goodstypee.SelectedIndex + 1);
-                curbakery.ProviderId = Convert.ToInt32(goodsproviderr.SelectedIndex + 1);
-                curbakery.CategoryId = Convert.ToInt32(goodscategoryy.SelectedIndex + 1);
-                curbakery.Weight = Convert.ToInt32(goodsweightt.Text);
-                curbakery.OnStock = Convert.ToInt32(onstock.Text);
-                curbakery.Description = description.Text;
-                curbakery.CallorieValue = goodscalloriess.Text;
-                curbakery.AllergensId = Convert.ToInt32(goodsallergienss.SelectedIndex + 1);
+                {
+                    curbakery.NameGoods = goodsnamee.Text;
+                    curbakery.Price = Convert.ToInt32(price.Text);
+                    curbakery.TypeOfGoodsId = Convert.ToInt32(goodstypee.SelectedIndex + 1);
+                    curbakery.ProviderId = Convert.ToInt32(goodsproviderr.SelectedIndex + 1);
+                    curbakery.CategoryId = Convert.ToInt32(goodscategoryy.SelectedIndex + 1);
+                    curbakery.Weight = Convert.ToInt32(goodsweightt.Text);
+                    curbakery.OnStock = Convert.ToInt32(onstock.Text);
+                    curbakery.Description = description.Text;
+                    curbakery.CallorieValue = goodscalloriess.Text;
+                    curbakery.AllergensId = Convert.ToInt32(goodsallergienss.SelectedIndex + 1);
+                    curbakery.Image = curbakery.Image;
 
-                Entities9.GetContext().SaveChanges();
 
-                MessageBox.Show("Данные успешно изменены!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                AppFrame.BakeryFrame.Navigate(new goodslist());
+                    Entities9.GetContext().SaveChanges();
+
+                    MessageBox.Show("Данные успешно изменены!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AppFrame.BakeryFrame.Navigate(new goodslist());
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка при изменении данных!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            catch
-            {
-                MessageBox.Show("Ошибка при изменении данных!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                
         }
         private void addbutton_Click(object sender, RoutedEventArgs e)
         {

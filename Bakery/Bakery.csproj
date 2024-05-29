@@ -288,7 +288,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="picmix.com_2469185.png" />
     <Resource Include="images\nnn.jpg" />
+    <Resource Include="BBB.png" />
     <Content Include="Model3.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model3.edmx</DependentUpon>

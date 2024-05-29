@@ -175,5 +175,19 @@ namespace Bakery.regauth
                 repeatpasswordreg.Focus();
             }
         }
+
+        private void phonereg_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!phonereg.Text.StartsWith("+"))
+            {
+                phonereg.TextChanged -= phonereg_TextChanged;
+                var currentText = phonereg.Text;
+                phonereg.Text = "+" + currentText.TrimStart('+');
+
+                phonereg.TextChanged += phonereg_TextChanged;
+
+                phonereg.SelectionStart = phonereg.Text.Length;
+            }
+        }
     }
 }

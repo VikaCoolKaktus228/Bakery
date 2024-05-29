@@ -10,9 +10,9 @@
     <Grid Margin="0,0,0,1">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF48789E"/>
+                <GradientStop Color="#FF45A2EC"/>
                 <GradientStop Color="#FFB2DDFF" Offset="1"/>
-                <GradientStop Color="White" Offset="0.14"/>
+                <GradientStop Color="#FFEFF2F3" Offset="0.14"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
@@ -23,14 +23,7 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="510"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="bakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Margin="0,0,0,130" d:ItemsSource="{d:SampleData ItemCount=5}" Foreground="#FF062CFF">
-            <ListView.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8EC8FD"/>
-                    <GradientStop Color="#FF92CBFF" Offset="1"/>
-                    <GradientStop Color="White" Offset="0.487"/>
-                </LinearGradientBrush>
-            </ListView.Background>
+        <ListView x:Name="bakeryproducts" Grid.Row="2" ScrollViewer.CanContentScroll="False" Margin="0,40,0,176" d:ItemsSource="{d:SampleData ItemCount=5}" Foreground="#FF0A0C17" Background="#FFDFF7FF" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -91,7 +84,7 @@
                                 <Run Text=" "/> 
                                 <Run Text=" "/>
                             </TextBlock>
-                            <Button x:Name="delete" Height="24" Content="удалить" RenderTransformOrigin="0.5,0.5" Width="134" Click="delete_Click" Foreground="#FF0B2DE6">
+                            <Button x:Name="delete" Height="24" Content="удалить" RenderTransformOrigin="0.5,0.5" Width="134" Click="delete_Click" Foreground="#FF0B2DE6" Margin="0,0,0,5" Background="#FFF0FAFF">
                                 <Button.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="-1" ScaleY="-1"/>
@@ -101,7 +94,7 @@
                                     </TransformGroup>
                                 </Button.RenderTransform>
                             </Button>
-                            <Button x:Name="change" Height="25" Content="обновить" RenderTransformOrigin="0.5,0.5" Width="133" Click="change_Click" Foreground="#FF1236FD">
+                            <Button x:Name="change" Height="25" Content="обновить" RenderTransformOrigin="0.5,0.5" Width="133" Click="change_Click" Foreground="#FF1236FD" Background="#FFE2F5FF">
                                 <Button.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="-1" ScaleY="-1"/>
@@ -134,7 +127,7 @@
         <Label Content="сортировка" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="74"/>
         <Label Content="фильтрация" HorizontalAlignment="Left" Margin="182,16,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Width="76"/>
         <Label Content="поиск" HorizontalAlignment="Left" Margin="350,0,0,0" VerticalAlignment="Center" Height="26" Grid.Row="1" Width="42"/>
-        <Button Content="поиск" HorizontalAlignment="Left" Margin="542,41,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF1215EC"/>
+        <Button Content="поиск" HorizontalAlignment="Left" Margin="548,40,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="36" Foreground="#FF1215EC"/>
         <Button x:Name="addgooods" Content="добавить товар" HorizontalAlignment="Left" Margin="698,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="addgooods_Click" Foreground="#FF0A19FF" Height="24" Width="98"/>
         <Button x:Name="userslistbutton" Content="список пользователей" HorizontalAlignment="Left" Margin="660,34,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="24" Width="134" Foreground="#FF2715FF" Click="userslistbutton_Click"/>
         <Button x:Name="eraseall" Content="очистить все" HorizontalAlignment="Left" Margin="499,16,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="19" Width="85" Click="eraseall_Click" Foreground="#FF003CF7"/>

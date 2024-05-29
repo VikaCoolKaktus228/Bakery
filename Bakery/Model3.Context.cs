@@ -14,12 +14,20 @@ namespace Bakery
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+
     public partial class Entities9 : DbContext
     {
+        private static Entities9 _context;
         public Entities9()
             : base("name=Entities9")
         {
+        }
+
+        public static Entities9 GetContext()
+        {
+            if (_context == null)
+                _context = new Entities9();
+            return _context;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

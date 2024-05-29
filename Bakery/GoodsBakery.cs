@@ -33,7 +33,22 @@ namespace Bakery
         public string Image { get; set; }
         public string Description { get; set; }
         public Nullable<int> Price { get; set; }
-    
+
+        public string CurrentPhoto
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Image) || String.IsNullOrWhiteSpace(Image))
+                {
+                    return "/images/nnn.jpg";
+                }
+                else
+                {
+                    return "/images/" + Image;
+                }
+            }
+        }
+
         public virtual Allergens Allergens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Cart { get; set; }

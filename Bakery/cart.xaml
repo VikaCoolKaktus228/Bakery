@@ -16,7 +16,7 @@
             </RadialGradientBrush>
         </Grid.Background>
         <Label Content="КОРЗИНА" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" FontFamily="Cascadia Code Light" Foreground="#FF102B96"/>
-        <ListView x:Name="cartbakery" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="38,99,38,141">
+        <ListView x:Name="cartbakery" ScrollViewer.CanContentScroll="False" Background="#FFE3F3FF" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="38,85,38,124" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Width="724" Height="241">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -28,7 +28,7 @@
                         <Image Source="{Binding CurrentPhoto}" Grid.Column="0" Margin="0,0,10,0"/>
                         <StackPanel Grid.Column="1" Margin="423,0,139,0">
                             <TextBlock Text="{Binding Id}" Visibility="Collapsed"/>
-                            <Button x:Name="removecart" Height="29" Content="убрать из корзины" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0111FF" Click="removecart_Click">
+                            <Button x:Name="removecart" Height="29" Content="убрать из корзины" RenderTransformOrigin="0.5,0.5" Width="134" Foreground="#FF0111FF" Click="removecart_Click" Background="#FFF9FEFF">
                                 <Button.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform ScaleX="-1" ScaleY="-1"/>
@@ -62,7 +62,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="orderbutton" Content="сформировать заказ" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Height="63" Width="158" Foreground="#FF1B1EF7" Click="orderbutton_Click" IsEnabled="False"/>
-        <Button x:Name="gobackbutton" Content="назад" HorizontalAlignment="Left" Margin="737,5,0,0" VerticalAlignment="Top" Height="31" Width="53" Foreground="#FF0B0FEC" Click="gobackbutton_Click"/>
+        <Button x:Name="orderbutton" Content="сформировать заказ" HorizontalAlignment="Center" VerticalAlignment="Top" Height="63" Width="158" Foreground="#FF1B1EF7" Click="orderbutton_Click" IsEnabled="False" Margin="0,377,0,0"/>
+        <Button x:Name="gobackbutton" Content="назад" HorizontalAlignment="Left" Margin="737,5,0,0" VerticalAlignment="Top" Height="31" Width="53" Foreground="#FF0B0FEC" Click="gobackbutton_Click" Background="#FFE1F2FF"/>
     </Grid>
 </Page>
