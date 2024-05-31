@@ -26,8 +26,6 @@ namespace Bakery
             InitializeComponent();
             List<GoodsBakery> bakerygoods = AppConect.bakerymod.GoodsBakery.ToList();
             bakeryproducts.ItemsSource = bakerygoods;
-
-
             List<GoodsBakery> bakgoods = AppConect.bakerymod.GoodsBakery.ToList();
 
             if (bakgoods.Count > 0)

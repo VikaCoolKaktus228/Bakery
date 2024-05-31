@@ -60,7 +60,7 @@ namespace Bakery.regauth
             {
                 if (phonereg.Text.Length < 10 || !phonereg.Text.Contains("+") || phonereg.Text.Length > 15 )
                 {
-                    MessageBox.Show("Неверный формат телефона",
+                    MessageBox.Show("Неверный формат почты",
                            "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }

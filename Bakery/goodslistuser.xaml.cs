@@ -128,8 +128,8 @@ namespace Bakery
 
         private void cart_Click(object sender, RoutedEventArgs e)
         {
-            var goodsfordeleting = userbakeryproducts.SelectedItems.Cast<GoodsBakery>().ToList();
-            if (goodsfordeleting.Count > 0)
+            var goodsforcart = userbakeryproducts.SelectedItems.Cast<GoodsBakery>().ToList();
+            if (goodsforcart.Count > 0)
             {
 
                 try
